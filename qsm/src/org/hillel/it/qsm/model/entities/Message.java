@@ -5,6 +5,14 @@ public class Message {
 	private String messageText;
 	private String senderEmail;
 	private String recieverEmail;
+	private boolean read;
+	
+	public boolean isRead() {
+		return read;
+	}
+	public void setRead(boolean read) {
+		this.read = read;
+	}
 	public int getId() {
 		return id;
 	}
