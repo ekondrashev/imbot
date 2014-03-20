@@ -1,32 +1,33 @@
 package org.hillel.it.qsm.model.entities;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
-	private int id;
 	private String email;
-	private int password;
-	private String server;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
+	private String password;
+	private List<Message> inbox;
+	private List<Message> outbox;
+
+	public User (String email, String password) {
 		this.email = email;
-	}
-	public int getPassword() {
-		return password;
-	}
-	public void setPassword(int password) {
 		this.password = password;
-	}
-	public String getServer() {
-		return server;
-	}
-	public void setServer(String server) {
-		this.server = server;
+		inbox = new ArrayList<Message>();
+		outbox = new ArrayList<Message>();
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
+	public List<Message> getInbox() {
+		return inbox;
+	}
+
+	public List<Message> getOutbox() {
+		return outbox;
+	}
+	
+	
+
 }

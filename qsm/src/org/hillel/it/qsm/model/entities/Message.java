@@ -1,47 +1,21 @@
 package org.hillel.it.qsm.model.entities;
+
 public class Message {
-	private int id;
-	private String subject;
-	private String messageText;
-	private String senderEmail;
-	private String recieverEmail;
-	private boolean read;
+	private String theme;
+	private String senderMail;
+	private String recieverMail;
+	private String text;
 	
-	public boolean isRead() {
-		return read;
+	public Message (String theme, String senderMail, String recieverMail, String text) {
+		this.theme = theme;
+		this.senderMail = senderMail;
+		this.recieverMail = recieverMail;
+		this.text = text;
 	}
-	public void setRead(boolean read) {
-		this.read = read;
+	
+	public String getMessage() {
+		return text;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-	public String getMessageText() {
-		return messageText;
-	}
-	public void setMessageText(String messageText) {
-		this.messageText = messageText;
-	}
-	public String getSenderEmail() {
-		return senderEmail;
-	}
-	public void setSenderEmail(String senderEmail) {
-		this.senderEmail = senderEmail;
-	}
-	public String getRecieverEmail() {
-		return recieverEmail;
-	}
-	public void setRecieverEmail(String recieverEmail) {
-		this.recieverEmail = recieverEmail;
-	}
+	
 	
 }
