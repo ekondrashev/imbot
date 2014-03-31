@@ -16,7 +16,7 @@ public class Client {
 				this.outbox = server.getUsers().get(email).getOutbox();
 				this.server = server;
 			} else {
-				System.out.println("неправельно введён пароль");
+				System.out.println("неправильно введён пароль");
 			}
 		} else {
 			User user = new User(email, password);
