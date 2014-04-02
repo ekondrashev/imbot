@@ -1,6 +1,6 @@
 package org.hillel.it.qsm.model.entities;
 
-public class BaseEntity {
+public abstract class BaseEntity {
 	private int id;
 	private String created;
 }

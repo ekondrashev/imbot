@@ -3,31 +3,23 @@ package org.hillel.it.qsm.model.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User extends BaseEntity{
 	private String email;
 	private String password;
-	private List<Message> inbox;
-	private List<Message> outbox;
+	List<Message> messages;
 
-	public User (String email, String password) {
+	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
-		inbox = new ArrayList<Message>();
-		outbox = new ArrayList<Message>();
+		messages = new ArrayList();
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
 
-	public List<Message> getInbox() {
-		return inbox;
+	public List<Message> getMessages() {
+		return messages;
 	}
-
-	public List<Message> getOutbox() {
-		return outbox;
-	}
-	
-	
 
 }
