@@ -1,16 +1,20 @@
 package org.hillel.it.qsm.model.entities;
 
+import java.util.Date;
+
 public class Message extends BaseEntity{
 	private String theme;
 	private String senderMail;
 	private String recieverMail;
 	private String text;
 	public Message(String theme, String senderMail, String recieverMail, String text) {
+		super();
 		this.theme = theme;
 		this.senderMail = senderMail;
 		this.recieverMail = recieverMail;
-		this.text = text;
+		this.text = text;	
 	}
+
 	public String getTheme() {
 		return theme;
 	}

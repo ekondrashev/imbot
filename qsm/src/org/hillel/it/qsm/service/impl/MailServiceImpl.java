@@ -68,6 +68,7 @@ public class MailServiceImpl implements MailService {
 		for (Message message : users.getUsers().get(email).getMessages()) {
 			if (message.getSenderMail() == email) {
 				outbox.add(message);
+				System.out.println("Дата создания: " + message.getCreated());
 				System.out.println("Получатель: " + message.getRecieverMail());
 				System.out.println("Отправитель: " + message.getSenderMail());
 				System.out.println("Тема: " + message.getTheme());
@@ -75,6 +76,7 @@ public class MailServiceImpl implements MailService {
 				System.out.println("-----исходящее---------");
 			} else if (message.getRecieverMail() == email && message.getSenderMail() != email) {
 				inbox.add(message);
+				System.out.println("Дата создания: " + message.getCreated());
 				System.out.println("Получатель: " + message.getRecieverMail());
 				System.out.println("Отправитель: " + message.getSenderMail());
 				System.out.println("Тема: " + message.getTheme());
