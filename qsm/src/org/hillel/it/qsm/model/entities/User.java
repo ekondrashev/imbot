@@ -1,25 +1,35 @@
 package org.hillel.it.qsm.model.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class User extends BaseEntity{
+public class User extends BaseEntity {
 	private String email;
 	private String password;
-	List<Message> messages;
+	private Map<Integer, Message> messages;
+
+	private Map<Integer, Message> trash;
 
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
-		messages = new ArrayList();
+		messages = new HashMap();
+
+	}
+
+	public Map<Integer, Message> getTrash() {
+		return trash;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public List<Message> getMessages() {
+	public Map<Integer, Message> getMessages() {
 		return messages;
+
 	}
 
 }
