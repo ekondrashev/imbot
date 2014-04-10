@@ -28,27 +28,19 @@ public class Message extends BaseEntity{
 	public String getTheme() {
 		return theme;
 	}
-	public void setTheme(String theme) {
-		this.theme = theme;
-	}
+	
 	public String getSenderMail() {
 		return senderMail;
 	}
-	public void setSenderMail(String senderMail) {
-		this.senderMail = senderMail;
-	}
+	
 	public String getRecieverMail() {
 		return recieverMail;
 	}
-	public void setRecieverMail(String recieverMail) {
-		this.recieverMail = recieverMail;
-	}
+	
 	public String getText() {
 		return text;
 	}
-	public void setText(String text) {
-		this.text = text;
-	}
+	
 	
 	
 	
