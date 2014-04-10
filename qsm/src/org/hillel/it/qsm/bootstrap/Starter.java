@@ -16,16 +16,20 @@ public class Starter {
 				"123xxx", userRepository);
 		// Добавить прокси
 		service1.sendMessage("123", "example@qsm.com", "Hello!!");
-		service.sendMessage("hello world", "example1@qsm.com", "Hello!!");
+		service.sendMessage("hello world", "example1@qsm.com", "1");
 
 		service.getInbox();
 		service.getOutbox();
-		service.getTrash();
-		service.deleteMessage(4);
-		service.getTrash();
-		service.clearTrash();
-		service.getTrash();
+		service1.getInbox();
+		service1.getOutbox();
+//		service.getTrash();
+		service.deleteMessage(3);
+		service.deleteMessage(6);
+     	service.getTrash();
+      	service.clearTrash();
+     
+		
 	
 
-	}
+	 }
 }

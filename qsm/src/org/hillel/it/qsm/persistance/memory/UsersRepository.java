@@ -36,8 +36,10 @@ public class UsersRepository implements UserRepository {
 					text);
 			users.get(recieverMail).getMessages()
 					.put(newMessage.getId(), newMessage);
+			Message newMessage1 = new Message(theme, senderEmail, recieverMail,
+					text);
 			users.get(senderEmail).getMessages()
-					.put(newMessage.getId(), newMessage);
+					.put(newMessage1.getId(), newMessage1);
 		} else {
 			System.out
 					.println("Вы пытаетесь отправить письмо на не существующий адресс");
@@ -106,11 +108,12 @@ public class UsersRepository implements UserRepository {
 	public void clearTrash(String email) {
 		for (Iterator iterator = users.get(email).getMessages().values()
 				.iterator(); iterator.hasNext();) {
-			Message message = (Message) iterator.next();
+			Message message =  (Message) iterator.next();
 			if ( message.isInTrash()==true) {
-				 users.get(email).getMessages().remove(message.getId());
-				
+				users.get(email).getMessages().remove(message.getId());
+				System.out.println("dsf");
 			}
+			
 		}
 		
 	}
