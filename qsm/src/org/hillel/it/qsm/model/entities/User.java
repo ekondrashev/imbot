@@ -10,17 +10,11 @@ public class User extends BaseEntity {
 	private String password;
 	private Map<Integer, Message> messages;
 
-	private Map<Integer, Message> trash;
-
 	public User(String email, String password) {
 		this.email = email;
 		this.password = password;
 		messages = new HashMap();
 
-	}
-
-	public Map<Integer, Message> getTrash() {
-		return trash;
 	}
 
 	public String getPassword() {

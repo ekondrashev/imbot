@@ -8,8 +8,10 @@ import org.hillel.it.qsm.model.entities.User;
 public interface UserRepository {
 
 	public void sendMessage(String theme, String recieverMail,String email, String text);
-	public void deleteMessage(String email, Message message,int id);
+	public void deleteMessage(String email,int id);
 	public Map<String, User> getUsers();
 	public void getInbox(String email);
 	public void getOutbox(String email);
+	public void clearTrash(String email) ;
+	public void getTrash(String email);
 }

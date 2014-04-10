@@ -10,11 +10,11 @@ public abstract class BaseEntity {
 		return created;
 	}
 	public int getId() {
-		counter++;
-		return id+counter;
+		return id;
 	}
 	public BaseEntity() {
 		created = new Date();
-		
+		counter++;
+		id = id+counter;
 	}
 }

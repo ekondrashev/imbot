@@ -6,7 +6,6 @@ import java.util.List;
 import org.hillel.it.qsm.model.entities.Message;
 import org.hillel.it.qsm.model.entities.User;
 import org.hillel.it.qsm.model.search.MessageCriteria;
-import org.hillel.it.qsm.persistance.repository.TrashRepository;
 import org.hillel.it.qsm.persistance.repository.UserRepository;
 import org.hillel.it.qsm.service.MailService;
 
@@ -14,15 +13,13 @@ public class MailServiceImpl implements MailService {
 
 	private String email;
 	private UserRepository users;
-	private TrashRepository trash;
 
-	public MailServiceImpl(String email, String password, UserRepository users,TrashRepository trash) {
-	
+	public MailServiceImpl(String email, String password, UserRepository users) {
+
 		if (users.getUsers().containsKey(email)) {
 			if (users.getUsers().get(email).getPassword() == password) {
 				this.email = email;
 				this.users = users;
-				this.trash = trash;
 
 			} else {
 				System.out.println("неправильно введён пароль");
@@ -32,7 +29,7 @@ public class MailServiceImpl implements MailService {
 			users.getUsers().put(email, user);
 			this.email = email;
 			this.users = users;
-			this.trash = trash;
+
 		}
 	}
 
@@ -44,21 +41,37 @@ public class MailServiceImpl implements MailService {
 
 	@Override
 	public void sendMessage(String theme, String recieverMail, String text) {
-	users.sendMessage(theme, recieverMail, email, text);
+		users.sendMessage(theme, recieverMail, email, text);
 	}
 
 	@Override
 	public void getInbox() {
 		users.getInbox(email);
-		
+
 	}
 
 	@Override
 	public void getOutbox() {
 		users.getOutbox(email);
+
+	}
+
+	@Override
+	public void deleteMessage(int id) {
+		users.deleteMessage(email, id);
+
+	}
+
+	@Override
+	public void getTrash() {
+		users.getTrash(email);
 		
 	}
 
-	
+	@Override
+	public void clearTrash() {
+		users.clearTrash(email);
+		
+	}
 
 }

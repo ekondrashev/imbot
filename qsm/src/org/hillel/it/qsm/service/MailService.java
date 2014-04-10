@@ -11,5 +11,8 @@ public interface MailService {
 	public void getInbox();
 	public void getOutbox();
 	public void sendMessage(String theme, String recieverMail, String text);
+	public void deleteMessage(int id);
+	public void getTrash();
+	public void clearTrash();
 	
 }

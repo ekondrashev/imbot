@@ -7,14 +7,22 @@ public class Message extends BaseEntity{
 	private String senderMail;
 	private String recieverMail;
 	private String text;
-	
+	private boolean inTrash;
 	public Message(String theme, String senderMail, String recieverMail, String text) {
 		super();
 		this.theme = theme;
 		this.senderMail = senderMail;
 		this.recieverMail = recieverMail;
 		this.text = text;	
-		
+		inTrash = false;
+	}
+
+	public boolean isInTrash() {
+		return inTrash;
+	}
+
+	public void setInTrash(boolean inTrash) {
+		this.inTrash = inTrash;
 	}
 
 	public String getTheme() {
