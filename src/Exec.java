@@ -11,11 +11,11 @@ public class Exec {
 
 	private static final String USAGE = "Usage: Exec --cmd=<send_message>";
 
-	//—cmd=send_message -user_id <id> -message <message>
+	//â€”cmd=send_message -user_id <id> -message <message>
 	public static void main(String args[]) throws InterruptedException {
 		boolean check = false;
 
-		String cmdSignature = "—cmd=";
+		String cmdSignature = "â€”cmd="; //here '--' was somehow replaced with 'â€”', should be taken into account
 		String cmdSignature2 = "-user_id=";
 		String cmdSignature3 = "-message=";
 		String cmd;
