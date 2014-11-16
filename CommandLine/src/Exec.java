@@ -14,6 +14,9 @@ public class Exec {
 		 
 		String cmdSignature = "--cmd=";
 		String key,value;
+		String Errorkey="Error";
+		String Errorvalue="Error input command!!!";
+		
 		
 		//первый проход
 		if (args.length>0){
@@ -22,6 +25,12 @@ public class Exec {
 				key="command";
 			    OurResult.put(key, value);	
 			}
+			else
+			{
+			    OurResult.put(Errorkey, Errorvalue);
+			    return OurResult;
+			}
+				
 		}
 		
 		//для остального ищем первый минус и потом равно
@@ -32,10 +41,8 @@ public class Exec {
 			int posEquals=arg.indexOf("=");
 			
 			if (posMinus==-1 || posEquals==-1) {
-				value="Error input command!!!";
-				key="Error";
-			    OurResult.put(key, value);
-			    break;
+				OurResult.put(Errorkey, Errorvalue);
+				break;
 			}  
 			
 			key=arg.substring(posMinus+1,posEquals);
