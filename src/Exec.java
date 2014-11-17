@@ -1,41 +1,52 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * Created by ITschool3 on 12.11.2014.
- */
+
+
 public class Exec {
 
-	private static final String USAGE = "Usage: Exec --cmd=<send_message>";
-
-	//—cmd=send_message -user_id <id> -message <message>
+	private static final String USAGE = "Usage: Exec --cmd=send_message --user_id=<id> --message=<message>";
+	private static boolean check = false;
+	
+	
+		private static Map<String, String> getMyMap(String[] args, Map<String, String> map) {
+			String cmdSignature = "--cmd="; 
+			String cmdSignature2 = "--user_id=";
+			String cmdSignature3 = "--message=";
+			String cmd;
+			for (String arg : args) {
+				//System.out.println(arg);
+				if (arg.startsWith(cmdSignature)) {
+					check = true;
+					cmd = arg.substring(cmdSignature.length(), arg.length());
+					map.put(cmdSignature, cmd);}
+					else if (arg.startsWith(cmdSignature2)) {
+						cmd = arg.substring(cmdSignature2.length(), arg.length());
+						map.put(cmdSignature2, cmd);}
+						else if (arg.startsWith(cmdSignature3)) {
+							cmd = arg.substring(cmdSignature3.length(), arg.length());	
+							map.put(cmdSignature3, cmd);}
+						else  System.out.println("You can use only this commands: "+"'"+USAGE+"'");
+								
+						
+				}
+			
+			
+			return map;
+		}
+	
+	
+	
+	
+	
 	public static void main(String args[]) throws InterruptedException {
-		boolean check = false;
-
-		String cmdSignature = "—cmd="; //here '--' was somehow replaced with '—', should be taken into account
-		String cmdSignature2 = "-user_id=";
-		String cmdSignature3 = "-message=";
-		String cmd;
 		
-		Map<String, String> map = new HashMap<>();
-
-	     
-		for (String arg : args) {
-			System.out.println(arg);
-			if (arg.startsWith(cmdSignature)) {
-				check = true;
-				cmd = arg.substring(cmdSignature.length(), arg.length());
-				map.put(cmdSignature, cmd);}
-				else if (arg.startsWith(cmdSignature2)) {
-					cmd = arg.substring(cmdSignature2.length(), arg.length());
-					map.put(cmdSignature2, cmd);}
-					else if (arg.startsWith(cmdSignature3)) {
-						cmd = arg.substring(cmdSignature3.length(), arg.length());	
-						map.put(cmdSignature3, cmd);}
-			}
+        Map<String, String> map = new LinkedHashMap<>();
+        map=getMyMap(args, map);
+	   		
 		
 			     
 	    for (Map.Entry<String, String> entry : map.entrySet()) {
@@ -49,21 +60,22 @@ public class Exec {
 	                   
 	    }
 	     
-	    //System.out.println();
-
-		
-		
+	  		
 		
 
 		if (check) {
-			System.out.println("OK!");
+			System.out.println("It is correct!");
 		} else {
 			System.out.println(USAGE);
 		}
 
-		// method1();
-	    
+		    
 	}
+
+	
+
+
+
 
 	private static void executeCmd(String map) throws InterruptedException {
 		Runtime runtime = Runtime.getRuntime();
@@ -84,7 +96,5 @@ public class Exec {
 		}
 	}
 
-	private static void method1() {
-		throw new NullPointerException();
-	}
+	
 }
