@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -10,7 +10,7 @@ public class Exec {
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 
 	public static Map<String, String> decodeToMap(String args[]) {
-		Map<String, String> OurResult = new HashMap<>(); 
+		Map<String, String> OurResult = new LinkedHashMap<>(); 
 		 
 		String cmdSignature = "--cmd=";
 		String key,value;
@@ -64,13 +64,8 @@ public class Exec {
 			System.out.println(OurResult.get("Error"));
 		}
 		else {
-			System.out.println("command"+":"+OurResult.get("command"));
-			
 			for (Entry<String, String> elem : OurResult.entrySet()) {
 	
-				if (elem.getKey()=="command")
-					continue;
-					
 		        System.out.println(elem.getKey() +":" + elem.getValue());           
 		    }
 		}
