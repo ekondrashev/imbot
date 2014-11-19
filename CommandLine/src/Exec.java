@@ -9,14 +9,13 @@ public class Exec {
 
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 
-	public static Map<String, String> DecodeToMap(String args[]) {
+	public static Map<String, String> decodeToMap(String args[]) {
 		Map<String, String> OurResult = new HashMap<>(); 
 		 
 		String cmdSignature = "--cmd=";
 		String key,value;
-		String Errorkey="Error";
-		String Errorvalue="Error input command!!!";
-		
+		String errorkey="Error";
+		String errorvalue="Error input command!!!";
 		
 		//первый проход
 		if (args.length>0){
@@ -27,7 +26,7 @@ public class Exec {
 			}
 			else
 			{
-			    OurResult.put(Errorkey, Errorvalue);
+			    OurResult.put(errorkey, errorvalue);
 			    return OurResult;
 			}
 				
@@ -41,7 +40,7 @@ public class Exec {
 			int posEquals=arg.indexOf("=");
 			
 			if (posMinus==-1 || posEquals==-1) {
-				OurResult.put(Errorkey, Errorvalue);
+				OurResult.put(errorkey, errorvalue);
 				break;
 			}  
 			
@@ -54,7 +53,7 @@ public class Exec {
 	
 	public static void main(String args[]) {
 
-		Map<String, String> OurResult = DecodeToMap(args);
+		Map<String, String> OurResult = decodeToMap(args);
 		
 		if (OurResult.size() == 0) {
 			System.out.println(USAGE);
@@ -95,9 +94,5 @@ public class Exec {
 			System.out.println("Command execution failed");
 			e.printStackTrace();
 		}
-	}
-
-	private static void method1() {
-		throw new NullPointerException();
 	}
 }
