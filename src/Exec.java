@@ -37,7 +37,7 @@ public class Exec {
 						
 				}
 			
-			System.out.println(map);
+			//System.out.println(map);
 			return map;
 		}
 	

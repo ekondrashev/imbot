@@ -7,7 +7,6 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-//public class TestExec extends TestCase{
 	public class TestExec{
 		Map<String, String> expected;
 		Map<String, String> result;	
@@ -18,11 +17,13 @@ import org.junit.Test;
 		
 		
 		this.result=Exec.parsingArgs(args);
+		 
 		this.expected = new LinkedHashMap<>();
 		
-		expected.put("--cmd", "send_message");
-		expected.put("--user_id", "4897");
-		expected.put("--message", "Hello");
+		expected.put("--cmd=", "send_message");
+		expected.put("--user_id=", "4897");
+		expected.put("--message=", "Hello");
+		
 		
 	}
 
