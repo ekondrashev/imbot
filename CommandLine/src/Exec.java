@@ -13,6 +13,7 @@ public class Exec {
 		Map<String, String> ourResult = new LinkedHashMap<>(); 
 		 
 		String cmdSignature = "--cmd=";
+		String cmdHelp = "--help";
 		String key,value;
 		String errorkey="Error";
 		String errorvalue="Error input command!!!";
@@ -23,6 +24,13 @@ public class Exec {
 				value=args[0].substring(cmdSignature.length(),args[0].length());
 				key="command";
 			    ourResult.put(key, value);	
+			}
+			
+			else if (args[0].startsWith(cmdHelp)) {
+				value=USAGE;
+				key="help";
+			    ourResult.put(key, value);	
+			    return ourResult;
 			}
 			else
 			{

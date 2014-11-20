@@ -8,7 +8,6 @@ import org.junit.Test;
 
 public class TestMyExec extends TestCase{
 
-
 	@Test
 	public final void testDecodeToMap() {
 		
@@ -26,5 +25,22 @@ public class TestMyExec extends TestCase{
 		assertEquals(myHashFromExec, myExample);
 		
 	}
+	
+	@Test
+	public final void testControlHelp() {
+		
+		String args[]={"--help"}; //My parameters 
+		String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
+		
+		Map<String,String> myHashFromExec=Exec.decodeToMap(args);
+
+		Map<String,String> myExample= new LinkedHashMap<>();
+
+		myExample.put("help",USAGE);
+		
+		assertEquals(myHashFromExec, myExample);
+		
+	}
+
 
 }
