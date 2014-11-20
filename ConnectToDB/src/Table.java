@@ -23,11 +23,12 @@ public class Table {
 		
 		if (myTypeSQL.startsWith("int")) 
 			javaType=new Type<Integer>(0);
-		else if (myTypeSQL.startsWith("varchar"))  
+		else if (myTypeSQL.startsWith("varchar") || myTypeSQL.startsWith("char"))  
 			javaType=new Type<String>("");
 		else if (myTypeSQL.startsWith("datetime"))
 			javaType=new Type<Date>();
-		
+		else if (myTypeSQL.startsWith("float") || myTypeSQL.startsWith("real"))
+			javaType=new Type<Double>();
 		return javaType;
 	}
 

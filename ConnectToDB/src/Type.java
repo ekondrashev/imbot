@@ -22,5 +22,8 @@ public class Type<T> {
 	{
 		return this.myVariable;
 	}
-	
+
+	public String tellType() {
+	        return myVariable.getClass().getName();
+	    }
 }
