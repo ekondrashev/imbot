@@ -23,7 +23,7 @@ public class TestMyExec extends TestCase{
 		myExample.put("pass","123456");
 		
 		
-		
+		assertEquals(myHashFromExec, myExample);
 		
 		//fail("Not yet implemented"); // TODO
 	}
