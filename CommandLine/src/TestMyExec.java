@@ -25,7 +25,6 @@ public class TestMyExec extends TestCase{
 		
 		assertEquals(myHashFromExec, myExample);
 		
-		//fail("Not yet implemented"); // TODO
 	}
 
 }

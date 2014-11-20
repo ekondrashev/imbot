@@ -1,0 +1,60 @@
+import java.sql.Date;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+
+public class Table {
+
+	@SuppressWarnings("rawtypes")
+	private Map<String,Type> myStructureTable;
+
+	
+	Table (Map<String,String> structureTableMySql) //получили и инициализнули....
+	{ 
+		initializing(structureTableMySql);
+	}
+	
+	
+	@SuppressWarnings("rawtypes")
+	public  Type getTypeJavaFromTypeMySQL(String myTypeSQL)
+	{
+		Type javaType = null; //default
+		
+		if (myTypeSQL.startsWith("int")) 
+			javaType=new Type<Integer>(0);
+		else if (myTypeSQL.startsWith("varchar"))  
+			javaType=new Type<String>("");
+		else if (myTypeSQL.startsWith("datetime"))
+			javaType=new Type<Date>();
+		
+		return javaType;
+	}
+
+	
+	@SuppressWarnings("rawtypes")
+	public void initializing(Map<String,String> structureField){
+		
+	    myStructureTable=new LinkedHashMap<String, Type>();
+	    	
+		for (Entry<String, String> elem : structureField.entrySet()) 
+		{
+			this.myStructureTable.put(elem.getKey(),getTypeJavaFromTypeMySQL(elem.getValue()));
+		}	
+		
+	}
+	
+	
+	@SuppressWarnings("rawtypes")
+	public Map<String,Type> getTableStructure(){
+		
+		return this.myStructureTable;
+		
+	}
+	
+	
+}
+
+
+
+

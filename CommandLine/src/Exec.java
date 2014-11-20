@@ -72,6 +72,7 @@ public class Exec {
 
 	}
 
+	@SuppressWarnings("unused")
 	private static void executeCmd(String cmd) throws InterruptedException {
 		Runtime runtime = Runtime.getRuntime();
 		
