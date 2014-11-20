@@ -10,7 +10,7 @@ public class Exec {
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 
 	public static Map<String, String> decodeToMap(String args[]) {
-		Map<String, String> OurResult = new LinkedHashMap<>(); 
+		Map<String, String> ourResult = new LinkedHashMap<>(); 
 		 
 		String cmdSignature = "--cmd=";
 		String key,value;
@@ -22,12 +22,12 @@ public class Exec {
 			if (args[0].startsWith(cmdSignature)) {
 				value=args[0].substring(cmdSignature.length(),args[0].length());
 				key="command";
-			    OurResult.put(key, value);	
+			    ourResult.put(key, value);	
 			}
 			else
 			{
-			    OurResult.put(errorkey, errorvalue);
-			    return OurResult;
+			    ourResult.put(errorkey, errorvalue);
+			    return ourResult;
 			}
 				
 		}
@@ -40,31 +40,31 @@ public class Exec {
 			int posEquals=arg.indexOf("=");
 			
 			if (posMinus==-1 || posEquals==-1) {
-				OurResult.put(errorkey, errorvalue);
+				ourResult.put(errorkey, errorvalue);
 				break;
 			}  
 			
 			key=arg.substring(posMinus+1,posEquals);
 			value=arg.substring(posEquals+1,arg.length());
-			OurResult.put(key, value);
+			ourResult.put(key, value);
 		}
-		return OurResult;
+		return ourResult;
 	}
 	
 	public static void main(String args[]) {
 
-		Map<String, String> OurResult = decodeToMap(args);
+		Map<String, String> ourResult = decodeToMap(args);
 		
-		if (OurResult.size() == 0) {
+		if (ourResult.size() == 0) {
 			System.out.println(USAGE);
 	
 		}
-		else if (OurResult.containsKey("Error")) {
+		else if (ourResult.containsKey("Error")) {
 			
-			System.out.println(OurResult.get("Error"));
+			System.out.println(ourResult.get("Error"));
 		}
 		else {
-			for (Entry<String, String> elem : OurResult.entrySet()) {
+			for (Entry<String, String> elem : ourResult.entrySet()) {
 	
 		        System.out.println(elem.getKey() +":" + elem.getValue());           
 		    }
