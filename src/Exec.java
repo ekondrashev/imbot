@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,11 +13,13 @@ public class Exec {
 	private static boolean check = false;
 	
 	
-		private static Map<String, String> getMyMap(String[] args, Map<String, String> map) {
+	public static Map<String, String> parsingArgs(String[] args) {
+		    Map<String, String> map = new LinkedHashMap<>();
 			String cmdSignature = "--cmd="; 
 			String cmdSignature2 = "--user_id=";
 			String cmdSignature3 = "--message=";
 			String cmd;
+			
 			for (String arg : args) {
 				//System.out.println(arg);
 				if (arg.startsWith(cmdSignature)) {
@@ -34,7 +37,7 @@ public class Exec {
 						
 				}
 			
-			
+			System.out.println(map);
 			return map;
 		}
 	
@@ -44,9 +47,8 @@ public class Exec {
 	
 	public static void main(String args[]) throws InterruptedException {
 		
-        Map<String, String> map = new LinkedHashMap<>();
-        map=getMyMap(args, map);
-	   		
+        Map<String, String> map = parsingArgs(args);
+           		
 		
 			     
 	    for (Map.Entry<String, String> entry : map.entrySet()) {
