@@ -4,13 +4,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 
 public class Exec {
 
 	private static final String USAGE = "Usage: Exec --cmd=send_message --user_id=<id> --message=<message>";
-	private static boolean check = false;
+	private static boolean check;
+	private static final String regexpString = "\\-\\-(help|Help|HELP)\\=?";
 	
 	
 	public static Map<String, String> parsingArgs(String[] args) {
@@ -20,8 +23,8 @@ public class Exec {
 			String cmdSignature3 = "--message=";
 			String cmd;
 			
+			if (args.length>0) {
 			for (String arg : args) {
-				//System.out.println(arg);
 				if (arg.startsWith(cmdSignature)) {
 					check = true;
 					cmd = arg.substring(cmdSignature.length(), arg.length());
@@ -32,25 +35,29 @@ public class Exec {
 						else if (arg.startsWith(cmdSignature3)) {
 							cmd = arg.substring(cmdSignature3.length(), arg.length());	
 							map.put(cmdSignature3, cmd);}
+						else if (checkWithRegExp(regexpString, arg)) {
+							check = false;
+						} 			
 						else  System.out.println("You can use only this commands: "+"'"+USAGE+"'");
-								
-						
 				}
-			
-			//System.out.println(map);
 			return map;
 		}
+            else check = false;
+			return map;
 	
+	}
 	
-	
-	
+	public static boolean checkWithRegExp(String regexpString, String arg)
+    {  
+        Pattern p = Pattern.compile(regexpString);  
+        Matcher m = p.matcher(arg);  
+        return m.matches();  
+    }
 	
 	public static void main(String args[]) throws InterruptedException {
 		
         Map<String, String> map = parsingArgs(args);
-           		
-		
-			     
+       	     
 	    for (Map.Entry<String, String> entry : map.entrySet()) {
 	    	try {
 	    		executeCmd(entry.getValue());
@@ -58,13 +65,9 @@ public class Exec {
 			} catch (InterruptedException e) {
 
 			}
-	    	
-	                   
-	    }
+      }
 	     
-	  		
-		
-
+	  
 		if (check) {
 			System.out.println("It is correct!");
 		} else {
