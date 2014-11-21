@@ -1,4 +1,3 @@
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
@@ -17,9 +16,9 @@ public class MyWorkDB {
 		String url = "jdbc:mysql://localhost/inetmagaz"; 
 		
 		ConnectDB ourConn=new ConnectDB(url,userName,password); //create class connectDB
-		Connection conn=ourConn.getConnectToDB();//create connect 
+		ourConn.getConnectToDB();//create connect 
 		
-	    ResultSet rs = Query.openQuery(conn,"show columns from tovar"); //return table structure
+	    ResultSet rs = Query.openQuery(ourConn.conn,"show columns from tovar"); //return table structure
 	 
 	    Map<String, String> list =new LinkedHashMap<String, String>(); 
 	    
@@ -34,14 +33,14 @@ public class MyWorkDB {
 		
 	     //for example find row in table by id
 	     
-	     our=Query.returnRecordByID(conn, 1, "tovar",our);
+	     our=Query.returnRecordByID(ourConn.conn, 1, "tovar",our);
 	     
 			for (Entry<String, Type> elem : our.getTableStructure().entrySet()) //output values from our structure 
 			{
-				System.out.println("key:"+elem.getKey()+" value:"+elem.getValue().getVariable());
+				System.out.println("key:"+elem.getKey()+" value:"+elem.getValue().getVariable()+" type: "+elem.getValue().tellType());
 			}	
 			
-			conn.close (); 
+			ourConn.closeConnection(); 
 	     
 		}catch (SQLException e) {
 		    System.out.println(e.getMessage());
