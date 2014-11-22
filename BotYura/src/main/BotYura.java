@@ -1,5 +1,8 @@
 package main;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 
 public class BotYura {
@@ -17,16 +20,27 @@ public class BotYura {
 	}
 	
 	public static ComLineArg parsingComLine(String[] args){
+		Pattern p = Pattern.compile("^-[a-z_]{3,50}=");;
+		Matcher m;		 
 		
 		ComLineArg carrentLineArg = new ComLineArg();
 		
 		if(args.length == 0){
+			System.out.println("Not found any command!");
 			carrentLineArg.cmd = "help";
 			return carrentLineArg;
 		}
 
 		for (String arg : args) {
-			if (arg.startsWith(ComLineArg.cmdSignature)) {
+			
+			m = p.matcher(arg);
+			if(!m.find()){
+				System.out.println("\'" + arg + "\'" + "is not a botYura command!");
+				carrentLineArg.cmd = "help";
+				return carrentLineArg;
+			}
+			
+			if (m.group().equals(ComLineArg.cmdSignature)) {
 				carrentLineArg.cmd = arg.substring(ComLineArg.cmdSignature.length(), arg.length());
 				switch(carrentLineArg.cmd){
 				case "send_message":
@@ -38,11 +52,11 @@ public class BotYura {
 				}
 				continue;
 			}
-			if(arg.startsWith("-user_id=")){
+			if(m.group().equals("-user_id=")){
 				carrentLineArg.userId = arg.substring("-user_id=".length(), arg.length());
 				continue;
 			}
-			if(arg.startsWith("-message=")){
+			if(m.group().equals("-message=")){
 				carrentLineArg.userMessage = arg.substring("-message=".length(), arg.length());
 				continue;
 			}

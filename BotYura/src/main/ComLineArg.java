@@ -9,7 +9,7 @@ package main;
  */
 public class ComLineArg {
 	
-	public static final String USAGE = "Usage: BotYura -cmd=send_message -user_id=<id> -message=<message>";
+	public static final String USAGE = "Usage: BotYura -cmd=send_message -user_id=<id> -message=<\"message\">";
 	public static final String cmdSignature = "-cmd=";
 	public String cmd;
 	public String userId;
