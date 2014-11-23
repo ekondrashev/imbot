@@ -20,9 +20,9 @@ import org.junit.Test;
 		 
 		this.expected = new LinkedHashMap<>();
 		
-		expected.put("--cmd=", "send_message");
-		expected.put("--user_id=", "4897");
-		expected.put("--message=", "Hello");
+		expected.put("cmd", "send_message");
+		expected.put("user_id", "4897");
+		expected.put("message", "Hello");
 		
 		
 	}
@@ -32,7 +32,20 @@ import org.junit.Test;
 		assertEquals(expected, result);
 	}
 
-
+	@Test
+	public void test1() {
+		String args[]={};
+		result=Exec.parsingArgs(args);
+		assertEquals(Exec.check, false);
+	}
+	
+	@Test
+	public void test2() {
+		String args[]={"--help"};
+		result=Exec.parsingArgs(args);
+		assertEquals(Exec.check, false);
+	}
+	
 	}
 
 

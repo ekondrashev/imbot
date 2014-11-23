@@ -11,31 +11,27 @@ import java.util.regex.Pattern;
 
 public class Exec {
 
-	private static final String USAGE = "Usage: Exec --cmd=send_message --user_id=<id> --message=<message>";
-	private static boolean check;
-	private static final String regexpString = "\\-\\-(help|Help|HELP)\\=?";
-	
+	public static final String USAGE = "Usage: Exec --cmd=send_message --user_id=<id> --message=<message>";
+	public static boolean check;
+	private static final String regexpHelp = "\\-\\-(help|Help|HELP)\\=?";
+	private static final String regexpCMD = "--(cmd)=(.+)$";
+	public static final String pat0 = "--(.+)=(.+)$";
+	public static final String pat1 = "--(.+)=";
+	static Pattern p1 = Pattern.compile(pat1);
+	public static final String pat2 = "=(.+)$";
+	static Pattern p2 = Pattern.compile(pat2);
 	
 	public static Map<String, String> parsingArgs(String[] args) {
 		    Map<String, String> map = new LinkedHashMap<>();
-			String cmdSignature = "--cmd="; 
-			String cmdSignature2 = "--user_id=";
-			String cmdSignature3 = "--message=";
-			String cmd;
-			
+		
 			if (args.length>0) {
 			for (String arg : args) {
-				if (arg.startsWith(cmdSignature)) {
+				if (checkWithRegExp(regexpCMD, arg)) {
 					check = true;
-					cmd = arg.substring(cmdSignature.length(), arg.length());
-					map.put(cmdSignature, cmd);}
-					else if (arg.startsWith(cmdSignature2)) {
-						cmd = arg.substring(cmdSignature2.length(), arg.length());
-						map.put(cmdSignature2, cmd);}
-						else if (arg.startsWith(cmdSignature3)) {
-							cmd = arg.substring(cmdSignature3.length(), arg.length());	
-							map.put(cmdSignature3, cmd);}
-						else if (checkWithRegExp(regexpString, arg)) {
+					map.put("cmd", retFindsVal(p2,arg));}
+					else if (checkWithRegExp(pat0, arg)) {
+						map.put(retFindsVal(p1,arg), retFindsVal(p2,arg));}
+						else if (checkWithRegExp(regexpHelp, arg)) {
 							check = false;
 						} 			
 						else  System.out.println("You can use only this commands: "+"'"+USAGE+"'");
@@ -53,6 +49,12 @@ public class Exec {
         Matcher m = p.matcher(arg);  
         return m.matches();  
     }
+	
+	public static String retFindsVal(Pattern p, String arg) {
+	    Matcher m = p.matcher(arg);  
+	    if(m.find())	return m.group().replaceAll("=", "").replaceAll("-", ""); 
+	    else return	"";
+	    }	
 	
 	public static void main(String args[]) throws InterruptedException {
 		
