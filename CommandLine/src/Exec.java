@@ -78,6 +78,7 @@ public class Exec {
 				String myPatternArg = "=.+$";
 				String myPatternHelp = "--[Hh][Ee][Ll][Pp]$";
 				Matcher m;
+				
 				if (controlMyString(myPatternHelp,args[0]).matches())
 				{
 					ourResult.put("help", USAGE);
@@ -114,15 +115,15 @@ public class Exec {
 					m = controlMyString(myPatternCmdVerify, arg);
 					
 					if (m.matches()) {
-						
 						m = controlMyString(myPatternCmd, arg);
-						if (m.find()) key=m.group(); else key=errorkey;
+						key=(m.find()?m.group():errorkey);
 						
 						m = controlMyString(myPatternArg, arg);
-						if (m.find()) value=m.group(); else value=errorvalue;
+						value=(m.find()?m.group():errorkey);
 						
 						key=key.replaceAll("-", "").replaceAll("=", "").toLowerCase();
 						value=value.replaceAll("=", "").toLowerCase();
+						
 						ourResult.put(key, value);
 						
 						if (key==errorkey) break; 
