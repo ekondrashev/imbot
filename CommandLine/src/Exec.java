@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Exec {
+public class Exec implements Parsing{
 
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 
@@ -175,4 +175,17 @@ public class Exec {
 			e.printStackTrace();
 		}
 	}
+
+
+	@Override
+	public Map<String, String> decodeToMapString(String[] args) {
+		return decodeToMap(args, 1);
+		 
+	}
+
+
+	@Override
+	public Map<String, String> decodeToMapPattern(String[] args) {
+		return decodeToMap(args, 0);
+		}
 }

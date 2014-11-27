@@ -1,18 +1,22 @@
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
 
-public class TestMyExec extends TestCase{
+public class TestMyExec extends TestCase {
 
 	@Test
 	public final void testDecodeToMap() {
 		
 		String args[]={"--cmd=sendmessage","-userid=vasia","-pass=123456"}; //My parameters 
+		 			
 		
-		Map<String,String> myHashFromExec=Parsing.decodeToMapString(args);
+		Exec exec=new Exec(); 
+		
+		Map<String,String> myHashFromExec=exec.decodeToMapString(args);
 
 		Map<String,String> myExample= new LinkedHashMap<>();
 
@@ -31,7 +35,8 @@ public class TestMyExec extends TestCase{
 		String args[]={"--help"}; //My parameters 
 		String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 		
-		Map<String,String> myHashFromExec=Parsing.decodeToMapString(args);
+		Exec exec=new Exec(); 
+		Map<String,String> myHashFromExec=exec.decodeToMapString(args);
 
 		Map<String,String> myExample= new LinkedHashMap<>();
 
@@ -46,8 +51,8 @@ public class TestMyExec extends TestCase{
 	public final void testControlPattern() {
 		String args[]={"--cmd=sendmessage","-userid=vasia","-pass=123456",}; //My parameters 
 		
-		Map<String,String> myHashFromExec=Parsing.decodeToMapPattern(args);
-		
+		Exec exec=new Exec(); 
+		Map<String,String> myHashFromExec=exec.decodeToMapPattern(args);
 		Map<String,String> myExample= new LinkedHashMap<>();
 		myExample.put("command","sendmessage");
 		myExample.put("userid","vasia");
