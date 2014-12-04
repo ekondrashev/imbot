@@ -12,15 +12,10 @@ public class Exec implements Parsing{
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 
 	
-	private static Matcher controlMyString(String pat, String forFind) //общая для красоты
-	{
-		Pattern patt = Pattern.compile(pat);
-		Matcher mat = patt.matcher(forFind);
-		return mat;
-	}
+
 	
 	
-	public static Map<String, String> decodeToMap(String args[], int variant) {
+	public static Map<String, String> decodeToMapString(String args[]) {
 		Map<String, String> ourResult = new LinkedHashMap<>();
 
 		String cmdSignature = "--cmd=";
@@ -29,7 +24,7 @@ public class Exec implements Parsing{
 		String errorkey = "Error";
 		String errorvalue = "Error input command!!!";
 
-		if (variant == 1) {
+	
 
 			// первый проход
 			if (args.length > 0) {
@@ -69,76 +64,12 @@ public class Exec implements Parsing{
 				ourResult.put(key, value);
 			}
 			return ourResult;
-
 		}
-		// pattern
-		else {
-			if (args.length > 0) {
-				String myPatternCmd = "--[Cc][Mm][Dd]=.+$";
-				String myPatternArg = "=.+$";
-				String myPatternHelp = "--[Hh][Ee][Ll][Pp]$";
-				Matcher m;
-				
-				if (controlMyString(myPatternHelp,args[0]).matches())
-				{
-					ourResult.put("help", USAGE);
-					return ourResult;
-				}	
-				else if (controlMyString(myPatternCmd,args[0]).matches())
-
-				{
-					m = controlMyString(myPatternArg, args[0]);
-					if (m.find())
-					{
-						key = "command";
-						ourResult.put(key, m.group().replaceAll("=", ""));
-					}
-					
-				}
-				else
-					{
-					ourResult.put(errorkey, errorvalue);
-					ourResult.put("help", USAGE);
-					return ourResult;
-					}
-				
-				
-				String myPatternCmdVerify = "-[a-zA-Z]+=.+$";
-				myPatternCmd = "-[a-zA-Z]+=";				
-				myPatternArg = "=.+$";
-				
-				
-				for (int i = 1; i < args.length; i++)
-				{
-					String arg = args[i];
-					
-					m = controlMyString(myPatternCmdVerify, arg);
-					
-					if (m.matches()) {
-						m = controlMyString(myPatternCmd, arg);
-						key=(m.find()?m.group():errorkey);
-						
-						m = controlMyString(myPatternArg, arg);
-						value=(m.find()?m.group():errorkey);
-						
-						key=key.replaceAll("-", "").replaceAll("=", "").toLowerCase();
-						value=value.replaceAll("=", "").toLowerCase();
-						
-						ourResult.put(key, value);
-						
-						if (key==errorkey) break; 
-					}
-				}
-			}
-			else ourResult.put("help", USAGE);
-
-			return ourResult;
-		}
-	}
+	
 
 	public static void main(String args[]) {
 
-		Map<String, String> ourResult = decodeToMap(args, 1);
+		Map<String, String> ourResult = decodeToMapString(args);
 
 		if (ourResult.size() == 0) {
 			System.out.println(USAGE);
@@ -178,14 +109,11 @@ public class Exec implements Parsing{
 
 
 	@Override
-	public Map<String, String> decodeToMapString(String[] args) {
-		return decodeToMap(args, 1);
+	public Map<String, String> decodeToMap(String[] args) {
+		return decodeToMapString(args);
 		 
 	}
 
 
-	@Override
-	public Map<String, String> decodeToMapPattern(String[] args) {
-		return decodeToMap(args, 0);
-		}
+	
 }

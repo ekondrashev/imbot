@@ -16,7 +16,7 @@ public class TestMyExec extends TestCase {
 		
 		Exec exec=new Exec(); 
 		
-		Map<String,String> myHashFromExec=exec.decodeToMapString(args);
+		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 
 		Map<String,String> myExample= new LinkedHashMap<>();
 
@@ -36,7 +36,7 @@ public class TestMyExec extends TestCase {
 		String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 		
 		Exec exec=new Exec(); 
-		Map<String,String> myHashFromExec=exec.decodeToMapString(args);
+		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 
 		Map<String,String> myExample= new LinkedHashMap<>();
 
@@ -51,8 +51,8 @@ public class TestMyExec extends TestCase {
 	public final void testControlPattern() {
 		String args[]={"--cmd=sendmessage","-userid=vasia","-pass=123456",}; //My parameters 
 		
-		Exec exec=new Exec(); 
-		Map<String,String> myHashFromExec=exec.decodeToMapPattern(args);
+		Exec2 exec=new Exec2(); 
+		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 		Map<String,String> myExample= new LinkedHashMap<>();
 		myExample.put("command","sendmessage");
 		myExample.put("userid","vasia");
