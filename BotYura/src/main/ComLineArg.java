@@ -44,6 +44,12 @@ public class ComLineArg {
 				System.out.println(USAGE);
 			}
 			break;
+		case "start":
+			System.out.println("Command - "+ cmd);
+			break;
+		case "stop":
+			System.out.println("Command - "+ cmd);
+			break;
 		case "help":
 		default:
 			System.out.println(USAGE);

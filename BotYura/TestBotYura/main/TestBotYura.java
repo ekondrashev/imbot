@@ -45,5 +45,21 @@ public class TestBotYura {
 		ComLineArg actual = BotYura.parsingComLine(argi);
 		assertEquals(expected.cmd ,actual.cmd);
 	}
+	
+	@Test
+	public void test3() {
+		String argi[] = {"-cmd=start"};
+		ComLineArg expected = new ComLineArg("start", "", "");
+		ComLineArg actual = BotYura.parsingComLine(argi);
+		assertEquals(expected.cmd ,actual.cmd);
+	}
+	
+	@Test
+	public void test4() {
+		String argi[] = {"-cmd=stop"};
+		ComLineArg expected = new ComLineArg("stop", "", "");
+		ComLineArg actual = BotYura.parsingComLine(argi);
+		assertEquals(expected.cmd ,actual.cmd);
+	}
 
 }
