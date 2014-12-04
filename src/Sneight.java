@@ -5,16 +5,13 @@ import java.util.Map.Entry;
 
 public class Sneight {
 
- private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -user_id=<значение> -message=<значение>";
+ private static final String USAGE = "Usage: --cmd=start --cmd=stop --cmd=sent_message";
 
  public static Map<String, String> DecodeToMap(String args[]) {	
 Map<String, String> OurResult = new HashMap<>();
 
  String cmdSignature = "--cmd=";
- String cmdHelp = "--help";
  String key,value;
- String errorkey="Ошибка";
- String errorvalue="Неверная команда!";
 
  if (args.length>0){
  if (args[0].startsWith(cmdSignature)) {
@@ -22,17 +19,7 @@ Map<String, String> OurResult = new HashMap<>();
  key="cmd";
  OurResult.put(key, value);
  }
-	else if (args[0].startsWith(cmdHelp)) {
-		value=USAGE;
-		key="help";
-	    OurResult.put(key, value);	
-	    return OurResult;
-	}
-	else
-	{
- OurResult.put(errorkey, errorvalue);
-	return OurResult;
- }
+	
  }
 
  for (int i=1; i<=args.length-1 ;i++) {
@@ -41,9 +28,9 @@ Map<String, String> OurResult = new HashMap<>();
 int posMinus=arg.indexOf("-");
  int posEquals=arg.indexOf("=");
 
- if (posMinus!=0 || posEquals<=1) {
- value="Ошибочная команда!!!";
- key="Ошибка";
+ if (posMinus!=0 || posEquals<=+1) {
+ value="Error command !!!";
+ key="Error";
  OurResult.put(key, value);
  break;
  }
@@ -63,9 +50,9 @@ int posMinus=arg.indexOf("-");
  System.out.println(USAGE);
 
 }
- else if (OurResult.containsKey("Ошибка")) {
+ else if (OurResult.containsKey("Error")) {
 
- System.out.println(OurResult.get("Ошибка"));
+ System.out.println(OurResult.get("Error"));
  }
  else {
  System.out.println("cmd"+":"+OurResult.get("cmd"));
