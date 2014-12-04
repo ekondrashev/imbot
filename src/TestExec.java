@@ -114,4 +114,22 @@ public class TestExec {
 		expected.put("HELP", Exec.USAGE);
 		assertEquals(expected, result);
 	}
+	
+	@Test
+	public void testWhenCMDStart() {
+		String args[] = { "--cmd=start"};
+		this.result = Exec.parsingArgs(args);
+		this.expected = new LinkedHashMap<>();
+		expected.put("cmd", "start");
+		assertEquals(this.expected, this.result);
+	}
+	
+	@Test
+	public void testWhenCMDStop() {
+		String args[] = { "--cmd=stop"};
+		this.result = Exec.parsingArgs(args);
+		this.expected = new LinkedHashMap<>();
+		expected.put("cmd", "stop");
+		assertEquals(this.expected, this.result);
+	}
 }

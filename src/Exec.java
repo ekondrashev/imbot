@@ -23,10 +23,8 @@ public class Exec {
 				}
 			}
 		}
-		if (!map.containsKey("cmd")|| !map.containsKey("user_id")|| !map.containsKey("message")|| map.containsKey("help")) {
-			map.clear();
-			map.put("HELP", USAGE);
-		}
+	
+		
 		return map;
 	}
 
@@ -43,26 +41,31 @@ public class Exec {
 			return "";
 	}
 
-	public static void main(String args[]) throws InterruptedException {
-
+	public static void main(String args[]) throws Exception {
+		// Map<Map, Map> mapMaps = new LinkedHashMap<>();
+		//Send.sendMessage("Hello");
 		Map<String, String> map = parsingArgs(args);
-
+		
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			try {
-				executeCmd(entry.getValue());
-				System.out.println(entry.getValue());
+				//executeCmd(entry.getValue());
+				//System.out.println(entry.getValue());
+				if (map.containsValue("stop")) Send.sendMessageStop(entry.getValue());
+				else Send.sendMessage(entry.getValue());
+				
+				
 			} catch (InterruptedException e) {
 			}
 		}
 
 	}
 
+	/*
 	private static void executeCmd(String map) throws InterruptedException {
 		Runtime runtime = Runtime.getRuntime();
 
 		try {
-			Process process = runtime
-					.exec(new String[] { "cmd.exe", "/c", map });
+			Process process = runtime.exec(new String[] { "cmd.exe", "/c", map });
 			process.waitFor();
 			BufferedReader bReader = new BufferedReader(new InputStreamReader(
 					process.getInputStream()));
@@ -76,5 +79,5 @@ public class Exec {
 			e.printStackTrace();
 		}
 	}
-
+  */
 }
