@@ -105,4 +105,13 @@ public class TestExec {
 		expected.put("HELP", Exec.USAGE);
 		assertEquals(expected, result);
 	}
+	
+	@Test
+	public void testWhenEmptyArgumentsPassed() {
+		String args[] = { "--cmd=send_message"};
+		this.result = Exec.parsingArgs(args);
+		this.expected = new LinkedHashMap<>();
+		expected.put("HELP", Exec.USAGE);
+		assertEquals(expected, result);
+	}
 }

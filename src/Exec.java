@@ -23,7 +23,7 @@ public class Exec {
 				}
 			}
 		}
-		if (!map.containsKey("cmd") | map.containsKey("help")) {
+		if (!map.containsKey("cmd")|| !map.containsKey("user_id")|| !map.containsKey("message")|| map.containsKey("help")) {
 			map.clear();
 			map.put("HELP", USAGE);
 		}
