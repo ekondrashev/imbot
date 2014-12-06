@@ -1,6 +1,3 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -23,8 +20,17 @@ public class Exec {
 				}
 			}
 		}
-	
-		
+
+		if (map.containsKey("cmd") && map.containsValue("send_message")) {
+			if (!map.containsKey("user_id") || !map.containsKey("message")){
+				map.clear();
+			map.put("HELP", USAGE);}
+		}
+
+		else if (!map.containsKey("cmd") || map.containsKey("help")) {
+			map.clear();
+			map.put("HELP", USAGE);
+		}
 		return map;
 	}
 
@@ -42,42 +48,18 @@ public class Exec {
 	}
 
 	public static void main(String args[]) throws Exception {
-		// Map<Map, Map> mapMaps = new LinkedHashMap<>();
-		//Send.sendMessage("Hello");
+		String sendLine = "";
+		for (String arg : args) {
+			sendLine = sendLine + " " + arg;
+		}
+		 Send.sendMessage(sendLine);
+		//System.out.println(sendLine);
 		Map<String, String> map = parsingArgs(args);
-		
+
 		for (Map.Entry<String, String> entry : map.entrySet()) {
-			try {
-				//executeCmd(entry.getValue());
-				//System.out.println(entry.getValue());
-				if (map.containsValue("stop")) Send.sendMessageStop(entry.getValue());
-				else Send.sendMessage(entry.getValue());
-				
-				
-			} catch (InterruptedException e) {
-			}
+
+			System.out.println(entry.getValue());
 		}
 
 	}
-
-	/*
-	private static void executeCmd(String map) throws InterruptedException {
-		Runtime runtime = Runtime.getRuntime();
-
-		try {
-			Process process = runtime.exec(new String[] { "cmd.exe", "/c", map });
-			process.waitFor();
-			BufferedReader bReader = new BufferedReader(new InputStreamReader(
-					process.getInputStream()));
-			String line = "";
-			while ((line = bReader.readLine()) != null) {
-				System.out.println(line);
-			}
-			bReader.close();
-		} catch (IOException e) {
-			System.out.println("Command execution failed");
-			e.printStackTrace();
-		}
-	}
-  */
 }
