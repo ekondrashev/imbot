@@ -10,8 +10,8 @@ import junit.framework.TestCase;
  
  
 public class test extends TestCase {
- @Test 
-public void testStartCmdLineOption() {
+ //@Test 
+public void _testStartCmdLineOption() {
         String[] args = new String[]{"--cmd=start"};
         Map<String, String> expected = new HashMap<>();
         expected.put("cmd", "start");
@@ -19,10 +19,10 @@ public void testStartCmdLineOption() {
        
         Map<String, String> actual = Exec.myParsingMethod(args);
        
-        assertEquals (actual, expected);
+        assertEquals (expected, actual);
 }
-@Test
-public void testStopCmdLineOption() {
+//@Test
+public void _testStopCmdLineOption() {
         String[] args = new String[]{"--cmd=stop"};
         Map<String, String> expected = new HashMap<>();
         expected.put("cmd", "stop");
@@ -30,6 +30,18 @@ public void testStopCmdLineOption() {
        
         Map<String, String> actual = Exec.myParsingMethod(args);
        
-        assertEquals (actual, expected);
+        assertEquals (expected, actual);
+}
+@Test
+public void testSendMessage() {
+	    String[] args = new String[]{"--cmd=Send_message", "--userid=Vasya", "--message=\"hello\""};
+	    Map<String, String> expected = new HashMap<>();
+	    expected.put("cmd", "Send_message");
+	    expected.put("userid", "Vasya");
+	    expected.put("message", "\"Hello\"");
+	    
+	    Map<String, String> actual = Exec.myParsingMethod(args);
+	    
+	    assertEquals (expected, actual);
 }
 }
