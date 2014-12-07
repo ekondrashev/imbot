@@ -25,7 +25,7 @@ public void testStartCmdLineOption() {
 public void testStopCmdLineOption() {
         String[] args = new String[]{"--cmd=stop"};
         Map<String, String> expected = new HashMap<>();
-        expected.put("cmd", "start");
+        expected.put("cmd", "stop");
         //TODO
        
         Map<String, String> actual = Exec.myParsingMethod(args);
