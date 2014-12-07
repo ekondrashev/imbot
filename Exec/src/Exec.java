@@ -77,35 +77,67 @@ import java.util.Map.Entry;
  
  
  	public static void main(String args[]) throws Exception { 
+ 		
+ 	
+ 		
+ 	//	Send.sendMessage("--cmd=print -userid=vasia -sendmessage=hello");
+ 	//	Send.sendMessage("--cmd=stop");
+ 		
+		Exec2 exec = new Exec2();
+		Map<String, String> ourResult = exec.decodeToMap(args);
+		if (ourResult.containsKey("command"))
+			if (ourResult.get("command").equals("start"))
+				executeListener("-cp .;D:\\rabbitmq-java-client-bin-3.4.2\\rabbitmq-java-client-bin-3.4.2\\commons-io-1.2.jar;D:\\rabbitmq-java-client-bin-3.4.2\\rabbitmq-java-client-bin-3.4.2\\rabbitmq-client.jar \" C:\\Users\\IT School\\workspace\\MyRecive\\MyListener\"");
+			else if (ourResult.get("command").equals("stop"))
+				Send.sendMessage("--cmd=stop");
+			else {
+				String ourString = "";
+				for (String arg : args) {
+					ourString = ourString + arg + " ";
+				}
+				Send.sendMessage(ourString);
+			}
+ 		
+/* 		
+ 		
+ 		 
  
- 		
- 	//	Send.sendMessage("--cmd=print --user_id=vasia --send_message=hello");
- 		Send.sendMessage("--cmd=stop");
- 		
-// 		Map<String, String> ourResult = decodeToMapString(args);
-// 		 
-// 
-// 
-// 		if (ourResult.size() == 0) { 
-// 			System.out.println(USAGE); 
-// 
-// 
-// 		} else if (ourResult.containsKey("Error")) { 
-// 
-// 
-// 			System.out.println(ourResult.get("Error")); 
-// 		} else { 
-// 			for (Entry<String, String> elem : ourResult.entrySet()) { 
-// 
-// 
-// 				System.out.println(elem.getKey() + ":" + elem.getValue()); 
-// 			} 
-// 		} 
+ 
+ 		if (ourResult.size() == 0) { 
+ 			System.out.println(USAGE); 
+ 
+ 
+ 		} else if (ourResult.containsKey("Error")) { 
+ 
+ 
+ 			System.out.println(ourResult.get("Error")); 
+ 		} else { 
+ 			for (Entry<String, String> elem : ourResult.entrySet()) { 
+ 
+ 
+ 				System.out.println(elem.getKey() + ":" + elem.getValue()); 
+ 			} 
+ 		}*/ 
  
  
  	} 
  
+	private static void executeListener(String cmd) throws InterruptedException { 
+ 		Runtime runtime = Runtime.getRuntime(); 
  
+ 
+ 		try { 
+ 	
+			Process process = runtime 
+ 					.exec("java "+ cmd); 
+			process.waitFor();
+ 		} catch (Exception e) { 
+ 			System.out.println("Command execution failed"); 
+ 			e.printStackTrace(); 
+ 		} 
+ 	} 
+ 
+ 	
  	@SuppressWarnings("unused") 
  	private static void executeCmd(String cmd) throws InterruptedException { 
  		Runtime runtime = Runtime.getRuntime(); 

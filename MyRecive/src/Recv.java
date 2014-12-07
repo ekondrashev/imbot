@@ -1,6 +1,8 @@
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.JOptionPane;
+
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
@@ -36,9 +38,12 @@ public class Recv {
 
       if (map.get("command").equals("stop"))  {shutdownFlag=true;}
       else if (map.get("command").equals("print"))  {
+    	  String ourMessage = "";
     	  for (Entry<String, String> elem : map.entrySet()) { 
-				System.out.println(elem.getKey() + ":" + elem.getValue()); 
-			} 
+				//System.out.println(elem.getKey() + ":" + elem.getValue());
+    		  ourMessage=ourMessage+elem.getKey() + ":" + elem.getValue()+"\n";
+			}
+    	  JOptionPane.showMessageDialog(null, ourMessage);
       
     }
   }

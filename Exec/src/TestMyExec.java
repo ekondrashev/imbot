@@ -63,6 +63,21 @@ public class TestMyExec extends TestCase {
 	}
 	
 	@Test
+	public final void testControlPatternPrint() {
+		String args[]={"--cmd=print","-userid=vasia","-sendmessage=hello",}; //My parameters 
+		//--cmd=print -user_id=vasia -send_message=hello
+		Exec2 exec=new Exec2(); 
+		Map<String,String> myHashFromExec=exec.decodeToMap(args);
+		Map<String,String> myExample= new LinkedHashMap<>();
+		myExample.put("command","print");
+		myExample.put("userid","vasia");
+		myExample.put("sendmessage","hello");
+		
+		assertEquals(myHashFromExec, myExample);
+		
+	}
+	
+	@Test
 	public final void testControlStart() {
 		String args[]={"--cmd=start"}; //My parameters 
 		
