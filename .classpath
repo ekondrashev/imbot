@@ -7,5 +7,7 @@
 	<classpathentry kind="lib" path="C:/Users/IT School/Desktop/rabbitmq-java-client-bin-3.4.2/rabbitmq-java-client-bin-3.4.2/rabbitmq-client.jar"/>
 	<classpathentry kind="lib" path="C:/Users/IT School/Downloads/chatter-bot-api.jar"/>
 	<classpathentry kind="lib" path="C:/Users/IT School/Downloads/skype-java-api-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IT School/commons-io-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IT School/rabbitmq-client.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

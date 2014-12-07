@@ -8,7 +8,7 @@ import com.rabbitmq.client.QueueingConsumer;
 
 public class Recv {
 
-	private final static String QUEUE_NAME = "Galina_Potemkina";
+	private final static String QUEUE_NAME = "Galina_Potemkina1";
 
 	public static void recvMessage(String mess) throws Exception {
 
@@ -27,7 +27,8 @@ public class Recv {
 		while (true) {
 			QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 			String message = new String(delivery.getBody());
-			String[] messageArr = divide(message);
+			//String[] messageArr = divide(message);
+			String[] messageArr = message.split("");
 			Map<String, String> map = Exec.parsingArgs(messageArr);
 			for (Map.Entry<String, String> entry : map.entrySet()) {
                 if (map.containsKey("cmd") && map.containsValue("stop")){
