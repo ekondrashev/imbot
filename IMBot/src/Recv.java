@@ -8,7 +8,7 @@ import com.rabbitmq.client.QueueingConsumer;
 
 public class Recv {
 
-	private final static String QUEUE_NAME = "Galina_Potemkina1";
+	private final static String QUEUE_NAME = "Galina";
 
 	public static void recvMessage(String mess) throws Exception {
 

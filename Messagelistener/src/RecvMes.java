@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Map;
+
+
 
 
 import com.rabbitmq.client.ConnectionFactory;
@@ -13,7 +16,8 @@ public class RecvMes {
 	public static void recvMessage() throws Exception {
 
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("217.146.253.33");
+		//factory.setHost("217.146.253.33");
+		 factory.setHost("192.168.0.81");
 		factory.setPort(5672);
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
@@ -27,19 +31,17 @@ public class RecvMes {
 		while (true) {
 			QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 			String message = new String(delivery.getBody());
-			String[] messageArr = message.split("");
+			String[] messageArr = message.split("\\s");
 			Map<String, String> map = MyPattern.parsingArgs(messageArr);
 			for (Map.Entry<String, String> entry : map.entrySet()) {
-                if (map.containsKey("cmd") && map.containsValue("stop")){
+				if (map.get("cmd").equals("stop"))	{
                 	System.out.println("Process was stopped!");
                     break;}
-                else	
 				System.out.println(" [x] Received '" + entry.getValue() + "'");
 			}
 
 		}
+		
 	}
 
-		
-	
 }

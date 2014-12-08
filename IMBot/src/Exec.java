@@ -51,22 +51,24 @@ public class Exec {
 	}
 
 	public static void main(String args[]) throws Exception {
-		String sendLine = "";
-		for (String arg : args) {
-			sendLine = sendLine + " " + arg;
-		}
-		 //Send.sendMessage(sendLine);
-		System.out.println(sendLine);
+		String sendLine="";
 		Map<String, String> map = parsingArgs(args);
-
 		for (Map.Entry<String, String> entry : map.entrySet()) {
-			if (entry.getValue().equals("start")) {
-			String cmd=("-cp .;\"C:\\Users\\IT School\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
-			//executeCmd(entry.getValue());
-			//executeCmd(cmd);}
-			System.out.println(entry.getValue());
+			if (entry.getKey().equals("cmd") && entry.getValue().equals("start")) {
+			//String cmd=("-cp .;\"C:\\Users\\IT School\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
+			String cmd=("-cp .;\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
+			executeCmd(cmd);
+			}
+			else if ((entry.getKey().equals("cmd") && entry.getValue().equals("send_message"))||
+					entry.getKey().equals("user_id") ||
+					entry.getKey().equals("message")) {   
+				sendLine = sendLine + " " +"--" +entry.toString();
+				 }
+			else if (entry.getKey().equals("cmd") && entry.getValue().equals("stop")){
+				Send.sendMessage("--" +entry.toString());
+				break;}
 		}
-		}
+		Send.sendMessage(sendLine);
 
 	}
 	
@@ -78,10 +80,10 @@ public class Exec {
 			process.waitFor();
 			BufferedReader bReader = new BufferedReader(new InputStreamReader(
 					process.getInputStream()));
-			String line = "";
-			while ((line = bReader.readLine()) != null) {
-				System.out.println(line);
-			}
+			//String line = "";
+			//while ((line = bReader.readLine()) != null) {
+				//System.out.println(line);
+			//}
 			bReader.close();
 		} catch (IOException e) {
 			System.out.println("Command execution failed");
