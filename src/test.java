@@ -45,8 +45,18 @@ public void testSendMessage() {
 	    assertEquals (expected, actual);
 }	    
 @Test
-public void testerror(){
-	    String[] args = new String[]{"-cmd-stop"};
+public void testErrorValue(){
+	    String[] args = new String[]{"-cmd-stop",};
+	    Map<String, String> expected = new HashMap<>(); 
+	    expected.put("Error", "Error command !!!");
+	    
+	    Map<String, String> actual = Exec.myParsingMethod(args);
+	    
+	    assertEquals (expected, actual);
+}
+@Test
+public void testErrorKey(){
+	    String[] args = new String[]{"++cmd=stop"};
 	    Map<String, String> expected = new HashMap<>(); 
 	    expected.put("Error", "Error command !!!");
 	    
