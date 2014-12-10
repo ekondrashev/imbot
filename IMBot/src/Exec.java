@@ -56,7 +56,7 @@ public class Exec {
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (entry.getKey().equals("cmd") && entry.getValue().equals("start")) {
 			//String cmd=("-cp .;\"C:\\Users\\IT School\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
-			String cmd=("-cp .;\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
+			String cmd=("-cp .;\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\Потемкина Галина\\rabbitmq-client.jar\" C:\\Users\\Потемкина Галина\\WorkProject\\imbot\\Messagelistener\\Main");
 			executeCmd(cmd);
 			}
 			else if ((entry.getKey().equals("cmd") && entry.getValue().equals("send_message"))||
