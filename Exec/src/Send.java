@@ -1,25 +1,36 @@
-
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 
 public class Send {
-	
-  private final static String QUEUE_NAME = "Potemkin";
 
-  public static void sendMessage(String mess) throws Exception {
-      	      
-    ConnectionFactory factory = new ConnectionFactory();
-    factory.setHost("217.146.253.33");
-    factory.setPort(5672);    
-    Connection connection = factory.newConnection();
-    Channel channel = connection.createChannel();
+	private static String QUEUE_NAME = "QUEUE";
+	private static String HOST = "127.0.0.1";
 
-    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-    channel.basicPublish("", QUEUE_NAME, null, mess.getBytes());
-    System.out.println(" [x] Sent '" + mess + "'");
-    
-    channel.close();
-    connection.close();
-  }
+	Send(String queue, String host) {
+		QUEUE_NAME = queue;
+		HOST = host;
+	}
+
+	public static void sendMessage(String mess) throws Exception {
+		Connection connection = null;
+		Channel channel = null;
+
+		try {
+			ConnectionFactory factory = new ConnectionFactory();
+			factory.setHost(HOST);
+			factory.setPort(5672);
+			connection = factory.newConnection();
+			channel = connection.createChannel();
+
+			channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+			channel.basicPublish("", QUEUE_NAME, null, mess.getBytes());
+			System.out.println(" [x] Sent '" + mess + "'");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			channel.close();
+			connection.close();
+		}
+	}
 }

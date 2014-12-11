@@ -14,7 +14,7 @@ public class TestMyExec extends TestCase {
 		String args[]={"--cmd=sendmessage","-userid=vasia","-pass=123456"}; //My parameters 
 		 			
 		
-		Exec exec=new Exec(); 
+		ParsingString exec=new ParsingString(); 
 		
 		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 
@@ -35,7 +35,7 @@ public class TestMyExec extends TestCase {
 		String args[]={"--help"}; //My parameters 
 		String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 		
-		Exec exec=new Exec(); 
+		ParsingString exec=new ParsingString(); 
 		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 
 		Map<String,String> myExample= new LinkedHashMap<>();
@@ -49,14 +49,14 @@ public class TestMyExec extends TestCase {
 	
 	@Test
 	public final void testControlPattern() {
-		String args[]={"--cmd=sendmessage","-userid=vasia","-pass=123456",}; //My parameters 
+		String args[]={"--cmd=sendmessage","-user_id=vasia","-pass_=123456",}; //My parameters 
 		
-		Exec2 exec=new Exec2(); 
+		ParsingRegulary exec=new ParsingRegulary(); 
 		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 		Map<String,String> myExample= new LinkedHashMap<>();
 		myExample.put("command","sendmessage");
-		myExample.put("userid","vasia");
-		myExample.put("pass","123456");
+		myExample.put("user_id","vasia");
+		myExample.put("pass_","123456");
 		
 		assertEquals(myHashFromExec, myExample);
 		
@@ -66,7 +66,7 @@ public class TestMyExec extends TestCase {
 	public final void testControlPatternPrint() {
 		String args[]={"--cmd=print","-userid=vasia","-sendmessage=hello",}; //My parameters 
 		//--cmd=print -user_id=vasia -send_message=hello
-		Exec2 exec=new Exec2(); 
+		ParsingRegulary exec=new ParsingRegulary(); 
 		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 		Map<String,String> myExample= new LinkedHashMap<>();
 		myExample.put("command","print");
@@ -81,7 +81,7 @@ public class TestMyExec extends TestCase {
 	public final void testControlStart() {
 		String args[]={"--cmd=start"}; //My parameters 
 		
-		Exec2 exec=new Exec2(); 
+		ParsingRegulary exec=new ParsingRegulary(); 
 		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 		Map<String,String> myExample= new LinkedHashMap<>();
 		myExample.put("command","start");
@@ -94,7 +94,7 @@ public class TestMyExec extends TestCase {
 	public final void testControlStop() {
 		String args[]={"--cmd=stop"}; //My parameters 
 		
-		Exec2 exec=new Exec2(); 
+		ParsingRegulary exec=new ParsingRegulary(); 
 		Map<String,String> myHashFromExec=exec.decodeToMap(args);
 		Map<String,String> myExample= new LinkedHashMap<>();
 		myExample.put("command","stop");

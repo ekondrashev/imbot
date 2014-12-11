@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Exec2 implements Parsing{
+public class ParsingRegulary implements Parsing{
 
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 	
@@ -53,8 +53,8 @@ public class Exec2 implements Parsing{
 					}
 				
 				
-				String myPatternCmdVerify = "-[a-zA-Z]+=.+$";
-				myPatternCmd = "-[a-zA-Z]+=";				
+				String myPatternCmdVerify = "-[a-zA-Z_]+=.+$";
+				myPatternCmd = "-[a-zA-Z_]+=";				
 				myPatternArg = "=.+$";
 				
 				
