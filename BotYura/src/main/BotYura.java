@@ -42,6 +42,7 @@ public class BotYura {
 			ReceiveMessage();
 			break;
 		case "stop":
+			SendCommand("stop");
 			break;
 		case "help":
 		default:
@@ -84,8 +85,10 @@ public class BotYura {
 	    while (true) {
 	      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 	      String message = new String(delivery.getBody());
-	      if(message.equals("stop"))
+	      if(message.equals("stop")){
+	    	  System.out.println("Receiving messages is stopped");
 	    	  break;
+	      }
 	      if(message.length() > 0)
 	    	  System.out.println(message);
 	    }
