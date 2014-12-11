@@ -56,7 +56,7 @@ public class BotYura {
 	public static void SendCommand(String strCmd)throws java.io.IOException,
     java.lang.InterruptedException {
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("217.146.253.33");
+	    factory.setHost("217.146.253.39");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
@@ -71,7 +71,7 @@ public class BotYura {
 	public static void ReceiveMessage() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException{
 		
 		ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("217.146.253.33");
+	    factory.setHost("217.146.253.39");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 	    
@@ -81,15 +81,19 @@ public class BotYura {
 	    channel.basicConsume(QUEUE_NAME, true, consumer);
 	    
 	    System.out.println("Received messages: \n");
+	    
+	    boolean key = true;   
 
-	    while (true) {
+	    while (key) {
 	      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 	      String message = new String(delivery.getBody());
 	      if(message.equals("stop")){
 	    	  System.out.println("Receiving messages is stopped");
-	    	  break;
+	    	  channel.close();
+	    	  connection.close();
+	    	  key = false;
 	      }
-	      if(message.length() > 0)
+	      if(message.length() > 0 && key == true)
 	    	  System.out.println(message);
 	    }
 	}

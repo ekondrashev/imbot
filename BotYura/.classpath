@@ -7,9 +7,5 @@
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Eclipse/jre/lib/rabbitMQ/commons-cli-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Eclipse/jre/lib/rabbitMQ/commons-io-1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files (x86)/Eclipse/jre/lib/rabbitMQ/rabbitmq-client.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/commons-cli-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/commons-io-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/rabbitmq-client.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/rabbitmq-client-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
