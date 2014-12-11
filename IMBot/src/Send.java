@@ -11,8 +11,8 @@ public class Send {
   public static void sendMessage(String mess) throws Exception {
              
     ConnectionFactory factory = new ConnectionFactory();
-    //factory.setHost("217.146.253.33");
-    factory.setHost("192.168.0.81");
+    factory.setHost("217.146.253.39");
+  //  factory.setHost("192.168.0.81");
     factory.setPort(5672);    
     Connection connection = factory.newConnection();
     Channel channel = connection.createChannel();

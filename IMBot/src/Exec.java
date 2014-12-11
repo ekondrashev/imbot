@@ -58,14 +58,18 @@ public class Exec {
 		Map<String, String> map = parsingArgs(args);
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (entry.getKey().equals("cmd") && entry.getValue().equals("start")) {
-			//String cmd=("Java -cp .;\"C:\\Users\\IT School\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
+			//String cmd=("Java -cp .;\"C:\\Users\\IT School\\Galina\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
 
-			
+			//--cmd=send_message --user_id=4897 --message=Hello
 			// Java -cp .;"C:\Users\Потемкина Галина\commons-io-1.2.jar";"C:\Users\Потемкина Галина\rabbitmq-client.jar" Main") //это сразу в cmd и все работает
 			//Java -cp .;"C:\Users\Потемкина Галина\commons-io-1.2.jar";"C:\Users\Потемкина Галина\rabbitmq-client.jar" "C:\Users\Потемкина Галина\WorkProject\imbot\Messagelistener\bin\Main" //так в cmd не работает
 			
-			String cmd=("Java -cp .;\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\Потемкина Галина\\rabbitmq-client.jar\" \"C:\\Users\\Потемкина Галина\\WorkProject\\imbot\\Messagelistener\\bin\\Main\"");
+			//String cmd=("Java -cp \"C:\\Users\\Потемкина Галина\\WorkProject\\imbot\\Messagelistener\\bin\";\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\Потемкина Галина\\rabbitmq-client.jar\" Main\"");
+			//String cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\imbot\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\commons-io-1.2.jar\";\"C:\\Users\\Galina\\rabbitmq-client.jar\" Main");
+			// Java -cp "C:\Users\IT School\Galina\Galina\imbot\Messagelistener\bin";"C:\\Users\IT School\Galina\commons-io-1.2.jar";"C:\Users\Galina\rabbitmq-client.jar" Main
 
+			//("Java -cp "C:\Users\IT School\Galina\Galina\Messagelistener\bin";"C:\Users\IT School\Galina\libs\*" Main")
+			String cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\libs\\*\" Main");			
 			executeCmd(cmd);
 			return;
 			}
@@ -82,22 +86,25 @@ public class Exec {
 
 	}
 	
+
+	
 	private static void executeCmd(String cmd) throws InterruptedException {
 		Runtime runtime = Runtime.getRuntime();
 		
 		try {
 			Process process = runtime.exec(new String[] { "cmd.exe", "/c", cmd });
-			process.waitFor();
-			BufferedReader bReader = new BufferedReader(new InputStreamReader(
-					process.getInputStream()));
-			//String line = "";
-			//while ((line = bReader.readLine()) != null) {
-				//System.out.println(line);
-			//}
-			bReader.close();
+//			process.waitFor();
+//			BufferedReader bReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//			String line = "";
+//			while ((line = bReader.readLine()) != null) {
+//				System.out.println(line);
+//			}
+//			bReader.close();
 		} catch (IOException e) {
 			System.out.println("Command execution failed");
 			e.printStackTrace();
 		}
 	}
+	
+	
 }

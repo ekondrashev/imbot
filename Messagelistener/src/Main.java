@@ -1,6 +1,3 @@
-import java.io.IOException;
-
-
 public class Main {
 
 	/**
@@ -11,7 +8,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		try{
 		RecvMes.recvMessage();
-		} catch (IOException e)
+		} catch (Exception e)
 		{
 			e.printStackTrace();
 		}
