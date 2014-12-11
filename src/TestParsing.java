@@ -14,7 +14,7 @@ public class TestParsing extends TestCase {
 		Map<String, String> expected = new HashMap<>();
 		expected.put("cmd", "start");
 
-		Map<String, String> actual = Sneight.DecodeToMap(args);
+		Map<String, String> actual = Sneight.decodeToMap(args);
 
 		assertEquals(actual, expected);
 	}
@@ -25,7 +25,20 @@ public class TestParsing extends TestCase {
 		Map<String, String> expected = new HashMap<>();
 		expected.put("cmd", "stop");
 
-		Map<String, String> actual = Sneight.DecodeToMap(args);
+		Map<String, String> actual = Sneight.decodeToMap(args);
+
+		assertEquals(actual, expected);
+	}
+	@Test
+	public void testSentMessageCmdLineOption() {
+		String[] args = new String[] { "--cmd=send_message", "--user_id=12345", "--message=text" };
+		Map<String, String> expected = new HashMap<>();
+		expected.put("cmd", "send_message");
+		expected.put("user_id", "12345");
+		expected.put("message", "text");
+		
+
+		Map<String, String> actual = Sneight.decodeToMap(args);
 
 		assertEquals(actual, expected);
 	}

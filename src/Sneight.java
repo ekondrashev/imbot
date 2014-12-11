@@ -1,72 +1,69 @@
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class Sneight {
 
- private static final String USAGE = "Usage: --cmd=start --cmd=stop --cmd=sent_message";
+	private static final String USAGE = "Usage: --cmd=start --cmd=stop --cmd=sent_message";
 
- public static Map<String, String> DecodeToMap(String args[]) {	
-Map<String, String> OurResult = new HashMap<>();
+	public static Map<String, String> decodeToMap(String args[]) {
+		Map<String, String> ourResult = new HashMap<>();
 
- String cmdSignature = "--cmd=";
- String key,value;
+		String cmdSignature = "--cmd=";
+		String key, value;
 
- if (args.length>0){
- if (args[0].startsWith(cmdSignature)) {
- value=args[0].substring(cmdSignature.length(),args[0].length());
- key="cmd";
- OurResult.put(key, value);
- }
-	
- }
+		if (args.length > 0) {
+			if (args[0].startsWith(cmdSignature)) {
+				value = args[0].substring(cmdSignature.length(),
+						args[0].length());
+				key = "cmd";
+				ourResult.put(key, value);
+			}
 
- for (int i=1; i<=args.length-1 ;i++) {
- String arg=args[i];
- 
-int posMinus=arg.indexOf("-");
- int posEquals=arg.indexOf("=");
+		}
 
- if (posMinus!=0 || posEquals<=+1) {
- value="Error command !!!";
- key="Error";
- OurResult.put(key, value);
- break;
- }
+		for (int i = 1; i <= args.length - 1; i++) {
+			String arg = args[i];
 
- key=arg.substring(posMinus+1,posEquals);
- value=arg.substring(posEquals+1,arg.length());
- OurResult.put(key, value);
- }
- return OurResult;
- }
+			int posMinus = arg.indexOf("-");
+			int posEquals = arg.indexOf("=");
 
- public static void main(String args[]) {
+			if (posMinus != 0 || posEquals <= 1) {
+				value = "Error command !!!";
+				key = "Error";
+				ourResult.put(key, value);
+				break;
+			}
 
- Map<String, String> OurResult = DecodeToMap(args);
+			key = args[i].substring(posMinus + 2, posEquals);
+			value = args[i].substring(posEquals + 1, arg.length());
+			ourResult.put(key, value);
+		}
+		return ourResult;
+	}
 
- if (OurResult.size() == 0) {
- System.out.println(USAGE);
+	public static void main(String args[]) {
 
-}
- else if (OurResult.containsKey("Error")) {
+		Map<String, String> OurResult = decodeToMap(args);
 
- System.out.println(OurResult.get("Error"));
- }
- else {
- System.out.println("cmd"+":"+OurResult.get("cmd"));
+		if (OurResult.size() == 0) {
+			System.out.println(USAGE);
 
- for (Entry<String, String> elem : OurResult.entrySet()) {
+		} else if (OurResult.containsKey("Error")) {
 
- if (elem.getKey()=="cmd")
- continue;
+			System.out.println(OurResult.get("Error"));
+		} else {
+			System.out.println("cmd" + ":" + OurResult.get("cmd"));
 
- System.out.println(elem.getKey() +":" + elem.getValue());
- }
- }
+			for (Entry<String, String> elem : OurResult.entrySet()) {
 
- }
+				if (elem.getKey() == "cmd")
+					continue;
 
+				System.out.println(elem.getKey() + ":" + elem.getValue());
+			}
+		}
+
+	}
 
 }

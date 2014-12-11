@@ -13,7 +13,7 @@ public class TestSneight extends TestCase{
 		
 		String args[]={"--cmd=atata","-user_id=Sneight","-password=111222"};
 		
-		Map<String,String> HashSneight=Sneight.DecodeToMap(args);
+		Map<String,String> HashSneight=Sneight.decodeToMap(args);
 
 		Map<String,String> Example= new LinkedHashMap<>();
 

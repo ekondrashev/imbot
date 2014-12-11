@@ -12,7 +12,7 @@ public class Consumer {
 	             java.lang.InterruptedException {
 
 	    ConnectionFactory factory = new ConnectionFactory();
-	    factory.setHost("217.146.253.33");
+	    factory.setHost("217.146.253.39");
 	    Connection connection = factory.newConnection();
 	    Channel channel = connection.createChannel();
 

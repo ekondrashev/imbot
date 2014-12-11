@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/IT School/Downloads/rabbitmq-java-client-bin-2.8.0.zip"/>
+	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/commons-cli-1.1.jar"/>
+	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/commons-io-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/junit.jar"/>
+	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/rabbitmq-client.jar"/>
+	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/rabbitmq-client-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IT School/Downloads/guava-18.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
