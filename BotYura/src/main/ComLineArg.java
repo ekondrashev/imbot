@@ -14,48 +14,20 @@ public class ComLineArg {
 	public String cmd;
 	public String userId;
 	public String userMessage;
+	public String errorMessage;
 	
 	public ComLineArg() {
 		cmd = null;
 		userId = null;
 		userMessage = null;
+		errorMessage = null;
 	}
 	
 	public ComLineArg(String cmd, String userId, String userMessage){
 		this.cmd = cmd;
 		this.userId = userId;
 		this.userMessage = userMessage;
-	}
-	public void printComLineArg(){
-		switch(cmd){
-		case "send_message":
-			if(userId != null && userMessage != null){
-				System.out.println("Command - "+ cmd);
-				System.out.println("User - "+ userId);
-				System.out.println("Text messages - "+ userMessage);
-			}
-			else{
-				if(userId == null){
-					System.out.println("You did not input a username");
-				}
-				if(userMessage == null){
-					System.out.println("You did not write a message");
-				}
-				System.out.println(USAGE);
-			}
-			break;
-		case "start":
-			System.out.println("Command - "+ cmd);
-			break;
-		case "stop":
-			System.out.println("Command - "+ cmd);
-			break;
-		case "help":
-		default:
-			System.out.println(USAGE);
-		}
-		
-	}
-		
+		errorMessage = null;
+	}	
 
 }

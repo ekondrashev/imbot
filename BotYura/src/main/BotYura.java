@@ -3,10 +3,13 @@ package main;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.ShutdownSignalException;
 
 
 public class BotYura {
@@ -19,11 +22,36 @@ public class BotYura {
 		// TODO Auto-generated method stub
 		 
 		ComLineArg thisTimeArgs = parsingComLine(args);
-		//thisTimeArgs.printComLineArg();
-		SendCommand(thisTimeArgs.cmd);
 
+		switch(thisTimeArgs.cmd){
+		case "send_message":
+			if(thisTimeArgs.userId != null && thisTimeArgs.userMessage != null){
+				SendCommand(thisTimeArgs.userId + ":" + thisTimeArgs.userMessage);
+			}
+			else{
+				if(thisTimeArgs.userId == null){
+					System.out.println("You did not input a username");
+				}
+				if(thisTimeArgs.userMessage == null){
+					System.out.println("You did not write a message");
+				}
+				System.out.println(ComLineArg.USAGE);
+			}
+			break;
+		case "receive":
+			ReceiveMessage();
+			break;
+		case "stop":
+			break;
+		case "help":
+		default:
+			if(thisTimeArgs.errorMessage != null)
+				System.out.println(thisTimeArgs.errorMessage + "\n");
+			System.out.println(ComLineArg.USAGE);
+		}
 	}
 	
+// this function send some command	
 	public static void SendCommand(String strCmd)throws java.io.IOException,
     java.lang.InterruptedException {
 		ConnectionFactory factory = new ConnectionFactory();
@@ -33,19 +61,44 @@ public class BotYura {
 	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
 	    
 	    channel.basicPublish("", QUEUE_NAME, null, strCmd.getBytes());
-	    System.out.println(" [x] Sent '" + strCmd + "'");
+	    System.out.println("Your message '"  + strCmd + "' has been sent");
 	    channel.close();
 	    connection.close();
 	}
 	
+// 	this function receive some message  end handle it
+	public static void ReceiveMessage() throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException{
+		
+		ConnectionFactory factory = new ConnectionFactory();
+	    factory.setHost("217.146.253.33");
+	    Connection connection = factory.newConnection();
+	    Channel channel = connection.createChannel();
+	    
+	    channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+	    
+	    QueueingConsumer consumer = new QueueingConsumer(channel);
+	    channel.basicConsume(QUEUE_NAME, true, consumer);
+	    
+	    System.out.println("Received messages: \n");
+
+	    while (true) {
+	      QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+	      String message = new String(delivery.getBody());
+	      if(message.equals("stop"))
+	    	  break;
+	      if(message.length() > 0)
+	    	  System.out.println(message);
+	    }
+	}
+	
 	public static ComLineArg parsingComLine(String[] args){
-		Pattern p = Pattern.compile("^-[a-z_]{3,50}=");;
+		Pattern p = Pattern.compile("^-[a-z_]{3,50}=");
 		Matcher m;		 
 		
 		ComLineArg carrentLineArg = new ComLineArg();
 		
 		if(args.length == 0){
-			System.out.println("Not found any command!");
+			carrentLineArg.errorMessage = "Not found any command!";
 			carrentLineArg.cmd = "help";
 			return carrentLineArg;
 		}
@@ -54,7 +107,7 @@ public class BotYura {
 			
 			m = p.matcher(arg);
 			if(!m.find()){
-				System.out.println("\'" + arg + "\'" + "is not a botYura command!");
+				carrentLineArg.errorMessage = "\'" + arg + "\'" + "is not a botYura command!";
 				carrentLineArg.cmd = "help";
 				return carrentLineArg;
 			}
@@ -64,13 +117,14 @@ public class BotYura {
 				switch(carrentLineArg.cmd){
 				case "send_message":
 					break;
-				case "start":
+				case "receive":
 					break;
 				case "stop":
 					break;
 				case "help":
 					break;
 				default:
+					carrentLineArg.errorMessage = "\'" + arg + "\'" + "is not a botYura command!";
 					carrentLineArg.cmd = "help";
 				}
 				continue;
