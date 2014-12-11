@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
+
 public class Exec {
 
 	public static final String USAGE = "Usage: Exec --cmd=send_message --user_id=<id> --message=<message>";
@@ -51,24 +53,32 @@ public class Exec {
 	}
 
 	public static void main(String args[]) throws Exception {
+		Boolean chek=false;
 		String sendLine="";
 		Map<String, String> map = parsingArgs(args);
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (entry.getKey().equals("cmd") && entry.getValue().equals("start")) {
-			//String cmd=("-cp .;\"C:\\Users\\IT School\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
-			String cmd=("-cp .;\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\Потемкина Галина\\rabbitmq-client.jar\" C:\\Users\\Потемкина Галина\\WorkProject\\imbot\\Messagelistener\\Main");
+			//String cmd=("Java -cp .;\"C:\\Users\\IT School\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
+
+			
+			// Java -cp .;"C:\Users\Потемкина Галина\commons-io-1.2.jar";"C:\Users\Потемкина Галина\rabbitmq-client.jar" Main") //это сразу в cmd и все работает
+			//Java -cp .;"C:\Users\Потемкина Галина\commons-io-1.2.jar";"C:\Users\Потемкина Галина\rabbitmq-client.jar" "C:\Users\Потемкина Галина\WorkProject\imbot\Messagelistener\bin\Main" //так в cmd не работает
+			
+			String cmd=("Java -cp .;\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\Потемкина Галина\\rabbitmq-client.jar\" \"C:\\Users\\Потемкина Галина\\WorkProject\\imbot\\Messagelistener\\bin\\Main\"");
+
 			executeCmd(cmd);
+			return;
 			}
 			else if ((entry.getKey().equals("cmd") && entry.getValue().equals("send_message"))||
 					entry.getKey().equals("user_id") ||
-					entry.getKey().equals("message")) {   
+					entry.getKey().equals("message")) {  chek=true; 
 				sendLine = sendLine + " " +"--" +entry.toString();
 				 }
 			else if (entry.getKey().equals("cmd") && entry.getValue().equals("stop")){
 				Send.sendMessage("--" +entry.toString());
 				break;}
 		}
-		Send.sendMessage(sendLine);
+		if (chek) Send.sendMessage(sendLine);
 
 	}
 	
@@ -76,7 +86,7 @@ public class Exec {
 		Runtime runtime = Runtime.getRuntime();
 		
 		try {
-			Process process = runtime.exec("java "+cmd);
+			Process process = runtime.exec(new String[] { "cmd.exe", "/c", cmd });
 			process.waitFor();
 			BufferedReader bReader = new BufferedReader(new InputStreamReader(
 					process.getInputStream()));
