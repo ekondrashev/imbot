@@ -1,0 +1,4 @@
+13:28:38,687 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
+13:32:00,031 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
+13:39:14,531 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
+13:42:45,031 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
