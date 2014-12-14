@@ -39,20 +39,19 @@ public class Query {
 
 			Statement statement = conn.createStatement();
 
-			for (Entry<String, Type> elem : myStructureTable
-					.getTableStructure().entrySet()) {
+			for (Entry<String, Type> elem : myStructureTable.getTableStructure().entrySet()) {
 				ourKey = ourKey + elem.getKey() + ",";
 				if (elem.getValue().tellType().contains("String"))
 					ourValues = ourValues + "'" + elem.getValue().getVariable()	+ "',";
 				else
-					ourValues = ourValues + elem.getValue().getVariable() + ",";
+					ourValues = ourValues + elem.getValue().getVariable().toString() + ",";
 
 			}
 
-			ourKey = ourKey.substring(ourKey.length() - 1) + ")";
-			ourValues = ourValues.substring(ourValues.length() - 1) + ")";
+			ourKey = ourKey.substring(0, ourKey.length() - 1) + ")";
+			ourValues = ourValues.substring(0,ourValues.length() - 1) + ")";
 
-			sqlQuery = "INSERT INTO " + tableName + ourKey + " values "
+			sqlQuery = "INSERT INTO " + tableName +" "+ ourKey + " values "
 					+ ourValues;
 			statement.executeUpdate(sqlQuery);
 
@@ -69,7 +68,7 @@ public class Query {
 		ResultSet rs = null;
 		try {
 			Statement statement = conn.createStatement();
-			rs = statement.executeQuery("Select * from "+tableName+" where idtovar="+id);
+			rs = statement.executeQuery("Select * from "+tableName+" where ID="+id);
 			
 			  while (rs.next()) {
 				  for (Entry<String, Type> elem : myStructure.getTableStructure().entrySet()) 
