@@ -18,7 +18,8 @@ public class BotYura {
 	//Bot —cmd=send_message -user_id=<id> -message=<message>
 	private final static String QUEUE_NAME = "hello";
 	
-	private static Logger log = Logger.getLogger(BotYura.class.getName());
+	private static final Logger logger = Logger.getLogger(BotYura.class.getName());
+
 
 
 	public static void main(String[] args) throws IOException, InterruptedException{
@@ -52,6 +53,8 @@ public class BotYura {
 			if(thisTimeArgs.errorMessage != null)
 				System.out.println(thisTimeArgs.errorMessage + "\n");
 			System.out.println(ComLineArg.USAGE);
+			
+			logger.info(thisTimeArgs.errorMessage);
 		}
 	}
 	
