@@ -3,9 +3,13 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 
 public class ParsingRegulary implements Parsing{
 
+	private static final Logger log = Logger.getLogger(ParsingRegulary.class);
+	
 	private static final String USAGE = "Usage: Exec --cmd=<os_cmd> -param1=<value> -param2=<value>";
 	
 	private static Matcher controlMyString(String pat, String forFind) 
@@ -21,7 +25,7 @@ public class ParsingRegulary implements Parsing{
 		String key = null, value = null;
 		String errorkey = "Error";
 		String errorvalue = "Error input command!!!";
-
+		log.debug("Initialization decode to map");
 
 			if (args.length > 0) {
 				String myPatternCmd = "--[Cc][Mm][Dd]=.+$";
@@ -31,6 +35,7 @@ public class ParsingRegulary implements Parsing{
 				
 				if (controlMyString(myPatternHelp,args[0]).matches())
 				{
+					log.debug("Help "+USAGE);
 					ourResult.put("help", USAGE);
 					return ourResult;
 				}	
@@ -40,6 +45,7 @@ public class ParsingRegulary implements Parsing{
 					m = controlMyString(myPatternArg, args[0]);
 					if (m.find())
 					{
+						log.debug("command "+m.group().replaceAll("=", ""));
 						key = "command";
 						ourResult.put(key, m.group().replaceAll("=", ""));
 					}
@@ -47,6 +53,7 @@ public class ParsingRegulary implements Parsing{
 				}
 				else
 					{
+					log.debug("error "+errorvalue);
 					ourResult.put(errorkey, errorvalue);
 					ourResult.put("help", USAGE);
 					return ourResult;
