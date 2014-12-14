@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +17,8 @@ public class BotYura {
 	
 	//Bot —cmd=send_message -user_id=<id> -message=<message>
 	private final static String QUEUE_NAME = "hello";
+	
+	private static Logger log = Logger.getLogger(BotYura.class.getName());
 
 
 	public static void main(String[] args) throws IOException, InterruptedException{
