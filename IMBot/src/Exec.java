@@ -6,14 +6,16 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.plaf.metal.MetalIconFactory.FolderIcon16;
+import org.apache.log4j.Logger;
 
 public class Exec {
 
 	public static final String USAGE = "Usage: Exec --cmd=send_message --user_id=<id> --message=<message>";
 	public static final String pat = "--(.+)=(.+)$";
 	static Pattern p = Pattern.compile(pat);
-
+	private static Logger log = Logger.getLogger(Exec.class);
+ 
+    
 	public static Map<String, String> parsingArgs(String[] args) {
 		Map<String, String> map = new LinkedHashMap<>();
 
@@ -51,25 +53,22 @@ public class Exec {
 		else
 			return "";
 	}
-
-	public static void main(String args[]) throws Exception {
+	
+	//--cmd=send_message --user_id=4897 --message=Hello
+	public static void main(String args[]) throws Exception {     
 		Boolean chek=false;
 		String sendLine="";
+		
 		Map<String, String> map = parsingArgs(args);
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			if (entry.getKey().equals("cmd") && entry.getValue().equals("start")) {
-			//String cmd=("Java -cp .;\"C:\\Users\\IT School\\Galina\\commons-io-1.2.jar\";\"C:\\Users\\IT School\\rabbitmq-client.jar\" Main");
-
-			//--cmd=send_message --user_id=4897 --message=Hello
-			// Java -cp .;"C:\Users\Потемкина Галина\commons-io-1.2.jar";"C:\Users\Потемкина Галина\rabbitmq-client.jar" Main") //это сразу в cmd и все работает
-			//Java -cp .;"C:\Users\Потемкина Галина\commons-io-1.2.jar";"C:\Users\Потемкина Галина\rabbitmq-client.jar" "C:\Users\Потемкина Галина\WorkProject\imbot\Messagelistener\bin\Main" //так в cmd не работает
-			
-			//String cmd=("Java -cp \"C:\\Users\\Потемкина Галина\\WorkProject\\imbot\\Messagelistener\\bin\";\"C:\\Users\\Потемкина Галина\\commons-io-1.2.jar\";\"C:\\Users\\Потемкина Галина\\rabbitmq-client.jar\" Main\"");
-			//String cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\imbot\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\commons-io-1.2.jar\";\"C:\\Users\\Galina\\rabbitmq-client.jar\" Main");
-			// Java -cp "C:\Users\IT School\Galina\Galina\imbot\Messagelistener\bin";"C:\\Users\IT School\Galina\commons-io-1.2.jar";"C:\Users\Galina\rabbitmq-client.jar" Main
-
+			//IT School
 			//("Java -cp "C:\Users\IT School\Galina\Galina\Messagelistener\bin";"C:\Users\IT School\Galina\libs\*" Main")
-			String cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\libs\\*\" Main");			
+			//String cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\libs\\*\" Main");
+			
+			//Home	
+			//("Java -cp "D:\Galina\NewProject\imbot\Messagelistener\bin";"D:\Galina\NewProject\libs\*" Main")
+			String cmd=("Java -cp \"D:\\Galina\\NewProject\\imbot\\Messagelistener\\bin\";\"C:\\Galina\\NewProject\\libs\\*\" Main");	
 			executeCmd(cmd);
 			return;
 			}
@@ -93,15 +92,18 @@ public class Exec {
 		
 		try {
 			Process process = runtime.exec(new String[] { "cmd.exe", "/c", cmd });
-//			process.waitFor();
-//			BufferedReader bReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-//			String line = "";
-//			while ((line = bReader.readLine()) != null) {
-//				System.out.println(line);
-//			}
-//			bReader.close();
+			process.waitFor();
+			BufferedReader bReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line = "";
+			while ((line = bReader.readLine()) != null) {
+				//System.out.println(line);
+				log.debug(line);
+				}
+			bReader.close();
 		} catch (IOException e) {
-			System.out.println("Command execution failed");
+			//System.out.println("Command execution failed");
+			log.debug("Command execution failed");
+			log.debug(e.getMessage());
 			e.printStackTrace();
 		}
 	}
