@@ -1,0 +1,7 @@
+13:32:48,875 DEBUG main RecvMes:recvMessage:27 - Waiting for messages
+13:37:52,203 DEBUG main RecvMes:recvMessage:27 - Waiting for messages
+13:40:59,781 DEBUG main RecvMes:recvMessage:27 - Waiting for messages
+13:40:59,828 DEBUG main RecvMes:recvMessage:38 - [x] Received '[Ljava.lang.String;@1064425
+13:40:59,828 DEBUG main RecvMes:recvMessage:48 - [x] Received 'send_message'
+13:40:59,828 DEBUG main RecvMes:recvMessage:48 - [x] Received '4897'
+13:40:59,828 DEBUG main RecvMes:recvMessage:48 - [x] Received 'hello'
