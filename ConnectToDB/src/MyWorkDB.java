@@ -17,7 +17,7 @@ public class MyWorkDB {
 //		String password = "P@ssw0rd";
 //		String url = "jdbc:mysql://217.146.253.39/imbot"; 
 		
-                String userName = "root";
+        String userName = "root";
 		String password = "potem358669";
 		String url = "jdbc:mysql://localhost/imbot"; 
                     
@@ -31,14 +31,11 @@ public class MyWorkDB {
 	    while (rs.next()) //list all fields except auto_increment
 	    {
 	    	//if (rs.getString("Extra").toString().contains("auto_increment")) ;
-	    
 	    	list.put(rs.getString("Field"), rs.getString("Type"));
-	    	//System.out.println(rs.getString("Field")+":"+rs.getString("Type"));
-	    	//System.out.println(rs.);
 	    }
 	    
 	     Table our=new Table(list); //create our mutant Map
-//		
+		
 //	     //for example find row in table by id
 //	     
 	     our=Query.returnRecordByID(ourConn.conn, 1, "users",our);
@@ -52,19 +49,17 @@ public class MyWorkDB {
 //	     our.getTableStructure().get("LastName").setVariable("Potemkin");
 //	     our.getTableStructure().get("FirstName").setVariable("Alex");
 //	     our.getTableStructure().get("MiddleName").setVariable("Yurievich");
-//             SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
-//             Date date = formatter.parse("22.05.1981");
-//             our.getTableStructure().get("DateOfBirth").setVariable(date);
-//             our.getTableStructure().get("Login").setVariable("_HakerAlex_");
-             
-//	     our.getTableStructure().get("City").setVariable("Odessa");
-//	    
+//       SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+//       Date date = formatter.parse("22.05.1981");
+//       our.getTableStructure().get("DateOfBirth").setVariable(date);
+//       our.getTableStructure().get("Login").setVariable("_HakerAlex_");
+   
 //			for (Entry<String, Type> elem : our.getTableStructure().entrySet()) //output values from our structure 
 //			{
 //				System.out.println("key:"+elem.getKey()+" value:"+elem.getValue().getVariable());//+" type: "+elem.getValue().tellType()
 //			}
 //	
-	     Query.insertToDBfromMap(ourConn.conn,our,"users");
+	 //   Query.insertToDBfromMap(ourConn.conn,our,"users");
 	 	ourConn.closeConnection();
 	     
 		 

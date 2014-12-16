@@ -2,7 +2,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map.Entry;
 
 public class Query {
@@ -68,9 +70,9 @@ public class Query {
 	}
 	
 		
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked"})
 	public static Table returnRecordByID(Connection conn, int id, String tableName, Table myStructure)
-			throws SQLException {
+			throws SQLException, ParseException {
 		ResultSet rs = null;
 		try {
 			Statement statement = conn.createStatement();
@@ -85,14 +87,22 @@ public class Query {
 						  elem.getValue().setVariable(rs.getInt(elem.getKey()));  
 					  else if (elem.getValue().tellType().contains("Double"))
 						  elem.getValue().setVariable(rs.getDouble(elem.getKey()));
-					  else if (elem.getValue().tellType().contains("Date")) 
-						  elem.getValue().setVariable(rs.getDate(elem.getKey()));
+					  else if (elem.getValue().tellType().contains("Date")) {
+					  	  SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+					  	  Date date = formatter.parse(rs.getString(elem.getKey()));
+						  elem.getValue().setVariable(date);
+					  }
 					}	
 				  	    	
 			    }
 
 		} catch (SQLException e) {
 			System.out.println(e);
+			e.printStackTrace();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+			e.printStackTrace();
 		}
 		return myStructure;
 	}
