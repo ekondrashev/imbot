@@ -10,7 +10,7 @@ public class Table {
 	private Map<String,Type> myStructureTable;
 
 	
-	Table (Map<String,String> structureTableMySql) //получили и инициализнули....
+	Table (Map<String,String> structureTableMySql) 
 	{ 
 		initializing(structureTableMySql);
 	}
@@ -25,7 +25,7 @@ public class Table {
 			javaType=new Type<Integer>(0);
 		else if (myTypeSQL.startsWith("varchar") || myTypeSQL.startsWith("char"))  
 			javaType=new Type<String>("");
-		else if (myTypeSQL.startsWith("datetime"))
+		else if (myTypeSQL.startsWith("date"))
 			javaType=new Type<Date>();
 		else if (myTypeSQL.startsWith("float") || myTypeSQL.startsWith("real"))
 			javaType=new Type<Double>();

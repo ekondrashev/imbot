@@ -1,8 +1,10 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.text.SimpleDateFormat;
 
 
 
@@ -11,14 +13,18 @@ public class MyWorkDB {
 	
 	public static void main(String[] args) throws SQLException, Exception {
 		try{
-		String userName = "imbot";
-		String password = "P@ssw0rd";
-		String url = "jdbc:mysql://217.146.253.39/imbot"; 
+//		String userName = "imbot";
+//		String password = "P@ssw0rd";
+//		String url = "jdbc:mysql://217.146.253.39/imbot"; 
 		
+                String userName = "root";
+		String password = "potem358669";
+		String url = "jdbc:mysql://localhost/imbot"; 
+                    
 		ConnectDB ourConn=new ConnectDB(url,userName,password); //create class connectDB
 		ourConn.getConnectToDB();//create connect 
 		
-	    ResultSet rs = Query.openQuery(ourConn.conn,"show columns from APIName"); //return table structure
+	    ResultSet rs = Query.openQuery(ourConn.conn,"show columns from users"); //return table structure
 	 
 	    Map<String, String> list =new LinkedHashMap<String, String>(); 
 	    
@@ -35,17 +41,22 @@ public class MyWorkDB {
 //		
 //	     //for example find row in table by id
 //	     
-	     our=Query.returnRecordByID(ourConn.conn, 1, "APIName",our);
+	     our=Query.returnRecordByID(ourConn.conn, 1, "users",our);
 	     
 			for (Entry<String, Type> elem : our.getTableStructure().entrySet()) //output values from our structure 
 			{
 				System.out.println("key:"+elem.getKey()+" value:"+elem.getValue().getVariable());//+" type: "+elem.getValue().tellType()
 			}	
 		
-//	     our.getTableStructure().get("PersonID").setVariable(1);
+
 //	     our.getTableStructure().get("LastName").setVariable("Potemkin");
 //	     our.getTableStructure().get("FirstName").setVariable("Alex");
-//	     our.getTableStructure().get("Address").setVariable("Starickogo 20/1");
+//	     our.getTableStructure().get("MiddleName").setVariable("Yurievich");
+//             SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+//             Date date = formatter.parse("22.05.1981");
+//             our.getTableStructure().get("DateOfBirth").setVariable(date);
+//             our.getTableStructure().get("Login").setVariable("_HakerAlex_");
+             
 //	     our.getTableStructure().get("City").setVariable("Odessa");
 //	    
 //			for (Entry<String, Type> elem : our.getTableStructure().entrySet()) //output values from our structure 
@@ -53,7 +64,7 @@ public class MyWorkDB {
 //				System.out.println("key:"+elem.getKey()+" value:"+elem.getValue().getVariable());//+" type: "+elem.getValue().tellType()
 //			}
 //	
-//	     Query.insertToDBfromMap(ourConn.conn,our,"Persons");
+	     Query.insertToDBfromMap(ourConn.conn,our,"users");
 	 	ourConn.closeConnection();
 	     
 		 

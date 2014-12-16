@@ -2,6 +2,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Map.Entry;
 
 public class Query {
@@ -43,8 +44,13 @@ public class Query {
 				ourKey = ourKey + elem.getKey() + ",";
 				if (elem.getValue().tellType().contains("String"))
 					ourValues = ourValues + "'" + elem.getValue().getVariable()	+ "',";
-				else
-					ourValues = ourValues + elem.getValue().getVariable().toString() + ",";
+                                else if (elem.getValue().tellType().contains("Date")){
+                                        SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy.MM.dd");
+                                        String stDate="'"+ formatter2.format(elem.getValue().getVariable())+"'";
+                                        ourValues = ourValues + stDate + ",";
+                                }
+                                else
+                                    ourValues = ourValues + elem.getValue().getVariable().toString() + ",";
 
 			}
 
