@@ -1,6 +1,8 @@
 package main;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -11,6 +13,8 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.QueueingConsumer;
 import com.rabbitmq.client.ShutdownSignalException;
+
+
 
 
 public class BotYura {
@@ -25,37 +29,52 @@ public class BotYura {
 	public static void main(String[] args) throws IOException, InterruptedException{
 		// TODO Auto-generated method stub
 		 
-		ComLineArg thisTimeArgs = parsingComLine(args);
-
-		switch(thisTimeArgs.cmd){
-		case "send_message":
-			if(thisTimeArgs.userId != null && thisTimeArgs.userMessage != null){
-				SendCommand(thisTimeArgs.userId + ":" + thisTimeArgs.userMessage);
-			}
-			else{
-				if(thisTimeArgs.userId == null){
-					System.out.println("You did not input a username");
-				}
-				if(thisTimeArgs.userMessage == null){
-					System.out.println("You did not write a message");
-				}
-				System.out.println(ComLineArg.USAGE);
-			}
-			break;
-		case "receive":
-			ReceiveMessage();
-			break;
-		case "stop":
-			SendCommand("stop");
-			break;
-		case "help":
-		default:
-			if(thisTimeArgs.errorMessage != null)
-				System.out.println(thisTimeArgs.errorMessage + "\n");
-			System.out.println(ComLineArg.USAGE);
-			
-			logger.info(thisTimeArgs.errorMessage);
-		}
+		BotDAO imbotDB = new BotDAO("jdbc:mysql://217.146.253.19/imbot", "imbot", "P@ssw0rd");
+		
+//		imbotDB.deleteRowFromTable(2, "Commands");
+		
+//		Boolean a = imbotDB.IsCommandExist("send_message");
+//		logger.info(a.toString());
+		
+		Map<String, String> prepareMap = new HashMap<>();
+//		String[] commands = new String[]{"send_message", "receive", "stop", "help"};
+//		for(String com: commands)
+//		{
+			prepareMap.put("Name", "receive");
+			imbotDB.InsertToTable(prepareMap, "Commands");
+//		}
+//		imbotDB.ShowEntireTable("Commands");
+//		ComLineArg thisTimeArgs = parsingComLine(args);
+//
+//		switch(thisTimeArgs.cmd){
+//		case "send_message":
+//			if(thisTimeArgs.userId != null && thisTimeArgs.userMessage != null){
+//				SendCommand(thisTimeArgs.userId + ":" + thisTimeArgs.userMessage);
+//			}
+//			else{
+//				if(thisTimeArgs.userId == null){
+//					System.out.println("You did not input a username");
+//				}
+//				if(thisTimeArgs.userMessage == null){
+//					System.out.println("You did not write a message");
+//				}
+//				System.out.println(ComLineArg.USAGE);
+//			}
+//			break;
+//		case "receive":
+//			ReceiveMessage();
+//			break;
+//		case "stop":
+//			SendCommand("stop");
+//			break;
+//		case "help":
+//		default:
+//			if(thisTimeArgs.errorMessage != null)
+//				System.out.println(thisTimeArgs.errorMessage + "\n");
+//			System.out.println(ComLineArg.USAGE);
+//			
+//			logger.info(thisTimeArgs.errorMessage);
+//		}
 	}
 	
 // this function send some command	
@@ -156,6 +175,4 @@ public class BotYura {
 		return carrentLineArg;
 		
 	}
-	
-
 }

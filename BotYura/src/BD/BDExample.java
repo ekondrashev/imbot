@@ -16,7 +16,7 @@ public class BDExample {
 		String  user = "imbot";
 		String  password = "P@ssw0rd";
 		
-		String url = "jdbc:mysql://217.146.253.39/imbot";
+		String url = "jdbc:mysql://217.146.253.19/imbot";
 		
 		String driver = "com.mysql.jdbc.Driver";
 		
@@ -30,30 +30,30 @@ public class BDExample {
 		Connection c = null;
 		try{
 			c = DriverManager.getConnection(url, user, password);
-			System.out.println(c);
+
 			Statement st = c.createStatement();
 			ResultSet rs = st.executeQuery("show tables");
 			while(rs.next()){
 				System.out.println(rs.getString("tables_in_imbot"));
 			}
-			int PersonID = 1980;
-	        String lastName = "Gulov";
-	        String firstName = "Yura";
-	        String address = "no address";
-	        String city = "Odessa";
-	        
-	        String query = "insert into Persons (PersonID, LastName, FirstName, Address, City) values (?, ?, ?, ?, ?)";
-	        PreparedStatement preparedStmt = c.prepareStatement(query);
-	        
-	        preparedStmt.setInt(1, PersonID);
-	        preparedStmt.setString(2, lastName);
-	        preparedStmt.setString(3, firstName);
-	        preparedStmt.setString(4, address);
-	        preparedStmt.setString(5, city);
-	        preparedStmt.execute();
+//			int PersonID = 1980;
+//	        String lastName = "Gulov";
+//	        String firstName = "Yura";
+//	        String address = "no address";
+//	        String city = "Odessa";
+//	        
+//	        String query = "insert into Persons (PersonID, LastName, FirstName, Address, City) values (?, ?, ?, ?, ?)";
+//	        PreparedStatement preparedStmt = c.prepareStatement(query);
+//	        
+//	        preparedStmt.setInt(1, PersonID);
+//	        preparedStmt.setString(2, lastName);
+//	        preparedStmt.setString(3, firstName);
+//	        preparedStmt.setString(4, address);
+//	        preparedStmt.setString(5, city);
+//	        preparedStmt.execute();
 	        
 			
-			rs = st.executeQuery("select * from Persons");
+			rs = st.executeQuery("select * from Users");
 			
 			while (rs.next())
 		      {
