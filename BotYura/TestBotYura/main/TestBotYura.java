@@ -5,6 +5,8 @@ package main;
 
 import static org.junit.Assert.*;
 
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 /**
@@ -14,6 +16,7 @@ import org.junit.Test;
 public class TestBotYura {
 
 	/**
+	 * @throws SQLException 
 	 * @throws java.lang.Exception
 	 */
 	

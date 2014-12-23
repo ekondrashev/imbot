@@ -15,6 +15,7 @@ public class ComLineArg {
 	public String userId;
 	public String userMessage;
 	public String errorMessage;
+	public String [] stringArray;
 	
 	public ComLineArg() {
 		cmd = null;

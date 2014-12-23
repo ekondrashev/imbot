@@ -13,12 +13,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Program Files/Java/commons-cli-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/commons-io-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/mysql-connector-java-5.1.34-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/rabbitmq-client.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Java/rabbitmq-client-tests.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
