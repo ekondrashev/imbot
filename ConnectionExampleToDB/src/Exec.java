@@ -96,6 +96,7 @@ public class Exec {
 				else System.out.println("This command is not exist");
 			}
 		}
+		jdbcCommandsDAO.closeConnection();
 		if (chek)
 			Send.sendMessage(sendLine);
 
