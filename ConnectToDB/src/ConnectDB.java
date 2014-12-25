@@ -7,7 +7,6 @@ public class ConnectDB {
 	private String userName;
 	private String password;
 	private String url;
-	public Connection conn = null;
 
 	ConnectDB(String url, String user, String password) {
 		this.userName = user;
@@ -15,26 +14,28 @@ public class ConnectDB {
 		this.url = url;
 	}
 
-	public void getConnectToDB() throws SQLException, Exception{
+	public Connection openConnect() throws SQLException,
+			ClassNotFoundException {
 		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			this.conn = DriverManager.getConnection(this.url, this.userName, this.password);
-		} 
-		catch (SQLException e) {
+			Class.forName("com.mysql.jdbc.Driver");
+			return DriverManager.getConnection(this.url, this.userName,
+					this.password);
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println(e.getMessage());
-			this.conn = null;
-		}
-		catch (Exception e) {
-			System.out.println(e.getMessage());
-			this.conn = null;
+			throw e;
 		}
 	}
 
-	public void closeConnection() throws SQLException {
+	public void closeConnection(Connection conn) throws SQLException {
 		try {
-			conn.close();
+			if (conn != null)
+				conn.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
+			conn = null;
+			throw e;
 		}
 	}
+
+	
 }

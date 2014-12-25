@@ -1,7 +1,8 @@
+import java.sql.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Date;
+
 
 public class Table {
 
@@ -15,7 +16,7 @@ public class Table {
 	}
 	
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes"})
 	public  Type getTypeJavaFromTypeMySQL(String myTypeSQL)
 	{
 		Type javaType = null; //default
@@ -25,7 +26,7 @@ public class Table {
 		else if (myTypeSQL.startsWith("varchar") || myTypeSQL.startsWith("char"))  
 			javaType=new Type<String>("");
 		else if (myTypeSQL.startsWith("date"))
-			javaType=new Type<Date>(new Date());
+			javaType=new Type<Date>(new Date(0));
 		else if (myTypeSQL.startsWith("float") || myTypeSQL.startsWith("real"))
 			javaType=new Type<Double>();
 		return javaType;
