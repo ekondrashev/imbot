@@ -16,9 +16,13 @@ public class JDBCExample {
 		// String user = "imbot";
 		// String password = "P@ssw0rd";
 		// String url = "jdbc:mysql://217.146.253.39/imbot";
+//		String user = "root";
+//		String password = "potem358669";
+//		String url = "jdbc:mysql://192.168.0.81/imbot";
+//		String driver = "com.mysql.jdbc.Driver";
 		String user = "root";
-		String password = "potem358669";
-		String url = "jdbc:mysql://192.168.0.81/imbot";
+		String password = "111111";
+		String url = "jdbc:mysql://192.168.5.192/imbot";
 		String driver = "com.mysql.jdbc.Driver";
         try {
             //Загружаем драйвер
@@ -29,47 +33,49 @@ public class JDBCExample {
             Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "Соединение установлено");
             Statement statement = null;
             statement = connection.createStatement();       
-    		ResultSet rs = statement.executeQuery("Show tables");
-			
+    		//ResultSet rs = statement.executeQuery("Show tables");
+            ResultSet rs = statement.executeQuery("show columns from commands");
 			 while (rs.next()) {
-			 System.out.println(rs.getString("Tables_in_imbot"));
+			 //System.out.println(rs.getString("Tables_in_imbot"));
+				 System.out.println(rs.getString("field")+" "+rs.getString("type"));
 			 }
             
 				// INSERT
-				PreparedStatement preparedStatement = null; 
-				
-				preparedStatement = connection
-						.prepareStatement("INSERT INTO users(FirstName,LastName,MiddleName,Login) values(?,?,?,?)");
-	
-				String param[][] = { { "Ivan", "Ivanov", "Ivanovich", "Vano" },
-						{ "Petr", "Petrov", "Petrovich", "Pit" },
-						{ "Sidor", "Sidorov", "Sidorovich", "Sid" },
-						{ "Mark", "Marakulin", "markovich", "Mak" } };
-	
-				for (String[] par : param) {
-					for (int ind = 0; ind < 4; ind++) {
-						preparedStatement.setString(ind + 1, par[ind]);
-					}
-					preparedStatement.executeUpdate();
-					Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "В таблицу users добавлен кортеж");
-				}
+			//	PreparedStatement preparedStatement = null; 
+//				
+//				preparedStatement = connection
+//						.prepareStatement("INSERT INTO users(FirstName,LastName,MiddleName,Login) values(?,?,?,?)");
+//	
+//				String param[][] = { { "Ivan", "Ivanov", "Ivanovich", "Vano" },
+//						{ "Petr", "Petrov", "Petrovich", "Pit" },
+//						{ "Sidor", "Sidorov", "Sidorovich", "Sid" },
+//						{ "Mark", "Marakulin", "markovich", "Mak" } };
+//	
+//				for (String[] par : param) {
+//					for (int ind = 0; ind < 4; ind++) {
+//						preparedStatement.setString(ind + 1, par[ind]);
+//					}
+//					preparedStatement.executeUpdate();
+//					Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "В таблицу users добавлен кортеж");
+//				}
 
 				//UPDATE
 
-				preparedStatement = connection
-						.prepareStatement("UPDATE users SET DateOfBirth = '1964.02.01' where id = 29");
-				preparedStatement.executeUpdate(); 
-				Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "В таблице users обновлен кортеж");
-				
-				//Delete
-
-				preparedStatement = connection
-						.prepareStatement("Delete FROM users where id >1");
-				preparedStatement.executeUpdate();
-				Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "Из таблицы users удалены все кортежи, где id >1  ");
+//				preparedStatement = connection
+//						.prepareStatement("UPDATE users SET DateOfBirth = '1964.02.01' where id = 29");
+//				preparedStatement.executeUpdate(); 
+//				Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "В таблице users обновлен кортеж");
+//				
+//				//Delete
+//
+//				preparedStatement = connection
+//						.prepareStatement("Delete FROM users where id >1");
+//				preparedStatement.executeUpdate();
+//				Logger.getLogger(JDBCExample.class.getName()).log(Level.INFO, "Из таблицы users удалены все кортежи, где id >1  ");
 					
 			   // SELECT
-				ResultSet result1 = preparedStatement.executeQuery("SELECT * FROM users");
+	
+				ResultSet result1 = statement.executeQuery("SELECT * FROM users");
 
 				while (result1.next()) {
 					System.out.println(result1.getInt("ID") + " "
