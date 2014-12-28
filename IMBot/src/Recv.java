@@ -1,19 +1,40 @@
-import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.QueueingConsumer;
+import com.skype.Chat;
 
-public class Recv {
+public class Recv implements Runnable {
 
-	private final static String QUEUE_NAME = "Galina";
+	private final static String QUEUE_NAME = "Galina_Potemkina";
+	static private boolean checkSTOP = false;
+	private static Logger log = Logger.getLogger(Recv.class);
+	Map<String, Chat> map = new LinkedHashMap<String, Chat>();
 
-	public static void recvMessage(String mess) throws Exception {
+	Recv(Map<String, Chat> map) {
+		this.map = map;
+	};
+
+	@Override
+	public void run() {
+		try {
+			recvMessage();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void recvMessage() throws Exception {
 
 		ConnectionFactory factory = new ConnectionFactory();
-		factory.setHost("217.146.253.33");
+		//factory.setHost("217.146.253.33");
+		factory.setHost("192.168.5.192");
 		factory.setPort(5672);
 		Connection connection = factory.newConnection();
 		Channel channel = connection.createChannel();
@@ -24,38 +45,32 @@ public class Recv {
 		QueueingConsumer consumer = new QueueingConsumer(channel);
 		channel.basicConsume(QUEUE_NAME, true, consumer);
 
-		while (true) {
+		while (checkSTOP == false) {
 			QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 			String message = new String(delivery.getBody());
-			//String[] messageArr = divide(message);
-			String[] messageArr = message.split("");
-			Map<String, String> map = Exec.parsingArgs(messageArr);
-			for (Map.Entry<String, String> entry : map.entrySet()) {
-                if (map.containsKey("cmd") && map.containsValue("stop")){
-                	System.out.println("Process was stopped!");
-                    break;}
-                else	
-				System.out.println(" [x] Received '" + entry.getValue() + "'");
-			}
+			String[] messageArr = message.split("\\s");
+			Map<String, String> mapPars = Exec.parsingArgs(messageArr);
+			log.debug("[x] Received '" + messageArr);
+			for (Map.Entry<String, String> entry : mapPars.entrySet()) {
+				if (mapPars.get("cmd").equals("stop")) {
+					checkSTOP = true;
+					System.out.println("Process was stopped!");
+					log.debug("Process was stopped!");
+					channel.close();
+					connection.close();
+				} else if (mapPars.get("cmd").equals("send_message")) {
+					String ourID = mapPars.get("user_id");
+					String ourMes = mapPars.get("message");
 
-		}
-	}
-
-	public static String[] divide(String s) {
-		ArrayList<String> tmp = new ArrayList<String>();
-		int i = 0;
-
-		for (int j = 0; j < s.length(); j++) {
-			if (s.charAt(j) == ' ') {
-				if (j > i) {
-					tmp.add(s.substring(i, j));
+					final Chat chatterup = map.get(ourID);
+					chatterup.send(ourMes);
+                    map.remove(ourID);
 				}
-				i = j + 1;
+				log.debug("[x] Received '" + entry.getValue() + "'");
+
 			}
+
 		}
-		if (i < s.length()) {
-			tmp.add(s.substring(i));
-		}
-		return tmp.toArray(new String[tmp.size()]);
 	}
+
 }

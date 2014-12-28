@@ -14,8 +14,7 @@ public class Exec {
 	public static final String pat = "--(.+)=(.+)$";
 	static Pattern p = Pattern.compile(pat);
 	private static Logger log = Logger.getLogger(Exec.class);
- 
-    
+
 	public static Map<String, String> parsingArgs(String[] args) {
 		Map<String, String> map = new LinkedHashMap<>();
 
@@ -29,9 +28,10 @@ public class Exec {
 		}
 
 		if (map.containsKey("cmd") && map.containsValue("send_message")) {
-			if (!map.containsKey("user_id") || !map.containsKey("message")){
+			if (!map.containsKey("user_id") || !map.containsKey("message")) {
 				map.clear();
-			map.put("HELP", USAGE);}
+				map.put("HELP", USAGE);
+			}
 		}
 
 		else if (!map.containsKey("cmd") || map.containsKey("help")) {
@@ -53,60 +53,67 @@ public class Exec {
 		else
 			return "";
 	}
-	
-	//--cmd=send_message --user_id=4897 --message=Hello
-	public static void main(String args[]) throws Exception {     
-		Boolean chek=false;
-		String sendLine="";
-		
+
+	// --cmd=send_message --user_id=4897 --message=Hello
+	public static void main(String args[]) throws Exception {
+		Boolean chek = false;
+		String sendLine = "";
+
 		Map<String, String> map = parsingArgs(args);
+
 		for (Map.Entry<String, String> entry : map.entrySet()) {
-			if (entry.getKey().equals("cmd") && entry.getValue().equals("start")) {
-			//IT School
-			//("Java -cp "C:\Users\IT School\Galina\Galina\Messagelistener\bin";"C:\Users\IT School\Galina\libs\*" Main")
-			//String cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\libs\\*\" Main");
-			
-			//Home	
-			//("Java -cp "D:\Galina\NewProject\imbot\Messagelistener\bin";"D:\Galina\NewProject\libs\*" Main")
-			String cmd=("Java -cp \"D:\\Galina\\NewProject\\imbot\\Messagelistener\\bin\";\"C:\\Galina\\NewProject\\libs\\*\" Main");	
-			executeCmd(cmd);
-			return;
+			if (entry.getKey().equals("cmd")
+					&& entry.getValue().equals("start")) {
+				// IT School
+				// ("Java -cp "C:\Users\IT
+				// School\Galina\Galina\Messagelistener\bin";"C:\Users\IT
+				// School\Galina\libs\*" Main")
+				// String
+				// cmd=("Java -cp \"C:\\Users\\IT School\\Galina\\Galina\\Messagelistener\\bin\";\"C:\\Users\\IT School\\Galina\\libs\\*\" Main");
+
+				// Home
+				// ("Java -cp "D:\Galina\NewProject\imbot\Messagelistener\bin";"D:\Galina\NewProject\libs\*" Main")
+				String cmd = ("Java -cp \"D:\\Galina\\NewProject\\imbot\\Messagelistener\\bin\";\"C:\\Galina\\NewProject\\libs\\*\" Main");
+				executeCmd(cmd);
+				return;
+			} else if ((entry.getKey().equals("cmd") && entry.getValue()
+					.equals("send_message"))
+					|| entry.getKey().equals("user_id")
+					|| entry.getKey().equals("message")) {
+				chek = true;
+				sendLine = sendLine + " " + "--" + entry.toString();
+			} else if (entry.getKey().equals("cmd")
+					&& entry.getValue().equals("stop")) {
+				Send.sendMessage("--" + entry.toString());
+				break;
 			}
-			else if ((entry.getKey().equals("cmd") && entry.getValue().equals("send_message"))||
-					entry.getKey().equals("user_id") ||
-					entry.getKey().equals("message")) {  chek=true; 
-				sendLine = sendLine + " " +"--" +entry.toString();
-				 }
-			else if (entry.getKey().equals("cmd") && entry.getValue().equals("stop")){
-				Send.sendMessage("--" +entry.toString());
-				break;}
 		}
-		if (chek) Send.sendMessage(sendLine);
+		if (chek)
+			Send.sendMessage(sendLine);
 
 	}
-	
 
-	
 	private static void executeCmd(String cmd) throws InterruptedException {
 		Runtime runtime = Runtime.getRuntime();
-		
+
 		try {
-			Process process = runtime.exec(new String[] { "cmd.exe", "/c", cmd });
+			Process process = runtime
+					.exec(new String[] { "cmd.exe", "/c", cmd });
 			process.waitFor();
-			BufferedReader bReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			BufferedReader bReader = new BufferedReader(new InputStreamReader(
+					process.getInputStream()));
 			String line = "";
 			while ((line = bReader.readLine()) != null) {
-				//System.out.println(line);
+				// System.out.println(line);
 				log.debug(line);
-				}
+			}
 			bReader.close();
 		} catch (IOException e) {
-			//System.out.println("Command execution failed");
+			// System.out.println("Command execution failed");
 			log.debug("Command execution failed");
 			log.debug(e.getMessage());
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 }

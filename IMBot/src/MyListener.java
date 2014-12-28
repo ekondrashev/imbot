@@ -1,5 +1,8 @@
 //package skypePackage;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import com.google.code.chatterbotapi.ChatterBot;
 import com.google.code.chatterbotapi.ChatterBotFactory;
 import com.google.code.chatterbotapi.ChatterBotSession;
@@ -10,15 +13,19 @@ import com.skype.ChatMessageListener;
 import com.skype.SkypeException;
 
 public class MyListener implements ChatMessageListener {
+	Map<String, Chat> map = new LinkedHashMap<String, Chat>();
+
+	MyListener(Map<String, Chat> map) {
+		this.map = map;
+	};
 
 	private void myListener(String myMessage, Chat myCharts) throws Exception {
-		ChatterBotFactory myFactory = new ChatterBotFactory();
-		ChatterBot skypeBot = myFactory.create(ChatterBotType.JABBERWACKY);
-		ChatterBotSession skypeSession = skypeBot.createSession();
 		try {
-			myMessage = skypeSession.think(myMessage);
-			final Chat chatterup = myCharts;
-			chatterup.send(myMessage);
+			map.put(myCharts.getId(), myCharts);
+
+			String mesLine = "--cmd=send_message " + "--user_id="
+					+ myCharts.getId() + " --message=" + myMessage;
+			Send.sendMessage(mesLine);
 		} catch (final SkypeException ex) {
 			ex.printStackTrace();
 		}

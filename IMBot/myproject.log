@@ -2,3 +2,39 @@
 13:32:00,031 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
 13:39:14,531 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
 13:42:45,031 DEBUG main Send:sendMessage:27 - [x] Sent ' --cmd=send_message --user_id=4897 --message=hello'
+12:49:15,187 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=graffhaker --message=Hello'
+12:49:15,203 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@435f3a
+12:50:34,609 DEBUG AsyncSkypeMessageSender-0 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Heidi'
+12:50:34,625 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@197fbdd
+12:51:41,906 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'send_message'
+12:52:06,390 DEBUG AsyncSkypeMessageSender-5 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Heidi'
+12:52:06,421 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Heidi'
+12:52:06,437 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@18a4bd6
+12:52:06,453 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'send_message'
+12:52:06,468 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received '#graffhaker/$galina_potemkina;ccb59a80c0c57af1'
+12:52:06,484 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'heidi'
+12:52:15,031 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Hello'
+12:52:15,062 DEBUG AsyncSkypeMessageSender-4 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Hello'
+12:52:15,109 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@17cff09
+12:52:15,109 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'send_message'
+12:52:15,125 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received '#graffhaker/$galina_potemkina;ccb59a80c0c57af1'
+12:52:15,125 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'hello'
+12:52:33,062 DEBUG AsyncSkypeMessageSender-5 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Hello my darling'
+12:52:33,187 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Hello my darling'
+12:52:33,218 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@b9de4b
+12:52:33,234 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'send_message'
+12:52:33,234 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received '#graffhaker/$galina_potemkina;ccb59a80c0c57af1'
+12:52:33,250 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'hello'
+12:53:17,218 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Heidi'
+12:53:17,218 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Hello'
+12:53:17,218 DEBUG AsyncSkypeMessageSender-0 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=graffhaker --message=Hello'
+12:53:17,234 DEBUG AsyncSkypeMessageSender-3 Send:sendMessage:24 - [x] Sent '--cmd=send_message --user_id=#graffhaker/$galina_potemkina;ccb59a80c0c57af1 --message=Heidi'
+12:53:17,250 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@9c1d1a
+12:53:17,250 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'send_message'
+12:53:17,265 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received '#graffhaker/$galina_potemkina;ccb59a80c0c57af1'
+12:53:17,265 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'heidi'
+12:53:17,265 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@1e3cbfd
+12:53:17,281 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'send_message'
+12:53:17,296 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received '#graffhaker/$galina_potemkina;ccb59a80c0c57af1'
+12:53:17,296 DEBUG Thread-0 Recv:recvMessage:69 - [x] Received 'hello'
+12:53:17,296 DEBUG Thread-0 Recv:recvMessage:53 - [x] Received '[Ljava.lang.String;@1f3f7bf
