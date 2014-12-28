@@ -9,20 +9,14 @@ public class A implements Runnable{
 			this.al = al;
 		}
 public void run(){
-	
+	func();
 	}
-	public void func(){
+	synchronized public void func(){
 		StringBuffer buf = new StringBuffer("a");
-		for (int i = 0; i < 100; i++) {
-//			if(i == 15|| i == 25){
-//				al.add("Stop");
-//				continue;
-//			}
+		for (int i = 0; i < 1000; i++) {
 			al.add(buf.append("a").toString());
-	}
-	synchronized  A{
-		
-	};
+			}
+		al.add("Stop");
 }
 }
 
