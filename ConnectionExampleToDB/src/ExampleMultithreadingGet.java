@@ -8,11 +8,20 @@ public class ExampleMultithreadingGet implements Runnable {
 	}
 
 	public void run() {
-		while (!Thread.currentThread().isInterrupted()) {
-			for (String arg : list) {
-				if (arg != "Stop")
-					System.out.println(arg);
-				else Thread.currentThread().interrupt();	
+		synchronized (this.list) {
+			writerList();
+		}
+	}
+
+	 public void writerList() {
+		if (!this.list.isEmpty()) {
+			while (!Thread.currentThread().isInterrupted()) {
+				for (String arg : this.list) {
+					if (arg != "Stop")
+						System.out.println(arg);
+					else
+						Thread.currentThread().interrupt();
+				}
 			}
 		}
 	}
