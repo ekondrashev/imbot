@@ -8,11 +8,23 @@ public class B implements Runnable{
 		this.al = al;
 	}
 public void run(){
-	int i = -1;
-	do {
-		i++;
-		System.out.println(al.get(i));
-	} while (al.get(i).equals("Stop") == false);
-		
-}
+	synchronized(al){
+	while(true){
+		if(al.get(al.size()-1) != null){
+			System.out.println(al.get(al.size()-1));
+		}
+		else
+			continue;
+		if(al.get(al.size()-1).equals("Stop")){
+			break;
+		}
+		}
+	}
+	}
+	
+//	while(i >= 0){
+//		al.remove(i);
+//		i--;
+//	}
+	
 }
