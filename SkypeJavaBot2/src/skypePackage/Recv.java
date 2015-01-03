@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.JOptionPane;
+
 import org.apache.log4j.Logger;
 
 import com.rabbitmq.client.ConnectionFactory;
@@ -18,8 +20,6 @@ public class Recv implements Runnable{
 
 	private static String QUEUE_NAME = "QUEUE";
 	private static String HOST = "127.0.0.1";
-	static private boolean shutdownFlag = false;
-
 	Map<String, ChatMessage> map = new LinkedHashMap<>();
 
 	Recv(String queue, String host, Map<String, ChatMessage> map) {
@@ -50,7 +50,7 @@ public class Recv implements Runnable{
 			QueueingConsumer consumer = new QueueingConsumer(channel);
 			channel.basicConsume(QUEUE_NAME, true, consumer);
 
-			while (false == shutdownFlag) {
+			while (!Thread.currentThread().isInterrupted()) {
 				QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 				String message = new String(delivery.getBody());
 				System.out.println(" [x] Received '" + message + "'");
@@ -60,7 +60,7 @@ public class Recv implements Runnable{
 				Map<String, String> mapDecode = exec.decodeToMap(arg);
 
 				if (mapDecode.get("command").equals("stop")) {
-					shutdownFlag = true;
+					Thread.currentThread().interrupt();
 					log.info("command:stop");
 				}
 
@@ -72,11 +72,13 @@ public class Recv implements Runnable{
 						log.info(ourMessage);
 					}
 				} else if (mapDecode.get("command").equals("answer")) {
-					log.info("get command:"+mapDecode.get("command"));
+					log.info("get command:"+mapDecode.get("text"));
+					//JOptionPane.showMessageDialog(null, mapDecode.get("text"));
 					ChatMessage chat = this.map.get(mapDecode.get("key"));
 					final Chat chatterup = chat.getChat();
 					chatterup.send(mapDecode.get("text").replaceAll("\"", ""));
 					this.map.remove(mapDecode.get("key"));
+
 				}
 
 			}
