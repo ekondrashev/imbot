@@ -7,6 +7,7 @@ public class DBMain {
 
 	public static void main(String[] args) throws InterruptedException, SQLException {
 		
+		
 		String userName = "root";
 		String password = "111111";
 		String url = "jdbc:mysql://localhost/imbot";
@@ -18,6 +19,7 @@ public class DBMain {
 		threadRecive.setName("Recive");
 		threadRecive.start();
 		threadRecive.join();
+		JOptionPane.showMessageDialog(null, "Finish DB application");
 	}
 
 }

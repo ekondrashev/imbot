@@ -16,8 +16,6 @@ public class Recv implements Runnable{
 	private static String QUEUE_NAME = "QUEUE";
 	private static String HOST = "127.0.0.1";
 	private ConnectDB ourConnect;
-	static private boolean shutdownFlag = false;
-
 	Recv(String queue, String host,ConnectDB ourConnect) {
 		QUEUE_NAME = queue;
 		HOST = host;
@@ -46,7 +44,7 @@ public class Recv implements Runnable{
 			QueueingConsumer consumer = new QueueingConsumer(channel);
 			channel.basicConsume(QUEUE_NAME, true, consumer);
 
-			while (false == shutdownFlag) {
+			while (!Thread.currentThread().isInterrupted()) {
 				QueueingConsumer.Delivery delivery = consumer.nextDelivery();
 				String message = new String(delivery.getBody());
 				System.out.println(" [x] Received '" + message + "'");
@@ -56,7 +54,7 @@ public class Recv implements Runnable{
 				Map<String, String> mapDecode = exec.decodeToMap(arg);
 
 				if (mapDecode.get("command").equals("stop")) {
-					shutdownFlag = true;
+					Thread.currentThread().interrupt();
 					log.info("command:stop");
 				}
 
@@ -67,7 +65,15 @@ public class Recv implements Runnable{
 								+ "\n";
 						log.info(ourMessage);
 					}
-				} else if (mapDecode.get("command").equals("ask")) {
+				} 
+				 else if (mapDecode.get("command").equals("ask") && mapDecode.get("text").equals("\"currency\"")){
+					 log.info("get command:"+mapDecode.get("command"));
+					 String answer=Currency.getCurrencyNBU();
+					 Send send=new Send("FromDB",HOST);
+					 String ourMessage="--cmd=answer^-key="+ mapDecode.get("key")+"^-text=\""+answer+"\"";
+					 send.sendMessage(ourMessage);
+				 } 
+				 else if (mapDecode.get("command").equals("ask")) {
 					log.info("get command:"+mapDecode.get("command"));
 					String answer=Query.askToQuestion(this.ourConnect, mapDecode.get("apiname"), mapDecode.get("text"));
 					Send send=new Send("FromDB",HOST);
