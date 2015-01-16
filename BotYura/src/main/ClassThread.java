@@ -10,13 +10,13 @@ public class ClassThread {
 		
 		A first = new A(al);
 		B second = new B(al);
-		C third = new C(al);
+		//C third = new C(al);
 		Thread t = new Thread(first);
 		Thread t2 = new Thread(second);
-		Thread t3 = new Thread(third);
+		//Thread t3 = new Thread(third);
 		t.start();
 		t2.start();
-		t3.start();
+		//t3.start();
 	}
 
 }
