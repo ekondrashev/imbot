@@ -1,17 +1,17 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ForkJoinPool;
 
 
 public class Main {
-	public static void main (String [] args) 
-	{
-		List list= new ArrayList();
-		Writer a = new Writer(list);
-		Reader b = new Reader(list);
-		Thread c = new Thread(a);
-		Thread v = new Thread(b);
-		c.start();
-		v.start();
-	}
+	public static void main(String args[]) {
+	Fibonacci f = new Fibonacci(50);
+	final ForkJoinPool mainPool = new ForkJoinPool();
+	int result = mainPool.invoke(f);
+	System.out.println(result);
+	Random r = new Random();
+	r.nextInt();
 
+	
+	}
+	
 }
