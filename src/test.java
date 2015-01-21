@@ -46,7 +46,7 @@ public void testSendMessage() {
 }	    
 @Test
 public void testErrorValue(){
-	    String[] args = new String[]{"-cmd-stop",};
+	    String[] args = new String[]{"--cmd-stop",};
 	    Map<String, String> expected = new HashMap<>(); 
 	    expected.put("Error", "Error command !!!");
 	    
@@ -57,6 +57,26 @@ public void testErrorValue(){
 @Test
 public void testErrorKey(){
 	    String[] args = new String[]{"++cmd=stop"};
+	    Map<String, String> expected = new HashMap<>(); 
+	    expected.put("Error", "Error command !!!");
+	    
+	    Map<String, String> actual = Exec.myParsingMethod(args);
+	    
+	    assertEquals (expected, actual);
+}
+@Test
+public void testErrorSecRev(){
+	    String[] args = new String[]{"-cmd=stop",};
+	    Map<String, String> expected = new HashMap<>(); 
+	    expected.put("Error", "Error command !!!");
+	    
+	    Map<String, String> actual = Exec.myParsingMethod(args);
+	    
+	    assertEquals (expected, actual);
+}
+@Test
+public void testErrorThrRev(){
+	    String[] args = new String[]{"---cmd==stop",};
 	    Map<String, String> expected = new HashMap<>(); 
 	    expected.put("Error", "Error command !!!");
 	    
