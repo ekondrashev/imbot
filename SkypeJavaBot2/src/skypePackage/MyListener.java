@@ -1,36 +1,40 @@
 package skypePackage;
 
-import com.google.code.chatterbotapi.ChatterBot;
-import com.google.code.chatterbotapi.ChatterBotFactory;
-import com.google.code.chatterbotapi.ChatterBotSession;
-import com.google.code.chatterbotapi.ChatterBotType;
-import com.skype.Chat;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import org.apache.log4j.Logger;
+
 import com.skype.ChatMessage;
 import com.skype.ChatMessageListener;
 import com.skype.SkypeException;
 
 public class MyListener implements ChatMessageListener {
-
-	private void myListener(String myMessage, Chat myCharts) throws Exception {
-		ChatterBotFactory myFactory = new ChatterBotFactory();
-		ChatterBot skypeBot = myFactory.create(ChatterBotType.JABBERWACKY);
-		ChatterBotSession skypeSession = skypeBot.createSession();
-		try {
-			myMessage = skypeSession.think(myMessage);
-			final Chat chatterup = myCharts;
-			chatterup.send(myMessage);
-		} catch (final SkypeException ex) {
-			ex.printStackTrace();
-		}
+	
+	private static final Logger log = Logger.getLogger(MyListener.class);
+	
+	Map<String,ChatMessage> map=new LinkedHashMap<>();
+	
+	public MyListener(Map<String,ChatMessage> map) {
+		this.map=map;
+	}
+	
+	private void myListener(ChatMessage myMessage) throws Exception {
+		String id = UUID.randomUUID().toString();
+		map.put(id, myMessage);
+		//send message to rabbitMQ
+		String ourMessage= "--cmd=ask^-text=\""+myMessage.getContent().toLowerCase()+"\"^-apiname=Skype^user="+myMessage.getSenderId()+"^-key="+id;
+		log.info(ourMessage);
+		Send snd=new Send("ToDB","127.0.0.1");
+		snd.sendMessage(ourMessage);
 	}
 
 	@Override
 	public void chatMessageReceived(ChatMessage recMessage)
 			throws SkypeException {
 		try {
-			myListener(recMessage.getContent(), recMessage.getChat());
-			System.out.println("\n" + recMessage.getSenderDisplayName() + " : "
-					+ recMessage.getContent());
+			myListener(recMessage);
 		} catch (final SkypeException ex) {
 			ex.printStackTrace();
 		} catch (final Exception e) {

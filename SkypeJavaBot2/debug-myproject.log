@@ -1,0 +1,302 @@
+13:54:19,268  INFO main Recv:<init>:28 - Initialization class Recv
+13:54:19,270  INFO main Recv:<init>:29 - Initialization queue:FromDB
+13:54:19,271  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+13:54:19,272  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+13:54:19,398  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+13:59:58,406  INFO main Recv:<init>:28 - Initialization class Recv
+13:59:58,408  INFO main Recv:<init>:29 - Initialization queue:FromDB
+13:59:58,409  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+13:59:58,409  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+13:59:58,541  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+16:38:59,643  INFO main Recv:<init>:28 - Initialization class Recv
+16:38:59,646  INFO main Recv:<init>:29 - Initialization queue:FromDB
+16:38:59,646  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+16:38:59,649  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+16:38:59,786  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+17:30:11,243  INFO main Recv:<init>:28 - Initialization class Recv
+17:30:11,252  INFO main Recv:<init>:29 - Initialization queue:FromDB
+17:30:11,252  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+17:30:11,253  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+17:30:11,424  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+17:30:11,441  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer -key=4a1086d1-eba6-4f0d-8785-1703ff38c224 -text="Why not?"'
+17:30:11,444 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+17:30:11,445 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+17:36:34,497  INFO main Recv:<init>:28 - Initialization class Recv
+17:36:34,499  INFO main Recv:<init>:29 - Initialization queue:FromDB
+17:36:34,500  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+17:36:34,500  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+17:36:34,653  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+17:37:22,367  INFO AsyncSkypeMessageSender-1 MyListener:myListener:29 - --cmd=ask -text="why?" -apiname=Skype user=galina_potemkina -key=e5a42360-961c-4136-8ef0-2fbd413ec6fc
+17:37:22,370  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+17:37:22,371  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+17:37:22,371  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+17:37:22,371 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+17:37:22,414  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="why?" -apiname=Skype user=galina_potemkina -key=e5a42360-961c-4136-8ef0-2fbd413ec6fc'
+17:37:22,443  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+17:37:22,904  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer -key=e5a42360-961c-4136-8ef0-2fbd413ec6fc -text="Why not?"'
+17:37:22,908 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+17:37:22,909 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer -keye5a42360-961c-4136-8ef0-2fbd413ec6fc -text"Why not?"
+17:43:25,550  INFO main Recv:<init>:28 - Initialization class Recv
+17:43:25,553  INFO main Recv:<init>:29 - Initialization queue:FromDB
+17:43:25,553  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+17:43:25,554  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+17:43:25,710  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+17:43:55,394  INFO AsyncSkypeMessageSender-1 MyListener:myListener:29 - --cmd=ask -text="why?" -apiname=Skype user=galina_potemkina -key=8dd19789-9857-413d-806f-b93160cfb23d
+17:43:55,396  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+17:43:55,397  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+17:43:55,397  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+17:43:55,397 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+17:43:55,439  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="why?" -apiname=Skype user=galina_potemkina -key=8dd19789-9857-413d-806f-b93160cfb23d'
+17:43:55,456  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+17:43:55,911  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=8dd19789-9857-413d-806f-b93160cfb23d^-text="Why not?"'
+17:43:55,917 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+17:43:55,918 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+17:44:53,895  INFO Recive Recv:recive:75 - get command:answer
+17:46:04,288  INFO main Recv:<init>:28 - Initialization class Recv
+17:46:04,295  INFO main Recv:<init>:29 - Initialization queue:FromDB
+17:46:04,295  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+17:46:04,296  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+17:46:04,420  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+17:46:19,249  INFO AsyncSkypeMessageSender-2 MyListener:myListener:29 - --cmd=ask -text="why?" -apiname=Skype user=galina_potemkina -key=d30ceb4d-01dc-471d-add8-63e8a03e03ea
+17:46:19,251  INFO AsyncSkypeMessageSender-2 Send:<init>:17 - Initialization class Send
+17:46:19,251  INFO AsyncSkypeMessageSender-2 Send:<init>:18 - Initialization queue:ToDB
+17:46:19,251  INFO AsyncSkypeMessageSender-2 Send:<init>:19 - Initialization HOST:127.0.0.1
+17:46:19,251 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:23 - Start processing send
+17:46:19,270  INFO AsyncSkypeMessageSender-2 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="why?" -apiname=Skype user=galina_potemkina -key=d30ceb4d-01dc-471d-add8-63e8a03e03ea'
+17:46:19,285  INFO AsyncSkypeMessageSender-2 Send:sendMessage:49 - Close all connection
+17:46:19,309  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=d30ceb4d-01dc-471d-add8-63e8a03e03ea^-text="Why not?"'
+17:46:19,310 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+17:46:19,312 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+17:46:19,316  INFO Recive Recv:recive:75 - get command:answer
+17:46:39,530  INFO AsyncSkypeMessageSender-4 MyListener:myListener:29 - --cmd=ask -text="how are you?" -apiname=Skype user=galina_potemkina -key=c2e5b478-8d2d-49ea-bd05-06ef697de45e
+17:46:39,531  INFO AsyncSkypeMessageSender-4 Send:<init>:17 - Initialization class Send
+17:46:39,532  INFO AsyncSkypeMessageSender-4 Send:<init>:18 - Initialization queue:ToDB
+17:46:39,532  INFO AsyncSkypeMessageSender-4 Send:<init>:19 - Initialization HOST:127.0.0.1
+17:46:39,532 DEBUG AsyncSkypeMessageSender-4 Send:sendMessage:23 - Start processing send
+17:46:39,558  INFO AsyncSkypeMessageSender-4 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="how are you?" -apiname=Skype user=galina_potemkina -key=c2e5b478-8d2d-49ea-bd05-06ef697de45e'
+17:46:39,561  INFO AsyncSkypeMessageSender-4 Send:sendMessage:49 - Close all connection
+17:46:39,575  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=c2e5b478-8d2d-49ea-bd05-06ef697de45e^-text="Command is not valid!!!"'
+17:46:39,576 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+17:46:39,576 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+17:46:39,576  INFO Recive Recv:recive:75 - get command:answer
+17:47:29,174  INFO AsyncSkypeMessageSender-4 MyListener:myListener:29 - --cmd=ask -text="who are you?" -apiname=Skype user=galina_potemkina -key=d46bf137-3c34-4d35-97e1-acb0a520a70d
+17:47:29,177  INFO AsyncSkypeMessageSender-4 Send:<init>:17 - Initialization class Send
+17:47:29,179  INFO AsyncSkypeMessageSender-4 Send:<init>:18 - Initialization queue:ToDB
+17:47:29,179  INFO AsyncSkypeMessageSender-4 Send:<init>:19 - Initialization HOST:127.0.0.1
+17:47:29,180 DEBUG AsyncSkypeMessageSender-4 Send:sendMessage:23 - Start processing send
+17:47:29,200  INFO AsyncSkypeMessageSender-4 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="who are you?" -apiname=Skype user=galina_potemkina -key=d46bf137-3c34-4d35-97e1-acb0a520a70d'
+17:47:29,208  INFO AsyncSkypeMessageSender-4 Send:sendMessage:49 - Close all connection
+17:47:29,229  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=d46bf137-3c34-4d35-97e1-acb0a520a70d^-text="Command is not valid!!!"'
+17:47:29,229 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+17:47:29,229 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+17:47:29,230  INFO Recive Recv:recive:75 - get command:answer
+17:58:42,893  INFO main Recv:<init>:28 - Initialization class Recv
+17:58:42,895  INFO main Recv:<init>:29 - Initialization queue:FromDB
+17:58:42,895  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+17:58:42,895  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+17:58:43,017  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+17:58:54,326  INFO AsyncSkypeMessageSender-3 MyListener:myListener:29 - --cmd=ask -text="why are you?" -apiname=Skype user=galina_potemkina -key=d18d2b41-20ce-4a28-b610-cf728c9fd33d
+17:58:54,328  INFO AsyncSkypeMessageSender-3 Send:<init>:17 - Initialization class Send
+17:58:54,328  INFO AsyncSkypeMessageSender-3 Send:<init>:18 - Initialization queue:ToDB
+17:58:54,329  INFO AsyncSkypeMessageSender-3 Send:<init>:19 - Initialization HOST:127.0.0.1
+17:58:54,329 DEBUG AsyncSkypeMessageSender-3 Send:sendMessage:23 - Start processing send
+17:58:54,351  INFO AsyncSkypeMessageSender-3 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="why are you?" -apiname=Skype user=galina_potemkina -key=d18d2b41-20ce-4a28-b610-cf728c9fd33d'
+17:58:54,360  INFO AsyncSkypeMessageSender-3 Send:sendMessage:49 - Close all connection
+18:04:40,038  INFO main Recv:<init>:28 - Initialization class Recv
+18:04:40,042  INFO main Recv:<init>:29 - Initialization queue:FromDB
+18:04:40,042  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+18:04:40,043  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+18:04:40,182  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+18:05:29,658  INFO main Recv:<init>:28 - Initialization class Recv
+18:05:29,660  INFO main Recv:<init>:29 - Initialization queue:FromDB
+18:05:29,660  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+18:05:29,660  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+18:05:29,785  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+18:05:39,016  INFO AsyncSkypeMessageSender-2 MyListener:myListener:29 - --cmd=ask -text="who are you?" -apiname=Skype user=galina_potemkina -key=e23686e8-3e8f-4a36-b3f0-74d38232f86a
+18:05:39,017  INFO AsyncSkypeMessageSender-2 Send:<init>:17 - Initialization class Send
+18:05:39,018  INFO AsyncSkypeMessageSender-2 Send:<init>:18 - Initialization queue:ToDB
+18:05:39,018  INFO AsyncSkypeMessageSender-2 Send:<init>:19 - Initialization HOST:127.0.0.1
+18:05:39,018 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:23 - Start processing send
+18:05:39,037  INFO AsyncSkypeMessageSender-2 Send:sendMessage:40 -  [x] Sent '--cmd=ask -text="who are you?" -apiname=Skype user=galina_potemkina -key=e23686e8-3e8f-4a36-b3f0-74d38232f86a'
+18:05:39,045  INFO AsyncSkypeMessageSender-2 Send:sendMessage:49 - Close all connection
+18:13:23,316  INFO main Recv:<init>:28 - Initialization class Recv
+18:13:23,323  INFO main Recv:<init>:29 - Initialization queue:FromDB
+18:13:23,323  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+18:13:23,323  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+18:13:23,435  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+18:13:23,446  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=a24a3a9b-a069-4d3d-a905-ea9d0f56c45e^-text="I'm artificial intelligence"'
+18:13:23,448 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+18:13:23,449 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+18:13:23,449  INFO Recive Recv:recive:75 - get command:answer
+18:13:23,450 ERROR Recive Recv:recive:84 - 
+18:13:23,456  INFO Recive Recv:recive:89 - close all connection
+19:22:47,438  INFO main Recv:<init>:28 - Initialization class Recv
+19:22:47,477  INFO main Recv:<init>:29 - Initialization queue:FromDB
+19:22:47,478  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+19:22:47,479  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+19:22:47,688  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+19:22:47,697  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=bbb36e1e-ecc7-42b0-a00a-32a6b9c5851a^-text="Why not?"'
+19:22:47,708 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+19:22:47,709 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+19:22:47,709  INFO Recive Recv:recive:75 - get command:answer
+19:22:47,710 ERROR Recive Recv:recive:84 - 
+19:22:47,715  INFO Recive Recv:recive:89 - close all connection
+19:23:14,483  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="why?"^-apiname=Skype^user=galina_potemkina^-key=6d833ba8-4c4f-4bf6-8a43-5ce95b290ff4
+19:23:14,533  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:23:14,533  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:23:14,533  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:23:14,533 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:23:14,547  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="why?"^-apiname=Skype^user=galina_potemkina^-key=6d833ba8-4c4f-4bf6-8a43-5ce95b290ff4'
+19:23:14,550  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:23:41,308  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="hello"^-apiname=Skype^user=galina_potemkina^-key=5d8ad8e9-7100-4de2-8218-27c836ee50d4
+19:23:41,308  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:23:41,309  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:23:41,309  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:23:41,309 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:23:41,332  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="hello"^-apiname=Skype^user=galina_potemkina^-key=5d8ad8e9-7100-4de2-8218-27c836ee50d4'
+19:23:41,339  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:26:02,144  INFO main Recv:<init>:28 - Initialization class Recv
+19:26:02,147  INFO main Recv:<init>:29 - Initialization queue:FromDB
+19:26:02,147  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+19:26:02,147  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+19:26:02,263  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+19:26:02,272  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=6d833ba8-4c4f-4bf6-8a43-5ce95b290ff4^-text="Why not?"'
+19:26:02,273 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+19:26:02,274 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+19:26:02,274  INFO Recive Recv:recive:75 - get command:answer
+19:26:02,276 ERROR Recive Recv:recive:84 - 
+19:26:02,281  INFO Recive Recv:recive:89 - close all connection
+19:26:51,526  INFO AsyncSkypeMessageSender-3 MyListener:myListener:28 - --cmd=ask^-text="hello"^-apiname=Skype^user=galina_potemkina^-key=a9911ae1-c968-483c-8580-7cf4c15048f3
+19:26:51,528  INFO AsyncSkypeMessageSender-3 Send:<init>:17 - Initialization class Send
+19:26:51,529  INFO AsyncSkypeMessageSender-3 Send:<init>:18 - Initialization queue:ToDB
+19:26:51,530  INFO AsyncSkypeMessageSender-3 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:26:51,530 DEBUG AsyncSkypeMessageSender-3 Send:sendMessage:23 - Start processing send
+19:26:51,560  INFO AsyncSkypeMessageSender-3 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="hello"^-apiname=Skype^user=galina_potemkina^-key=a9911ae1-c968-483c-8580-7cf4c15048f3'
+19:26:51,564  INFO AsyncSkypeMessageSender-3 Send:sendMessage:49 - Close all connection
+19:36:05,891  INFO main Recv:<init>:28 - Initialization class Recv
+19:36:05,897  INFO main Recv:<init>:29 - Initialization queue:FromDB
+19:36:05,897  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+19:36:05,898  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+19:36:06,092  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+19:36:14,689  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=9435501c-69de-4be1-8b2c-93782dd3bcd6
+19:36:14,708  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:36:14,708  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:36:14,708  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:36:14,708 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:36:14,719  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=9435501c-69de-4be1-8b2c-93782dd3bcd6'
+19:36:14,725  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:36:37,597  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=c89ac6e8-b68d-416a-b0bb-06a697e4bb81
+19:36:37,598  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:36:37,600  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:36:37,601  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:36:37,614 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:36:37,625  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=c89ac6e8-b68d-416a-b0bb-06a697e4bb81'
+19:36:37,627  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:37:09,826  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=ba68c667-0157-4281-b809-e56f7c6325ad
+19:37:09,829  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:37:09,829  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:37:09,829  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:37:09,830 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:37:09,845  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=ba68c667-0157-4281-b809-e56f7c6325ad'
+19:37:09,848  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:37:36,960  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="why?"^-apiname=Skype^user=galina_potemkina^-key=44687ee8-d0bb-43f7-8984-06ac7906b6d8
+19:37:36,960  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:37:36,960  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:37:36,961  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:37:36,961 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:37:36,969  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="why?"^-apiname=Skype^user=galina_potemkina^-key=44687ee8-d0bb-43f7-8984-06ac7906b6d8'
+19:37:36,973  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:37:50,290  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=44687ee8-d0bb-43f7-8984-06ac7906b6d8^-text="Why not?"'
+19:37:50,321 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+19:37:50,322 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+19:37:50,323  INFO Recive Recv:recive:75 - get command:answer
+19:38:00,186  INFO AsyncSkypeMessageSender-1 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=05241faf-df13-4c28-8625-4761493591f9
+19:38:00,187  INFO AsyncSkypeMessageSender-1 Send:<init>:17 - Initialization class Send
+19:38:00,187  INFO AsyncSkypeMessageSender-1 Send:<init>:18 - Initialization queue:ToDB
+19:38:00,187  INFO AsyncSkypeMessageSender-1 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:38:00,188 DEBUG AsyncSkypeMessageSender-1 Send:sendMessage:23 - Start processing send
+19:38:00,210  INFO AsyncSkypeMessageSender-1 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=05241faf-df13-4c28-8625-4761493591f9'
+19:38:00,233  INFO AsyncSkypeMessageSender-1 Send:sendMessage:49 - Close all connection
+19:43:14,967  INFO main Recv:<init>:28 - Initialization class Recv
+19:43:14,969  INFO main Recv:<init>:29 - Initialization queue:FromDB
+19:43:14,969  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+19:43:14,970  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+19:43:15,088  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+19:43:15,096  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=799aa41b-0a4c-4042-b812-4bc08c33c4b5^-text="USD-100	1576.8556
+EUR-100	1923.2908
+RUB-10	3.0304
+"'
+19:43:15,098 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+19:43:15,099 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+19:43:15,099  INFO Recive Recv:recive:75 - get command:answer
+19:43:15,100 ERROR Recive Recv:recive:84 - 
+19:43:15,105  INFO Recive Recv:recive:89 - close all connection
+19:52:36,240  INFO main Recv:<init>:30 - Initialization class Recv
+19:52:36,244  INFO main Recv:<init>:31 - Initialization queue:FromDB
+19:52:36,245  INFO main Recv:<init>:32 - Initialization HOST:127.0.0.1
+19:52:36,247  INFO Recive Recv:recive:40 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+19:52:36,389  INFO Recive Recv:recive:50 -  [*] Waiting for messages. To exit press CTRL+C
+19:52:36,398  INFO Recive Recv:recive:59 -  [x] Received '--cmd=answer^-key=c7e97d82-a076-4e30-aa73-f9e28c23a7c5^-text="USD-100	1576.8556
+EUR-100	1923.2908
+RUB-10	3.0304
+"'
+19:52:36,399 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+19:52:36,400 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+19:52:36,400  INFO Recive Recv:recive:77 - get command:null
+19:52:40,918 ERROR Recive Recv:recive:88 - 
+19:52:40,927  INFO Recive Recv:recive:93 - close all connection
+19:52:51,605  INFO main Recv:<init>:30 - Initialization class Recv
+19:52:51,607  INFO main Recv:<init>:31 - Initialization queue:FromDB
+19:52:51,608  INFO main Recv:<init>:32 - Initialization HOST:127.0.0.1
+19:52:51,608  INFO Recive Recv:recive:40 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+19:52:51,753  INFO Recive Recv:recive:50 -  [*] Waiting for messages. To exit press CTRL+C
+19:52:59,883  INFO AsyncSkypeMessageSender-2 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=345a8876-4e76-4d1f-9bca-1b0c222b0066
+19:52:59,884  INFO AsyncSkypeMessageSender-2 Send:<init>:17 - Initialization class Send
+19:52:59,885  INFO AsyncSkypeMessageSender-2 Send:<init>:18 - Initialization queue:ToDB
+19:52:59,885  INFO AsyncSkypeMessageSender-2 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:52:59,885 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:23 - Start processing send
+19:52:59,904  INFO AsyncSkypeMessageSender-2 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=345a8876-4e76-4d1f-9bca-1b0c222b0066'
+19:52:59,918  INFO AsyncSkypeMessageSender-2 Send:sendMessage:49 - Close all connection
+19:53:18,804  INFO AsyncSkypeMessageSender-2 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=c914a36b-247b-4635-a54b-2a7abdd1bcc7
+19:53:18,804  INFO AsyncSkypeMessageSender-2 Send:<init>:17 - Initialization class Send
+19:53:18,805  INFO AsyncSkypeMessageSender-2 Send:<init>:18 - Initialization queue:ToDB
+19:53:18,805  INFO AsyncSkypeMessageSender-2 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:53:18,814 DEBUG AsyncSkypeMessageSender-2 Send:sendMessage:23 - Start processing send
+19:53:18,841  INFO AsyncSkypeMessageSender-2 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=c914a36b-247b-4635-a54b-2a7abdd1bcc7'
+19:53:18,847  INFO AsyncSkypeMessageSender-2 Send:sendMessage:49 - Close all connection
+19:54:39,213  INFO AsyncSkypeMessageSender-3 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=7d718504-34d0-4875-a819-d0baac5ec220
+19:54:39,214  INFO AsyncSkypeMessageSender-3 Send:<init>:17 - Initialization class Send
+19:54:39,216  INFO AsyncSkypeMessageSender-3 Send:<init>:18 - Initialization queue:ToDB
+19:54:39,216  INFO AsyncSkypeMessageSender-3 Send:<init>:19 - Initialization HOST:127.0.0.1
+19:54:39,216 DEBUG AsyncSkypeMessageSender-3 Send:sendMessage:23 - Start processing send
+19:54:39,256  INFO AsyncSkypeMessageSender-3 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=7d718504-34d0-4875-a819-d0baac5ec220'
+19:54:39,272  INFO AsyncSkypeMessageSender-3 Send:sendMessage:49 - Close all connection
+20:09:46,678  INFO main Recv:<init>:30 - Initialization class Recv
+20:09:46,682  INFO main Recv:<init>:31 - Initialization queue:FromDB
+20:09:46,682  INFO main Recv:<init>:32 - Initialization HOST:127.0.0.1
+20:09:46,683  INFO Recive Recv:recive:40 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+20:09:46,825  INFO Recive Recv:recive:50 -  [*] Waiting for messages. To exit press CTRL+C
+20:19:20,418  INFO main Recv:<init>:28 - Initialization class Recv
+20:19:20,426  INFO main Recv:<init>:29 - Initialization queue:FromDB
+20:19:20,426  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+20:19:20,427  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+20:19:20,562  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+20:20:10,391  INFO main Recv:<init>:28 - Initialization class Recv
+20:20:10,394  INFO main Recv:<init>:29 - Initialization queue:FromDB
+20:20:10,394  INFO main Recv:<init>:30 - Initialization HOST:127.0.0.1
+20:20:10,396  INFO Recive Recv:recive:38 - Start processing  My HOST=127.0.0.1 my queue=FromDB
+20:20:10,553  INFO Recive Recv:recive:48 -  [*] Waiting for messages. To exit press CTRL+C
+20:20:56,668  INFO AsyncSkypeMessageSender-0 MyListener:myListener:28 - --cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=aeab0e02-0c1d-40a5-8330-47e6500acd73
+20:20:56,670  INFO AsyncSkypeMessageSender-0 Send:<init>:17 - Initialization class Send
+20:20:56,670  INFO AsyncSkypeMessageSender-0 Send:<init>:18 - Initialization queue:ToDB
+20:20:56,670  INFO AsyncSkypeMessageSender-0 Send:<init>:19 - Initialization HOST:127.0.0.1
+20:20:56,670 DEBUG AsyncSkypeMessageSender-0 Send:sendMessage:23 - Start processing send
+20:20:56,687  INFO AsyncSkypeMessageSender-0 Send:sendMessage:40 -  [x] Sent '--cmd=ask^-text="currency"^-apiname=Skype^user=galina_potemkina^-key=aeab0e02-0c1d-40a5-8330-47e6500acd73'
+20:20:56,708  INFO AsyncSkypeMessageSender-0 Send:sendMessage:49 - Close all connection
+20:20:58,964  INFO Recive Recv:recive:57 -  [x] Received '--cmd=answer^-key=aeab0e02-0c1d-40a5-8330-47e6500acd73^-text="USD-100	1576.8556
+EUR-100	1923.2908
+RUB-10	3.0304
+"'
+20:20:58,967 DEBUG Recive ParsingRegulary:decodeToMapPattern:29 - Initialization decode to map
+20:20:58,970 DEBUG Recive ParsingRegulary:decodeToMapPattern:49 - command answer
+20:20:58,971  INFO Recive Recv:recive:75 - get command:null
