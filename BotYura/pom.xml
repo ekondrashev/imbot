@@ -44,7 +44,13 @@
 	<artifactId>mysql-connector-java</artifactId>
 	<version>5.1.34</version>
 	</dependency>
-
-</dependencies>
+	
+	<dependency>
+    <groupId>com.google.apis</groupId>
+    <artifactId>google-api-services-mapsengine</artifactId>
+    <version>v1-rev58-1.19.1</version>
+	</dependency>
+    
+  </dependencies>
   
 </project>
