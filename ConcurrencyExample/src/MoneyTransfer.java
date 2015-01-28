@@ -3,75 +3,76 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MoneyTransfer implements Runnable {
-	private int[] accounts;
+	int[] accounts;
+	Object[] arrayObj = new Object[5];
+
 	int counter1;
 	int counter2;
 	static int rndSum;
 	static Random rnd = new Random();
 	Logger logger = Logger.getLogger(MoneyTransfer.class.getName());
 
-	MoneyTransfer(int[] account) {
+	MoneyTransfer(int[] account, Object[] arrayObj) {
 		this.accounts = account;
+		this.arrayObj = arrayObj;
 	}
 
 	public void run() {
+
 		int sum = 0;
 		counter1 = getRndArrayInd();
-		Logger.getLogger(MoneyTransfer.class.getName()).log(
-				Level.INFO,
-				Thread.currentThread().getName() + " " + "Our 1 ind="
-						+ counter1 + " where sum=" + accounts[counter1]);
-
 		counter2 = getRndArrayInd();
-		Logger.getLogger(MoneyTransfer.class.getName()).log(
-				Level.INFO,
-				Thread.currentThread().getName() + " " + "Our 2 ind="
-						+ counter2 + " where sum=" + accounts[counter2]);
 
 		if (counter2 == counter1) {
 			while (!(counter2 == counter1)) {
-				Logger.getLogger(MoneyTransfer.class.getName()).log(
-						Level.INFO,
-						Thread.currentThread().getName() + " "
-								+ "Our counters are  equals");
+				//System.out.println("Our counters are  equals");
 				counter2 = getRndArrayInd();
 			}
-			Logger.getLogger(MoneyTransfer.class.getName()).log(
-					Level.INFO,
-					Thread.currentThread().getName() + " " + "Our new 2 ind="
-							+ counter2);
+			//System.out.println("Our new 2 ind=" + counter2);
+
 		}
 
-		synchronized(accounts){
-			do {
-				getRndSum();
+		synchronized (arrayObj[counter1]) {
+			Logger.getLogger(MoneyTransfer.class.getName()).log(
+					Level.INFO,
+					Thread.currentThread().getName() + " " + "Our 1 ind="
+							+ counter1 + " where sum=" + accounts[counter1]);
+			synchronized (arrayObj[counter2]) {
+				Logger.getLogger(MoneyTransfer.class.getName())
+						.log(Level.INFO,
+								Thread.currentThread().getName() + " "
+										+ "Our 2 ind=" + counter2
+										+ " where sum=" + accounts[counter2]);
+				do {
+					getRndSum();
+					Logger.getLogger(MoneyTransfer.class.getName()).log(
+							Level.INFO,
+							Thread.currentThread().getName() + " "
+									+ "Our Random sum= " + rndSum);
+				} while (accounts[counter2] < rndSum);
+
+				accounts[counter2] -= rndSum;
 				Logger.getLogger(MoneyTransfer.class.getName()).log(
 						Level.INFO,
 						Thread.currentThread().getName() + " "
-								+ "Our Random sum= " + rndSum);
-			} while (accounts[counter2] < rndSum);
+								+ "Our decCouter ind=" + counter2
+								+ ", where new sum=" + accounts[counter2]);
 
-			accounts[counter2] -= rndSum;
-			Logger.getLogger(MoneyTransfer.class.getName()).log(
-					Level.INFO,
-					Thread.currentThread().getName() + " "
-							+ "Our decCouter ind=" + counter2
-							+ ", where new sum=" + accounts[counter2]);
+				accounts[counter1] += rndSum;
+				Logger.getLogger(MoneyTransfer.class.getName()).log(
+						Level.INFO,
+						Thread.currentThread().getName() + " "
+								+ "Our incCouter ind=" + counter1
+								+ ", where new sum=" + accounts[counter1]);
 
-			accounts[counter1] += rndSum;
-			Logger.getLogger(MoneyTransfer.class.getName()).log(
-					Level.INFO,
-					Thread.currentThread().getName() + " "
-							+ "Our incCouter ind=" + counter1
-							+ ", where new sum=" + accounts[counter1]);
-
-			for (int i = 0; i < accounts.length; i++) {
-				sum += accounts[i];
+				for (int i = 0; i < accounts.length; i++) {
+					sum += accounts[i];
+				}
+				Logger.getLogger(MoneyTransfer.class.getName()).log(
+						Level.INFO,
+						Thread.currentThread().getName() + " "
+								+ "Our Tread sum=" + sum);
 			}
-			Logger.getLogger(MoneyTransfer.class.getName()).log(
-					Level.INFO,
-					Thread.currentThread().getName() + " " + "Our Tread sum="
-							+ sum);
 		}
 	}
 

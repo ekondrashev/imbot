@@ -10,16 +10,18 @@ public class MainThreadAccounts {
 	public static void main(String[] args) {
 
 		int[] accounts = new int[5];
+		Object[] arrayObj = new Object[5];
+		
 		int sum = 0;
 		for (int i = 0; i < 5; i++) {
 			accounts[i] = rnd.nextInt(1000);
-			//Logger.getLogger(AccountMain.class.getName()).log(Level.INFO,
-			//		"accountsSUM1=" + accounts[i]);
 			sum += accounts[i];
+			arrayObj[i]=new Object();
+			
 		}
 		Logger.getLogger(MainThreadAccounts.class.getName()).log(Level.INFO,
 				"Our Main sum=" + sum);
-		a = new MoneyTransfer(accounts);
+		a = new MoneyTransfer(accounts,arrayObj);
 		for (int i = 0; i < 15; i++) {
 		Thread myThready = new Thread(a);
 		myThready.start();
