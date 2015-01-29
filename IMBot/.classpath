@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/rabbitmq-client.jar"/>
 	<classpathentry kind="lib" path="C:/rabbitmq-java-client-bin-2.8.0/rabbitmq-client-tests.jar"/>
 	<classpathentry kind="lib" path="C:/Users/IT School/Downloads/guava-18.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/IT School/Downloads/libmysql-java_5.1.32-1_all.deb"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

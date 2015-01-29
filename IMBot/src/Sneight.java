@@ -4,7 +4,7 @@ import java.util.Map.Entry;
 
 public class Sneight {
 
-	private static final String USAGE = "Usage: --cmd=start --cmd=stop --cmd=sent_message";
+	private static final String USAGE = "Usage: --cmd=start --cmd=stop --cmd=send_message";
 
 	public static Map<String, String> decodeToMap(String args[]) {
 		Map<String, String> ourResult = new HashMap<>();
