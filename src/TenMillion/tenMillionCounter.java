@@ -1,14 +1,15 @@
 package TenMillion;
 
-import java.util.LinkedHashSet;
+
+import java.util.LinkedList;
 
 public class tenMillionCounter extends Thread {
 	public static void main(String[] args) throws InterruptedException {
 		final oneMillion tenThreads = new oneMillion();
 
 		Thread thready = null;
-		LinkedHashSet<Thread> container = new LinkedHashSet<>();
-		 container.add(thready);
+		LinkedList<Thread> container = new LinkedList<>();
+		container.add(thready);
 		for (int i = 0; i < 10; i++) {
 			thready = new Thread() {
 				public void run() {
@@ -17,10 +18,9 @@ public class tenMillionCounter extends Thread {
 					}
 
 				}
-				 container.add(thready);
 
 			};
-		
+			container.add(thready);
 
 			thready.start();
 
