@@ -1,6 +1,6 @@
 package TenMillion;
 
-public class oneMillion extends Thread{
+public class OneMillion extends Thread{
 	public static int x=0;
 	public void millionCount() {
 		

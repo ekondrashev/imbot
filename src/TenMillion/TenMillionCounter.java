@@ -3,9 +3,9 @@ package TenMillion;
 
 import java.util.LinkedList;
 
-public class tenMillionCounter extends Thread {
+public class TenMillionCounter extends Thread {
 	public static void main(String[] args) throws InterruptedException {
-		final oneMillion tenThreads = new oneMillion();
+		final OneMillion tenThreads = new OneMillion();
 
 		Thread thready = null;
 		LinkedList<Thread> container = new LinkedList<>();
