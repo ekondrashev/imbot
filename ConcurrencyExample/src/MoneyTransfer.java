@@ -19,60 +19,70 @@ public class MoneyTransfer implements Runnable {
 
 	public void run() {
 
-		int sum = 0;
-		counter1 = getRndArrayInd();
-		counter2 = getRndArrayInd();
+		int sum;
+		int counter=0;
 
-		if (counter2 == counter1) {
-			while (!(counter2 == counter1)) {
-				//System.out.println("Our counters are  equals");
-				counter2 = getRndArrayInd();
+		while (!Thread.currentThread().isInterrupted()) {
+			sum = 0;
+			counter++;
+			counter1 = getRndArrayInd();
+			counter2 = getRndArrayInd();
+
+			if (counter2 == counter1) {
+				while (!(counter2 == counter1)) {
+					// System.out.println("Our counters are  equals");
+					counter2 = getRndArrayInd();
+				}
+				// System.out.println("Our new 2 ind=" + counter2);
+
 			}
-			//System.out.println("Our new 2 ind=" + counter2);
 
-		}
-
-		synchronized (arrayObj[counter1]) {
-			Logger.getLogger(MoneyTransfer.class.getName()).log(
-					Level.INFO,
-					Thread.currentThread().getName() + " " + "Our 1 ind="
-							+ counter1 + " where sum=" + accounts[counter1]);
-			synchronized (arrayObj[counter2]) {
+			synchronized (arrayObj[counter1]) {
 				Logger.getLogger(MoneyTransfer.class.getName())
 						.log(Level.INFO,
 								Thread.currentThread().getName() + " "
-										+ "Our 2 ind=" + counter2
-										+ " where sum=" + accounts[counter2]);
-				do {
-					getRndSum();
+										+ "Our 1 ind=" + counter1
+										+ " where sum=" + accounts[counter1]);
+				synchronized (arrayObj[counter2]) {
 					Logger.getLogger(MoneyTransfer.class.getName()).log(
 							Level.INFO,
 							Thread.currentThread().getName() + " "
-									+ "Our Random sum= " + rndSum);
-				} while (accounts[counter2] < rndSum);
+									+ "Our 2 ind=" + counter2 + " where sum="
+									+ accounts[counter2]);
+					do {
+						getRndSum();
+						Logger.getLogger(MoneyTransfer.class.getName()).log(
+								Level.INFO,
+								Thread.currentThread().getName() + " "
+										+ "Our Random sum= " + rndSum);
+					} while (accounts[counter2] < rndSum);
 
-				accounts[counter2] -= rndSum;
-				Logger.getLogger(MoneyTransfer.class.getName()).log(
-						Level.INFO,
-						Thread.currentThread().getName() + " "
-								+ "Our decCouter ind=" + counter2
-								+ ", where new sum=" + accounts[counter2]);
+					accounts[counter2] -= rndSum;
+					Logger.getLogger(MoneyTransfer.class.getName()).log(
+							Level.INFO,
+							Thread.currentThread().getName() + " "
+									+ "Our decCouter ind=" + counter2
+									+ ", where new sum=" + accounts[counter2]);
 
-				accounts[counter1] += rndSum;
-				Logger.getLogger(MoneyTransfer.class.getName()).log(
-						Level.INFO,
-						Thread.currentThread().getName() + " "
-								+ "Our incCouter ind=" + counter1
-								+ ", where new sum=" + accounts[counter1]);
+					accounts[counter1] += rndSum;
+					Logger.getLogger(MoneyTransfer.class.getName()).log(
+							Level.INFO,
+							Thread.currentThread().getName() + " "
+									+ "Our incCouter ind=" + counter1
+									+ ", where new sum=" + accounts[counter1]);
 
-				for (int i = 0; i < accounts.length; i++) {
-					sum += accounts[i];
+					for (int i = 0; i < accounts.length; i++) {
+						sum += accounts[i];
+					}
+					Logger.getLogger(MoneyTransfer.class.getName()).log(
+							Level.INFO,
+							Thread.currentThread().getName() + " "
+									+ "Our Tread sum=" + sum);
 				}
-				Logger.getLogger(MoneyTransfer.class.getName()).log(
-						Level.INFO,
-						Thread.currentThread().getName() + " "
-								+ "Our Tread sum=" + sum);
 			}
+			if (counter==1000) Thread.currentThread().interrupt();
+			arrayObj[counter2].notifyAll();
+			arrayObj[counter1].notifyAll();
 		}
 	}
 
