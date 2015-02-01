@@ -6,7 +6,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Date;
+import java.util.concurrent.Callable;
 import java.util.logging.Logger;
+
 
 
 
@@ -20,7 +22,7 @@ import org.json.JSONObject;
 
 
 
-public class Transport {
+public class Transport implements Callable{
 	
 	private static final Logger logger = Logger.getLogger(Transport.class.getName());
 	
@@ -149,5 +151,9 @@ public class Transport {
 			}
 		}
 		return str.toString();
+	}
+	
+	public String call(){
+		return getTransport();
 	}
 }
