@@ -4,7 +4,8 @@ public class Main {
 	static AtomicInteger counter = new AtomicInteger();
 	static ThreadIncCounter threadIncCounter;
 
-	public static void main(String[] args) {
+	
+    public static void main(String[] args) {
 		threadIncCounter = new ThreadIncCounter(counter);
 
 		Thread t[] = new Thread[10];
