@@ -30,17 +30,18 @@ public class MainClass {
 		printArray(accounts);
 		System.out.println(summArray(accounts));
 		
-		Transfer t = new Transfer(accounts);
+//		Transfer t = new Transfer(accounts, rand.nextInt(10), rand.nextInt(10), rand.nextInt(1000));
 		
 		for (int i = 0; i < 1000; i++) {
-			new Thread(t).run();
+			new Thread(new Transfer(accounts, rand.nextInt(10), rand.nextInt(10), rand.nextInt(1000))).run();
 		}
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		printArray(accounts);
 		System.out.println(summArray(accounts));
 	}

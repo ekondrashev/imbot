@@ -1,20 +1,21 @@
 package Main;
 
-import java.util.Random;
 
 public class Transfer implements Runnable{
-	private Random rand;
 	private Account[] arr;
+	int x;
+	int y;
+	int sum;
 	
-	public Transfer(Account[] arr){
-		rand = new Random();
+	public Transfer(Account[] arr, int x, int y, int sum){
 		this.arr = arr;
+		this.x = x;
+		this.y = y;
+		this.sum = sum;
 	}
 	
 	public void run(){
-		int x = rand.nextInt(10);
-		int y = rand.nextInt(10);
-		int sum = rand.nextInt(1000);
+		
 		int x1, y1;
 		
 		if(x > y){
@@ -27,12 +28,17 @@ public class Transfer implements Runnable{
 		
 		synchronized (arr[x1]) {
 			synchronized (arr[y1]) {
+//				if(arr[x].i >= sum){
+//					arr[x].i -= sum;
+//					arr[y].i += sum;
+//				} else if(arr[y].i >= sum){
+//					arr[y].i -= sum;
+//					arr[x].i += sum;
+//				} else return;
+				
 				if(arr[x].i >= sum){
 					arr[x].i -= sum;
 					arr[y].i += sum;
-				} else if(arr[y].i >= sum){
-					arr[y].i -= sum;
-					arr[x].i += sum;
 				} else return;
 			}
 		}

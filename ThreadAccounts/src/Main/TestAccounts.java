@@ -12,7 +12,6 @@ public class TestAccounts {
 	
 		Account[] accounts = new Account[10];
 		Random rand = new Random();
-		Transfer t = new Transfer(accounts);
 
 		public static int summArray(Account[] arr){
 			int result = 0;
@@ -42,7 +41,7 @@ public class TestAccounts {
 		int expected = summArray(accounts);
 		for (int i = 0; i < 100; i++) {
 			for (int j = 0; j < 1000; j++) {
-			new Thread(t).run();
+				new Thread(new Transfer(accounts, rand.nextInt(10), rand.nextInt(10), rand.nextInt(1000))).run();
 			}
 			assertEquals(expected, summArray(accounts));
 		}
