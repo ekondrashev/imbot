@@ -32,7 +32,7 @@ public class TestSneight extends TestCase{
 		String args[]={"--help"};
 		String USAGE = "Usage: Exec --cmd=<os_cmd> -user_id=<значение> -message=<значение>";
 		
-		Map<String,String> HashFromExec=Sneight.DecodeToMap(args);
+		Map<String,String> HashFromExec=Sneight.decodeToMap(args);
 
 		Map<String,String> myExample= new LinkedHashMap<>();
 
