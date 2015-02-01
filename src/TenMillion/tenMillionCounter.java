@@ -9,7 +9,7 @@ public class tenMillionCounter extends Thread {
 
 		Thread thready = null;
 		LinkedList<Thread> container = new LinkedList<>();
-		container.add(thready);
+	
 		for (int i = 0; i < 10; i++) {
 			thready = new Thread() {
 				public void run() {
@@ -24,11 +24,12 @@ public class tenMillionCounter extends Thread {
 
 			thready.start();
 
-			for (int j = 0; j < 10; j++) {
-
-				thready.join();
-			}
-
 		}
+		for (int i = 0; i<container.size(); i++){
+			
+			thready = container.get(i);
+			thready.join();
+		}
+		
 	}
 }
