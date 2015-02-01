@@ -20,22 +20,15 @@ public class TestMillionsThreads {
 				}
 			}
 		};
-		
-		if(i > 0){
+		k[i].start();
+		}
+		for (i = 0; i < 10; i++) {
 			try {
-				k[i-1].join();
+				k[i].join();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		k[i].start();
-		}
-		try {
-			k[i-1].join();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		System.out.println(MyThread2.i);
 		assertEquals(MyThread2.i, 10000000);
