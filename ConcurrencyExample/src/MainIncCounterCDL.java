@@ -1,13 +1,16 @@
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Main {
+
+public class MainIncCounterCDL {
 	static AtomicInteger counter = new AtomicInteger();
-	static ThreadIncCounter threadIncCounter;
+	static ThreadIncCounterCDL threadIncCounter;
 
 	
     public static void main(String[] args) throws InterruptedException {
-		threadIncCounter = new ThreadIncCounter(counter);
-
+		CountDownLatch counterCDL = new CountDownLatch(10);
+		threadIncCounter = new ThreadIncCounterCDL(counter,counterCDL);
+		
 		Thread t[] = new Thread[10];
 		for (int i = 0; i < t.length; i++) {
 			t[i] = new Thread(new Thread(threadIncCounter), "Поток " + i);
@@ -15,11 +18,8 @@ public class Main {
 			t[i].start();
 		}
 		
-		for (int i = 0; i < t.length; i++) {
-			t[i].join();
-		}
+		counterCDL.await();
 		
-
 	}
 
 }

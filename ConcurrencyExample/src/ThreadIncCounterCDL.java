@@ -1,13 +1,15 @@
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ThreadIncCounter implements Runnable {
+public class ThreadIncCounterCDL implements Runnable {
 	AtomicInteger counter = new AtomicInteger();
+	CountDownLatch threadIncCounter;
 
-
-	public ThreadIncCounter(AtomicInteger counter) {
+	public ThreadIncCounterCDL(AtomicInteger counter,CountDownLatch threadIncCounter) {
 		this.counter = counter;
+		this.threadIncCounter = threadIncCounter;
 	}
 
 	public void run() {
@@ -19,6 +21,9 @@ public class ThreadIncCounter implements Runnable {
 					Thread.currentThread().getName() + " " + counter);
 		}
 
-
+		threadIncCounter.countDown();
 	}
+
+	
 }
+
