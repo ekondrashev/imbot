@@ -21,7 +21,7 @@ public void testRefersFiilter() throws IOException{
 		BufferedReader br = new BufferedReader(r);
 		assertEquals(br.readLine(), "this is 123");
 		String resultRead = br.readLine();
-		for(int i=resultRead.length();i<0;i--){
+		for(int i=resultRead.length() -1;i>=0;i--){
 			System.out.println(resultRead.charAt(i));
 			
 			
