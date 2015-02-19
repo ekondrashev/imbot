@@ -19,11 +19,10 @@ public class TestFilter {
 		Reader r=new ReverseReader(cr);
 
 		BufferedReader br=new BufferedReader(r);
-		assertEquals(br.readLine(),"321 lk rewq");
-		assertEquals(br.readLine(),"654 uiop");
 		assertEquals(br.readLine(),"876 kjh");
-		
-		
+		assertEquals(br.readLine(),"654 uiop");
+		assertEquals(br.readLine(),"321 lk rewq");
+		br.close();
 	}
 
 }
