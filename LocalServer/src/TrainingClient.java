@@ -1,17 +1,15 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.logging.Logger;
+import java.net.UnknownHostException;
 
-public class TrainingClient implements Runnable{
-
-    Logger log = Logger.getLogger(TrainingServer.class.getName());
-    int port;
-    String host;
+public class TrainingClient implements Runnable {;
+    private int port;
+    private String host;
     protected String userName;
-    protected String clientName;
 
     public TrainingClient(String host, int port, String user) {
 	this.port = port;
@@ -21,50 +19,34 @@ public class TrainingClient implements Runnable{
 
     @Override
     public void run() {
-
 	try (Socket clientSocket = new Socket(host, port)) {
-	    System.out.println("You have connected");
-	    try (PrintWriter out = new PrintWriter(
-		    clientSocket.getOutputStream(), true);
-		    BufferedReader in = new BufferedReader(
-			    new InputStreamReader(clientSocket.getInputStream()));) {
-		
-		Thread listen = new Thread() {
-		    public void run() {
-			try {
-			    while (true) {
-				System.out.println(in.readLine());
-			    }
-			} catch (IOException e) {
-			    // TODO Auto-generated catch block
-			    System.out.println(e.getMessage());
-			}
-		    }
-		};
-		listen.start();
+	    try (BufferedReader localReader = new BufferedReader(
+		    new InputStreamReader(System.in));) {
+		System.out.println("You have connected to "
+			+ clientSocket.toString());
+		try (// BufferedReader in = new BufferedReader(new
+		     // InputStreamReader(
+		     // clientSocket.getInputStream()));
+		PrintWriter out = new PrintWriter(new OutputStreamWriter(
+			clientSocket.getOutputStream()), true)) {
 
-		Thread sender = new Thread() {
-		    public void run() {
-			BufferedReader localReader = new BufferedReader(
-				new InputStreamReader(System.in));
-			String str = null;
-			try {
-			    while (!(str = localReader.readLine())
-				    .equals("exit")) {
-				out.println(str);
-			    }
-			    log.info("Close connection");
-			} catch (IOException e) {
-			    // TODO Auto-generated catch block
-			    e.printStackTrace();
-			}
+		    // new Thread(new BfIn(in)).start();
+		    String str = null;
+		    while (!(str = localReader.readLine()).equals("exit")) {
+			out.println(userName + " - " + str);
 		    }
-		};
-		sender.start();
-
+		    System.out.println("Good Bye");
+		    Thread.currentThread().getThreadGroup().getParent()
+			    .interrupt();
+		}
 	    }
-	} catch (Exception e) {
+	} catch (UnknownHostException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
+
     }
 }

@@ -7,9 +7,9 @@ public class ClientServer {
 			return;
 		System.out.println("Welcome!!!");
 		if (args[0].equalsIgnoreCase("server"))
-			new Thread(new TrainingServer(9000, "Yura")).start();
+			new Thread(new TrainingServer(9000)).start();
 		else if (args[0].equalsIgnoreCase("client"))
-			new Thread(new TrainingClient("127.0.0.1", 9000, "Max")).start();
+			new Thread(new TrainingClient("127.0.0.1", 9000, "Client")).start();
 		else
 			return;
 	}
