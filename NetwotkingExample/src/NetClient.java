@@ -1,36 +1,42 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 
 public class NetClient {
 	public static void main(String[] args) throws IOException {
-		String inRead;
-		int portNumber = 4530;
+		int portNumber = 4538;
+		String address = "127.0.0.1";
 
-		try (ServerSocket serverSocket = new ServerSocket(portNumber);
-				Socket clientSocket = serverSocket.accept();
-				PrintWriter out = new PrintWriter(
-						clientSocket.getOutputStream(), true);
-				BufferedReader in = new BufferedReader(new InputStreamReader(
-						clientSocket.getInputStream()));) {
-			out.println("Hello");
+		System.out.println("Welcome to Client side");
 
-			while ((inRead = in.readLine()) != null)
-				if (!inRead.startsWith("exit"))
-					out.println("Return mess: " + inRead);
-				else
-					out.close();
+		Socket fromserver = null;
+		try {
+			InetAddress ipAddress = InetAddress.getByName(address);
+			fromserver = new Socket(ipAddress, portNumber);
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+					fromserver.getInputStream()));
+			PrintWriter out = new PrintWriter(fromserver.getOutputStream(),
+					true);
+			BufferedReader inu = new BufferedReader(new InputStreamReader(
+					System.in));
+
+			String fuser, fserver;
+
+			while ((fuser = inu.readLine()) != null) {
+				out.println(fuser);
+				fserver = in.readLine();
+				System.out.println(fserver);
+				if (fuser.equalsIgnoreCase("exit"))
+					break;
+			}
+
 			out.close();
+			
+			
 			in.close();
-			clientSocket.close();
-			serverSocket.close();
-		} catch (IOException e) {
-			System.err.println("Could not listen on port: " + portNumber);
-			System.exit(1);
+			inu.close();
+			fromserver.close();
+		} catch (Exception x) {
+			x.printStackTrace();
 		}
-
 	}
 }
