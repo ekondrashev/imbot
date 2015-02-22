@@ -22,25 +22,25 @@ public class TelnetServer {
 			try {
 
 			    out.println("Hello from TelnetServer");
-				String line = in.readLine();
-				out.println(line);
+				
 
-				while (line.equals("exit")) {
-					serverSocket.close();
-					out.close();
-					in.close();
+				String line;
+				while ((line = in.readLine())!= null) {
+					out.println(line);
+					System.out.println(line);
+					if( line.equals("exit")) break;
+					
 
 				}
 
 			} finally {
 				try {
-					if (serverSocket != null)
-						serverSocket.close();
 					if (out != null)
 						out.close();
 					if (in != null)
 						in.close();
-
+					if (serverSocket != null)
+						serverSocket.close();
 				} catch (IOException ex) {
 					System.out.println("Error" + ex);
 				}

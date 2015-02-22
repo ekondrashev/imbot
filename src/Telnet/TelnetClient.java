@@ -22,12 +22,12 @@ public class TelnetClient {
 				e.printStackTrace();
 			} finally {
 				try {
-					if (clientSocket != null)
-						clientSocket.close();
 					if (out != null)
 						out.close();
 					if (in != null)
 						in.close();
+					if (clientSocket != null)
+						clientSocket.close();
 
 				} catch (IOException ex) {
 					System.out.println("Error" + ex);
