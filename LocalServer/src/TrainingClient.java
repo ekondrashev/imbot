@@ -36,8 +36,6 @@ public class TrainingClient implements Runnable {;
 			out.println(userName + " - " + str);
 		    }
 		    System.out.println("Good Bye");
-		    Thread.currentThread().getThreadGroup().getParent()
-			    .interrupt();
 		}
 	    }
 	} catch (UnknownHostException e) {
