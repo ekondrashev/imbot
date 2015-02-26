@@ -86,11 +86,11 @@ public class TrainingClient implements Runnable {
 				while (buffer.hasRemaining()) {
 				    System.out.print((char) buffer.get());
 				}
-			    } else
-				key.cancel();
+			    } //else
+				//key.cancel();
 			} catch (IOException e) {
 			    e.printStackTrace();
-			    key.cancel();
+			    //key.cancel();
 			}
 		    }
 		}
