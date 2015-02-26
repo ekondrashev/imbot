@@ -15,7 +15,7 @@ public class TrainingClient implements Runnable {
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
     private String message;
 
-    public TrainingClient(String address, int port, String userName) {
+    public TrainingClient(String address, int port, String userName) throws IOException {
 	super();
 	this.userName = userName;
 	this.address = address;
@@ -23,13 +23,13 @@ public class TrainingClient implements Runnable {
 	this.message = "";
     }
     
-    private void listenTipe(SocketChannel schannel, Selector selector){
+    private void listenTipe(){
 	Thread letter = new Thread() {
 		public void run() {
 		    try (BufferedReader localReader = new BufferedReader(
 			    new InputStreamReader(System.in));) {
 			while (!(message = localReader.readLine()).equalsIgnoreCase("exit")) {
-			    schannel.register(selector, SelectionKey.OP_WRITE);
+				
 			    }
 
 		    } catch (IOException e) {
@@ -46,16 +46,17 @@ public class TrainingClient implements Runnable {
 		SocketChannel schannel = SocketChannel.open();) {
 
 	    schannel.configureBlocking(false);
-
 	    schannel.register(selector, SelectionKey.OP_CONNECT);
 	    schannel.connect(new InetSocketAddress(address, port));
-
 	    System.out.println("You have connected to server");
-
-	    listenTipe(schannel, selector);
+	    listenTipe();
 
 	    while (!Thread.currentThread().isInterrupted()) {
 		int readyChannels = selector.select(1000);
+		if (!message.equals("")){
+		    schannel.write(ByteBuffer.wrap(message.getBytes()));
+		    message = "";
+		}
 		if (readyChannels == 0)
 		    continue;
 		Iterator<SelectionKey> keyIterator = selector.selectedKeys()
@@ -74,14 +75,9 @@ public class TrainingClient implements Runnable {
 			    sch.finishConnect();
 			}
 			sch.configureBlocking(false);
-			sch.register(selector, SelectionKey.OP_WRITE);
-
-		    } else if (key.isWritable()) {// writing
-			SocketChannel sch = (SocketChannel) key.channel();
-			sch.write(ByteBuffer.wrap(message.getBytes()));
-			message = "";
+			
 			key.interestOps(SelectionKey.OP_READ);
-
+		    
 		    } else if (key.isReadable()) {// reading
 			try (SocketChannel sch = (SocketChannel) key.channel();) {
 			    int readBytes = sch.read(buffer);

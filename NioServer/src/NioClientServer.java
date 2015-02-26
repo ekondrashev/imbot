@@ -1,7 +1,9 @@
+import java.io.IOException;
+
 
 public class NioClientServer {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	if (args.length == 0)
 		return;
 	System.out.println("Welcome!!!");
