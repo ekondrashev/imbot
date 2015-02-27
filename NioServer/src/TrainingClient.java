@@ -92,6 +92,18 @@ public class TrainingClient implements Runnable {
 				Thread.sleep(50);
 			    }
 			    System.out.println("");
+			try (SocketChannel sch = (SocketChannel) key.channel();) {
+			    int readBytes = sch.read(buffer);
+			    if (readBytes > -1) {
+				buffer.flip();
+				while (buffer.hasRemaining()) {
+				    System.out.print((char) buffer.get());
+				}
+			    } //else
+				//key.cancel();
+			} catch (IOException e) {
+			    e.printStackTrace();
+			    //key.cancel();
 			}
 
 		    } else if (key.isWritable()) {
