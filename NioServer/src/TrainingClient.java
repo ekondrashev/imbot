@@ -13,31 +13,35 @@ public class TrainingClient implements Runnable {
     private String address;
     private int port;
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
-    private String message;
+    private String message; // sent message
 
-    public TrainingClient(String address, int port, String userName) throws IOException {
+    public TrainingClient(String address, int port, String userName)
+	    throws IOException {
 	super();
 	this.userName = userName;
 	this.address = address;
 	this.port = port;
 	this.message = "";
     }
-    
-    private void listenTipe(){
-	Thread letter = new Thread() {
-		public void run() {
-		    try (BufferedReader localReader = new BufferedReader(
-			    new InputStreamReader(System.in));) {
-			while (!(message = localReader.readLine()).equalsIgnoreCase("exit")) {
-				
-			    }
 
-		    } catch (IOException e) {
-			e.printStackTrace();
+    private void listenTipe() {// reading input stream (keyboard) and save it in
+			       // field message
+	new Thread() {
+	    public void run() {
+		try (BufferedReader localReader = new BufferedReader(
+			new InputStreamReader(System.in));) {
+		    while (!(message = localReader.readLine())
+			    .equalsIgnoreCase("exit")) {
+
 		    }
+		    port = -1;// using field port as a key for stop thread and
+			      // closing client
+		    message = "I'm just disconnected";
+		} catch (IOException e) {
+		    e.printStackTrace();
 		}
-	    };
-	    letter.start();
+	    }
+	}.start();
     }
 
     @Override
@@ -48,15 +52,13 @@ public class TrainingClient implements Runnable {
 	    schannel.configureBlocking(false);
 	    schannel.register(selector, SelectionKey.OP_CONNECT);
 	    schannel.connect(new InetSocketAddress(address, port));
-	    System.out.println("You have connected to server");
-	    listenTipe();
 
 	    while (!Thread.currentThread().isInterrupted()) {
-		int readyChannels = selector.select(1000);
-		if (!message.equals("")){
-		    schannel.write(ByteBuffer.wrap(message.getBytes()));
-		    message = "";
+		if (!message.equals("")) { // never send empty message
+		    schannel.keyFor(selector)
+			    .interestOps(SelectionKey.OP_WRITE);
 		}
+		int readyChannels = selector.select(1000);
 		if (readyChannels == 0)
 		    continue;
 		Iterator<SelectionKey> keyIterator = selector.selectedKeys()
@@ -75,28 +77,43 @@ public class TrainingClient implements Runnable {
 			    sch.finishConnect();
 			}
 			sch.configureBlocking(false);
-			
-			key.interestOps(SelectionKey.OP_READ);
-		    
+			System.out.println("You have connected to server");
+			listenTipe();
+			message = "I'm have connected";
+
 		    } else if (key.isReadable()) {// reading
-			try (SocketChannel sch = (SocketChannel) key.channel();) {
-			    int readBytes = sch.read(buffer);
-			    if (readBytes > -1) {
-				buffer.flip();
-				while (buffer.hasRemaining()) {
-				    System.out.print((char) buffer.get());
-				}
-			    } else
-				key.cancel();
-			} catch (IOException e) {
-			    e.printStackTrace();
-			    key.cancel();
+			SocketChannel sch = (SocketChannel) key.channel();
+			buffer.clear();
+			int readBytes = sch.read(buffer);
+			if (readBytes > -1) {
+			    buffer.flip();
+			    while (buffer.hasRemaining()) {
+				System.out.print((char) buffer.get());
+				Thread.sleep(50);
+			    }
+			    System.out.println("");
 			}
+
+		    } else if (key.isWritable()) {
+			SocketChannel sch = (SocketChannel) key.channel();
+			sch.write(ByteBuffer.wrap((userName + " - " + message)
+				.getBytes()));
+			if (port == -1) {
+			    sch.write(ByteBuffer.wrap(("").getBytes()));//sending empty message in order to server will 
+			    Thread.currentThread().interrupt();		//know that this client exited
+			    continue;
+			}
+
+			message = "";
+			key.interestOps(SelectionKey.OP_READ);
 		    }
 		}
 	    }
+
+	    System.out.println("Good bye!!!");
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (InterruptedException e) {
 	    e.printStackTrace();
 	}
 

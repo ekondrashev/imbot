@@ -6,11 +6,14 @@ import java.nio.channels.SocketChannel;
 import java.nio.channels.Selector;
 import java.nio.channels.SelectionKey;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 
 public class TrainingServer implements Runnable {
     private int port;
     private ByteBuffer buffer = ByteBuffer.allocate(1024);
+    private LinkedList<SocketChannel> usersSChanalsList = new LinkedList<SocketChannel>();
+    String stringMessage = null; // transmitted message
 
     public TrainingServer(int port) {
 	this.port = port;
@@ -20,7 +23,7 @@ public class TrainingServer implements Runnable {
     public void run() {
 	try (ServerSocketChannel ssch = ServerSocketChannel.open();
 		Selector selector = Selector.open();) {
-	    
+
 	    ssch.socket().bind(new InetSocketAddress(port));
 	    ssch.configureBlocking(false);
 	    ssch.register(selector, SelectionKey.OP_ACCEPT);
@@ -36,45 +39,54 @@ public class TrainingServer implements Runnable {
 		while (keyIterator.hasNext()) {
 		    SelectionKey key = keyIterator.next();
 		    keyIterator.remove();
-		    
-		    if (!key.isValid()) continue;
-		    
+
+		    if (!key.isValid())
+			continue;
+
 		    if (key.isAcceptable()) {
 			ServerSocketChannel sschanal = (ServerSocketChannel) key
 				.channel();
 			SocketChannel sc = sschanal.accept();
 			sc.configureBlocking(false);
 			sc.register(selector, SelectionKey.OP_READ);
-			System.out.println(sc.toString() + " has connected");
+			usersSChanalsList.add(sc); // add users SocketChannel to
+						   // list
 
 		    } else if (key.isReadable()) {
-			try (SocketChannel sch = (SocketChannel) key.channel();) {
-			    int readBytes = sch.read(buffer);
-			    if (readBytes > -1) {
-				buffer.flip();
-				while (buffer.hasRemaining()) {
-				    System.out.print((char) buffer.get());
-				}
-			    } else
-				key.cancel();
-			} catch (IOException e) {
-			    e.printStackTrace();
-			    key.cancel();
+			SocketChannel sch = (SocketChannel) key.channel();
+			buffer.clear();
+			int readBytes = sch.read(buffer);
+			if (readBytes > 0) {
+			    buffer.flip();
+			    byte[] message = new byte[readBytes];
+			    buffer.get(message);
+			    stringMessage = new String(message);
 			}
-			//key.interestOps(SelectionKey.OP_WRITE);
+			if (readBytes == -1 || readBytes == 0) {//if server has got the empty message 
+			    usersSChanalsList.remove(sch);	//it's mean the user disconnected
+			    sch.close();
+			    key.cancel();
+			    continue;
+			}
+			System.out.println(stringMessage);
+			key.interestOps(SelectionKey.OP_WRITE);
 		    }
 
-		     else if (key.isWritable()) {
-			 SocketChannel sc = (SocketChannel) key.channel();
-			 
-			 sc.write(ByteBuffer.wrap("Okaaaaaaaaaaaa".getBytes()));
-			 key.interestOps(SelectionKey.OP_READ);
-		     }
-		    
+		    else if (key.isWritable()) {
+			SocketChannel sch = (SocketChannel) key.channel();
+			for (SocketChannel channel : usersSChanalsList) {//transmit the message to all users
+			    if (channel == sch)				//except user who sent this message
+				continue;
+			    buffer.flip();
+			    channel.write(buffer);
+			}
+			key.interestOps(SelectionKey.OP_READ);
+
+		    }
+
 		}
 	    }
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
     }
