@@ -12,7 +12,7 @@ import java.util.Map;
 public class NIOServer implements Runnable {
 
 	public final static String ADDRESS = "127.0.0.1";
-	public final static int PORT = 5612;
+	public final static int PORT = 5678;
 	public final static long TIMEOUT = 10000;
 
 	private ServerSocketChannel serverChannel;
@@ -37,7 +37,7 @@ public class NIOServer implements Runnable {
 			serverChannel.configureBlocking(false);
 			serverChannel.socket().bind(new InetSocketAddress(ADDRESS, PORT));
 			serverChannel.register(selector, SelectionKey.OP_ACCEPT
-					| SelectionKey.OP_READ | SelectionKey.OP_WRITE);
+					);
 
 		} catch (IOException e) {
 			e.printStackTrace();

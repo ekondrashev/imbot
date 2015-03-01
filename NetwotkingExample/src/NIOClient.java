@@ -41,7 +41,7 @@ public class NIOClient {
                 channel.configureBlocking(false);
  
                 channel.register(selector, SelectionKey.OP_CONNECT);
-                channel.connect(new InetSocketAddress("127.0.0.1", 5612));
+                channel.connect(new InetSocketAddress("127.0.0.1", 5678));
  
                 while (!Thread.interrupted()){
  
