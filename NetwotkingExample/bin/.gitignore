@@ -3,3 +3,6 @@
 /MainIOserverThreads.class
 /IOThreadPooledServer.class
 /IOWorkerRunnable.class
+/NIOServer.class
+/NIOClient.class
+/NIOClient$SocketTest.class

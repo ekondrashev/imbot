@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 
 public class IOThreadPooledServer implements Runnable{
 
-    protected int          serverPort   = 8080;
+    protected int          serverPort ;
     protected ServerSocket serverSocket = null;
     protected boolean      isStopped    = false;
     protected Thread       runningThread= null;
